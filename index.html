@@ -7,7 +7,7 @@
     <meta name="description"
           content="Kushal Koshiya — IT Operations, Endpoint Management, Jamf, Microsoft 365, Intune and Entra ID professional.">
 
-    <title>Kushal Koshiya | IT Operations & Endpoint Management</title>
+    <title>Kushal Koshiya</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -26,8 +26,15 @@
 
     <div class="container nav-container">
 
-        <a href="#home" class="logo">
-            KK<span>.</span>
+        <a href="#home" class="logo" aria-label="Kushal Koshiya — home">
+            <span class="logo-orbit" aria-hidden="true">
+                <span class="logo-orbit-ring logo-orbit-ring-one"></span>
+                <span class="logo-orbit-ring logo-orbit-ring-two"></span>
+                <span class="logo-orbit-node logo-orbit-node-one">AI</span>
+                <span class="logo-orbit-node logo-orbit-node-two"></span>
+                <span class="logo-orbit-node logo-orbit-node-three"></span>
+            </span>
+            <span class="logo-text">KK<span class="logo-dot">.</span></span>
         </a>
 
         <button class="menu-toggle" id="menuToggle">
@@ -40,13 +47,21 @@
             <a href="#experience">Experience</a>
             <a href="#skills">Skills</a>
             <a href="#projects">Projects</a>
+            <a href="#credentials">Credentials</a>
+            <a href="#seneca-feature">Recognition</a>
+            <a href="#moments">Moments</a>
+            <a href="#resume">Resume</a>
             <a href="#contact">Contact</a>
 
             <a
                 href="https://www.linkedin.com/in/kushalkoshiya"
                 target="_blank"
-                class="nav-linkedin">
-                LinkedIn ↗
+                rel="noopener noreferrer"
+                class="nav-linkedin"
+                aria-label="Open Kushal Koshiya's LinkedIn profile">
+                <span class="linkedin-icon">in</span>
+                LinkedIn
+                <span class="linkedin-arrow">↗</span>
             </a>
 
         </nav>
@@ -61,33 +76,56 @@
 <section id="home" class="hero">
 
     <div class="container hero-grid">
-<div class="profile-photo">
-    <img src="assets/kk.png" alt="Kushal Koshiya">
-</div>
+
+        <!-- ================= HERO CONTENT ================= -->
+
         <div class="hero-content">
 
             <div class="availability">
-                <span></span>
-                Currently employed at Fundserv
-            </div>
 
+                <a
+                    href="https://www.fundserv.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="fundserv-brand"
+                    aria-label="Visit Fundserv website">
+
+                    <img
+                        src="assets/fundserv-tick-transparent.png"
+                        alt="Fundserv"
+                        class="fundserv-tick"
+                    >
+
+                    <span class="fundserv-name">
+                        fundserv
+                    </span>
+
+                </a>
+
+                <span class="status-dot" aria-hidden="true"></span>
+
+                <span class="availability-text">
+                    Currently employed
+                </span>
+
+            </div>
             <p class="eyebrow">
-                IT OPERATIONS • ENDPOINT MANAGEMENT
+                 IT OPERATIONS • ENDPOINT MANAGEMENT • MODERN WORKPLACE TECHNOLOGIES
             </p>
 
             <h1>
-                Building reliable,
-                secure & scalable
-                <span>IT environments.</span>
+                Modern IT Operations.
+                Secure Endpoints.
+                <span>Better Experiences.</span>
             </h1>
 
             <p class="hero-description">
 
-                I'm Kushal Koshiya, an IT professional focused on
-                endpoint management, Apple administration, Microsoft 365,
-                Intune, Entra ID and modern IT operations.
+    I'm <strong class="hero-name">Kushal Koshiya</strong>, an IT professional focused on
+    endpoint management, Apple administration, Microsoft 365,
+    Intune, Entra ID and modern IT operations.
 
-            </p>
+</p>
 
             <div class="hero-buttons">
 
@@ -96,11 +134,16 @@
                 </a>
 
                 <a
-                    href="https://www.linkedin.com/in/kushalkoshiya"
-                    target="_blank"
-                    class="button secondary">
-                    LinkedIn ↗
-                </a>
+    href="https://www.linkedin.com/in/kushalkoshiya"
+    target="_blank"
+    rel="noopener noreferrer"
+    class="button linkedin-button">
+
+    <span class="linkedin-icon">in</span>
+    LinkedIn
+    <span class="linkedin-arrow">↗</span>
+
+</a>
 
             </div>
 
@@ -112,7 +155,7 @@
                 </div>
 
                 <div>
-                    <strong>2</strong>
+                    <strong>2+</strong>
                     <small>Years at Fundserv</small>
                 </div>
 
@@ -123,59 +166,101 @@
 
             </div>
 
-        </div>
+            <!-- ================= HOME ACHIEVEMENT HIGHLIGHTS ================= -->
+            <div class="stats home-achievements" style="margin-top: 1.25rem;">
 
+                <div>
+                    <strong>20+</strong>
+                    <small>Projects Delivered</small>
+                </div>
 
-        <!-- TERMINAL CARD -->
+                <div>
+                    <strong>2+</strong>
+                    <small>Certifications Earned</small>
+                </div>
 
-        <div class="terminal">
-
-            <div class="terminal-header">
-
-                <span></span>
-                <span></span>
-                <span></span>
+                <div>
+                    <strong>3</strong>
+                    <small>Honour List Awards</small>
+                </div>
 
             </div>
 
-            <div class="terminal-content">
+        </div>
 
-                <p>
-                    <span class="green">kushal@portfolio</span>:~$ whoami
-                </p>
 
-                <h3>
-                    IT Operations Professional
-                </h3>
+        <!-- ================= ANIMATED TECH PHOTO ================= -->
 
-                <p class="terminal-muted">
-                    Endpoint Management Engineer
-                </p>
+        <div class="tech-photo">
 
-                <div class="terminal-item">
-                    <b>›</b> Jamf Pro
-                </div>
+            <!-- Animated background grid -->
+            <div class="tech-grid"></div>
 
-                <div class="terminal-item">
-                    <b>›</b> Microsoft Intune
-                </div>
 
-                <div class="terminal-item">
-                    <b>›</b> Microsoft 365
-                </div>
+            <!-- Glowing connection lines -->
 
-                <div class="terminal-item">
-                    <b>›</b> Entra ID / Azure
-                </div>
+            <div class="tech-line line-1"></div>
+            <div class="tech-line line-2"></div>
+            <div class="tech-line line-3"></div>
+            <div class="tech-line line-4"></div>
 
-                <div class="terminal-item">
-                    <b>›</b> NinjaOne
-                </div>
 
-                <p class="cursor">
-                    _
-                </p>
+            <!-- Floating particles -->
 
+            <div class="tech-particle particle-1"></div>
+            <div class="tech-particle particle-2"></div>
+            <div class="tech-particle particle-3"></div>
+            <div class="tech-particle particle-4"></div>
+            <div class="tech-particle particle-5"></div>
+            <div class="tech-particle particle-6"></div>
+
+
+            <!-- Technology symbols -->
+
+            <div class="tech-symbol symbol-1">
+                ⌘
+            </div>
+
+            <div class="tech-symbol symbol-2">
+                ☁
+            </div>
+
+            <div class="tech-symbol symbol-3">
+                ◇
+            </div>
+
+            <div class="tech-symbol symbol-4">
+                ◈
+            </div>
+
+
+            <!-- Profile Photo -->
+
+            <div class="profile-photo">
+
+                <img
+                    src="assets/kk.png"
+                    alt="Kushal Koshiya">
+
+            </div>
+
+
+            <!-- Small technology labels -->
+
+            <div class="tech-label label-1">
+                JAMF
+            </div>
+
+            <div class="tech-label label-2">
+                INTUNE
+            </div>
+
+            <div class="tech-label label-3">
+                AI
+            </div>
+
+            <div class="tech-label label-4">
+                CLOUD
             </div>
 
         </div>
@@ -184,22 +269,52 @@
 
 </section>
 
-
 <!-- ================= TECHNOLOGIES ================= -->
 
 <section class="technology-bar">
 
     <div class="container technology-container">
 
-        <span>FOCUSED ON</span>
+        <span class="technology-label">FOCUSED ON</span>
 
-        <strong>Jamf</strong>
-        <strong>Microsoft 365</strong>
-        <strong>Intune</strong>
-        <strong>Entra ID</strong>
-        <strong>Azure</strong>
-        <strong>Apple</strong>
-        <strong>NinjaOne</strong>
+        <div class="technology-marquee">
+
+            <div class="technology-track">
+
+                <div class="technology-set">
+                    <strong>Microsoft 365 &amp; Copilot</strong>
+                    <strong>Azure Virtual Desktop (AVD)</strong>
+                    <strong>Microsoft Intune &amp; Jamf Pro</strong>
+                    <strong>ServiceNow &amp; IT Automation</strong>
+                    <strong>PowerShell Scripting</strong>
+                    <strong>Entra ID &amp; Active Directory</strong>
+                    <strong>Endpoint Management (Windows, macOS, iOS)</strong>
+                    <strong>Identity &amp; Access Management</strong>
+                    <strong>Cloud &amp; Workplace Technology</strong>
+                    <strong>Process Automation &amp; IT Operations</strong>
+                    <strong>Teams Rooms &amp; Smart Office Technology</strong>
+                    <strong>IT Infrastructure &amp; Digital Workplace Solutions</strong>
+                </div>
+
+                <!-- Duplicate = seamless loop -->
+                <div class="technology-set" aria-hidden="true">
+                    <strong>Microsoft 365 &amp; Copilot</strong>
+                    <strong>Azure Virtual Desktop (AVD)</strong>
+                    <strong>Microsoft Intune &amp; Jamf Pro</strong>
+                    <strong>ServiceNow &amp; IT Automation</strong>
+                    <strong>PowerShell Scripting</strong>
+                    <strong>Entra ID &amp; Active Directory</strong>
+                    <strong>Endpoint Management (Windows, macOS, iOS)</strong>
+                    <strong>Identity &amp; Access Management</strong>
+                    <strong>Cloud &amp; Workplace Technology</strong>
+                    <strong>Process Automation &amp; IT Operations</strong>
+                    <strong>Teams Rooms &amp; Smart Office Technology</strong>
+                    <strong>IT Infrastructure &amp; Digital Workplace Solutions</strong>
+                </div>
+
+            </div>
+
+        </div>
 
     </div>
 
@@ -269,14 +384,14 @@
 </section>
 
 
-<!-- ================= EXPERIENCE ================= -->
+<!-- ================= PROFESSIONAL EXPERIENCE ================= -->
 
 <section id="experience" class="section dark-section">
 
     <div class="container">
 
         <p class="section-label">
-            02 — EXPERIENCE
+            02 — PROFESSIONAL EXPERIENCE
         </p>
 
         <div class="section-heading">
@@ -287,105 +402,350 @@
             </h2>
 
             <p>
-                Experience across modern workplace,
-                endpoint management and IT operations.
+                Building secure, scalable and efficient IT environments
+                across endpoint management, cloud infrastructure and
+                modern workplace technologies.
             </p>
 
         </div>
 
 
-        <div class="timeline">
+        <!-- ================= EXPERIENCE TIMELINE ================= -->
 
-            <!-- EXPERIENCE 1 -->
+        <div class="experience-timeline">
 
-            <div class="timeline-item">
 
-                <div class="timeline-date">
-                    2024 — PRESENT
+            <!-- ================= FUNDserv — CURRENT ================= -->
+
+            <article class="experience-card featured-experience">
+
+                <div class="experience-top">
+
+                    <div>
+
+                        <span class="experience-status">
+                            CURRENT ROLE
+                        </span>
+
+                        <h3>
+                            Desktop Administrator
+                        </h3>
+
+                        <h4>
+                            Fundserv Inc. · Toronto, Canada
+                        </h4>
+
+                    </div>
+
+                    <div class="experience-date">
+                        August 2024 — Present
+                    </div>
+
                 </div>
 
-                <div class="timeline-line">
-                    <span></span>
-                </div>
 
-                <div class="timeline-content">
+                <p class="company-description">
 
-                    <h3>
-                        Desktop Administrator
-                    </h3>
+                    Fundserv connects the Canadian investment industry
+                    through reliable technology services that enable
+                    secure and automated transactions across a
+                    centralized network.
 
-                    <h4>
-                        Fundserv Inc. · Toronto, Canada
-                    </h4>
+                </p>
 
-                    <p>
 
-                        Supporting and administering Apple endpoint
-                        management across the organization.
+                <!-- IMPACT METRICS -->
 
-                        Experience includes Jamf administration,
-                        MacBook and iOS management, configuration,
-                        troubleshooting and IT operations.
+                <div class="impact-grid">
 
-                    </p>
+                    <div class="impact-card">
 
-                    <div class="tags">
+                        <strong>50%</strong>
 
-                        <span>Jamf Pro</span>
-                        <span>macOS</span>
-                        <span>iOS</span>
-                        <span>Endpoint Management</span>
+                        <span>
+                            Azure cost reduction
+                        </span>
+
+                    </div>
+
+
+                    <div class="impact-card">
+
+                        <strong>90%</strong>
+
+                        <span>
+                            Faster onboarding
+                        </span>
+
+                    </div>
+
+
+                    <div class="impact-card">
+
+                        <strong>200+</strong>
+
+                        <span>
+                            Users supported through automation
+                        </span>
 
                     </div>
 
                 </div>
 
-            </div>
 
+                <!-- RESPONSIBILITIES -->
 
-            <!-- EXPERIENCE 2 -->
+                <div class="experience-details">
 
-            <div class="timeline-item">
+                    <h5>
+                        Key Contributions
+                    </h5>
 
-                <div class="timeline-date">
-                    3+ YEARS
+                    <ul>
+
+                        <li>
+                            Managed enterprise Windows and macOS endpoints
+                            across Microsoft Intune, Jamf Pro, SCCM,
+                            Azure Virtual Desktop, NinjaOne and Microsoft 365,
+                            implementing compliance policies and endpoint
+                            security controls to maintain a secure and
+                            reliable environment.
+                        </li>
+
+                        <li>
+                            Administered Azure Virtual Desktop (AVD)
+                            infrastructure and strategically optimized
+                            resources, reducing Azure costs by
+                            <strong>50%</strong>.
+                        </li>
+
+                        <li>
+                            Led enterprise macOS management by deploying
+                            applications, enforcing compliance policies
+                            and maintaining security baselines.
+                        </li>
+
+                        <li>
+                            Designed and implemented automated
+                            onboarding and offboarding workflows using
+                            ManageEngine ADManager Plus, covering Active
+                            Directory provisioning, Microsoft Entra ID
+                            group assignments, Teams channel access and
+                            distribution list management.
+                        </li>
+
+                        <li>
+                            Reduced employee onboarding time by
+                            <strong>90%</strong>, from multiple days to
+                            under two hours, while scaling the process
+                            to <strong>200+ users</strong>.
+                        </li>
+
+                        <li>
+                            Partnered with infrastructure and security
+                            teams to automate endpoint administration
+                            and strengthen device security.
+                        </li>
+
+                        <li>
+                            Developed and maintained executive-level IT
+                            reporting, dashboards and inventory metrics,
+                            providing leadership with actionable insights
+                            into device management, service performance
+                            and operational trends.
+                        </li>
+
+                    </ul>
+
                 </div>
 
-                <div class="timeline-line">
-                    <span></span>
+
+                <!-- TECHNOLOGIES -->
+
+                <div class="experience-tech">
+
+                    <span>Microsoft Intune</span>
+                    <span>Jamf Pro</span>
+                    <span>SCCM</span>
+                    <span>Azure Virtual Desktop</span>
+                    <span>NinjaOne</span>
+                    <span>Microsoft 365</span>
+                    <span>Entra ID</span>
+                    <span>ADManager Plus</span>
+
                 </div>
 
-                <div class="timeline-content">
+            </article>
 
-                    <h3>
-                        IT Support & Systems Administration
-                    </h3>
 
-                    <h4>
-                        Microsoft & Apple Environments
-                    </h4>
+            <!-- ================= FUNDserv — CO-OP ================= -->
 
-                    <p>
+            <article class="experience-card">
 
-                        Supported users, devices and cloud services
-                        across Microsoft 365, Azure, Entra ID,
-                        Intune, Jamf and NinjaOne.
+                <div class="experience-top">
 
-                    </p>
+                    <div>
 
-                    <div class="tags">
+                        <span class="experience-type">
+                            CO-OP
+                        </span>
 
-                        <span>Microsoft 365</span>
-                        <span>Entra ID</span>
-                        <span>Intune</span>
-                        <span>Azure</span>
-                        <span>NinjaOne</span>
+                        <h3>
+                            Junior Desktop Administrator
+                        </h3>
 
+                        <h4>
+                            Fundserv Inc. · Toronto, Canada
+                        </h4>
+
+                    </div>
+
+                    <div class="experience-date">
+                        September 2023 — April 2024
                     </div>
 
                 </div>
 
-            </div>
+
+                <p class="company-description">
+
+                    Supported enterprise IT operations across endpoint
+                    management, cloud infrastructure and end-user
+                    technology.
+
+                </p>
+
+
+                <div class="experience-details">
+
+                    <h5>
+                        Key Contributions
+                    </h5>
+
+                    <ul>
+
+                        <li>
+                            Supported Azure Virtual Desktop administration
+                            and performance optimization.
+                        </li>
+
+                        <li>
+                            Assisted with Microsoft Intune enrollment,
+                            configuration profiles and device compliance.
+                        </li>
+
+                        <li>
+                            Managed incidents and service requests using
+                            ServiceNow.
+                        </li>
+
+                        <li>
+                            Authored technical documentation and
+                            troubleshooting guides in Confluence.
+                        </li>
+
+                        <li>
+                            Delivered Windows and macOS end-user support,
+                            troubleshooting hardware, software and
+                            account-related issues.
+                        </li>
+
+                    </ul>
+
+                </div>
+
+
+                <div class="experience-tech">
+
+                    <span>Azure Virtual Desktop</span>
+                    <span>Microsoft Intune</span>
+                    <span>ServiceNow</span>
+                    <span>Confluence</span>
+                    <span>Windows</span>
+                    <span>macOS</span>
+
+                </div>
+
+            </article>
+
+
+            <!-- ================= SENECA ================= -->
+
+            <article class="experience-card">
+
+                <div class="experience-top">
+
+                    <div>
+
+                        <span class="experience-type">
+                            IT SUPPORT
+                        </span>
+
+                        <h3>
+                            IT Support
+                        </h3>
+
+                        <h4>
+                            Seneca Polytechnic · Toronto, Canada
+                        </h4>
+
+                    </div>
+
+                    <div class="experience-date">
+                        August 2022 — August 2024
+                    </div>
+
+                </div>
+
+
+                <p class="company-description">
+
+                    Seneca Polytechnic prepares students for careers
+                    through a blend of academic and practical education.
+
+                </p>
+
+
+                <div class="experience-details">
+
+                    <h5>
+                        Key Contributions
+                    </h5>
+
+                    <ul>
+
+                        <li>
+                            Delivered Tier 1 and Tier 2 IT support
+                            for faculty and students.
+                        </li>
+
+                        <li>
+                            Supported classroom and hybrid learning
+                            technologies.
+                        </li>
+
+                        <li>
+                            Resolved hardware, software and
+                            account-related technical issues.
+                        </li>
+
+                    </ul>
+
+                </div>
+
+
+                <div class="experience-tech">
+
+                    <span>IT Support</span>
+                    <span>Tier 1 / Tier 2</span>
+                    <span>Hardware</span>
+                    <span>Software</span>
+                    <span>Classroom Technology</span>
+
+                </div>
+
+            </article>
+
 
         </div>
 
@@ -545,25 +905,27 @@
 </section>
 
 
-<!-- ================= PROJECTS ================= -->
+<!-- ================= KEY PROJECTS ================= -->
 
 <section id="projects" class="section projects-section">
 
     <div class="container">
 
         <p class="section-label">
-            04 — PROJECTS
+            04 — KEY PROJECTS
         </p>
 
         <div class="section-heading">
 
             <h2>
-                Things I've
-                <span>worked on.</span>
+                Projects that
+                <span>made an impact.</span>
             </h2>
 
             <p>
-                Selected projects and technical initiatives.
+                Selected automation, endpoint management and
+                identity projects focused on improving security,
+                efficiency and the employee experience.
             </p>
 
         </div>
@@ -572,97 +934,271 @@
         <div class="projects-grid">
 
 
-            <article class="project-card featured">
+            <!-- ================= PROJECT 1 ================= -->
 
-                <div class="project-number">
-                    01
+            <article class="project-card featured-project">
+
+                <div class="project-header">
+
+                    <span class="project-number">
+                        01
+                    </span>
+
+                    <span class="project-category">
+                        AUTOMATION · IDENTITY
+                    </span>
+
                 </div>
 
+
                 <h3>
-                    Jamf Environment
+                    Identity Lifecycle Automation
                 </h3>
 
-                <p>
+                <h4>
+                    ManageEngine ADManager Plus
+                </h4>
 
-                    Built and supported a Jamf-based Apple management
-                    environment for organizational endpoints.
+
+                <p class="project-summary">
+
+                    Designed and implemented automated onboarding
+                    and offboarding workflows to streamline identity
+                    lifecycle management across the organization.
 
                 </p>
 
-                <div class="project-footer">
 
-                    <span>
-                        Jamf Pro · macOS · iOS
-                    </span>
+                <!-- PROJECT IMPACT -->
 
-                    <span>
-                        →
-                    </span>
+                <div class="project-impact">
+
+                    <div>
+
+                        <strong>90%</strong>
+
+                        <span>
+                            Reduction in onboarding time
+                        </span>
+
+                    </div>
+
+
+                    <div>
+
+                        <strong>200+</strong>
+
+                        <span>
+                            Users automated
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="project-details">
+
+                    <h5>
+                        What I implemented
+                    </h5>
+
+                    <ul>
+
+                        <li>
+                            Automated Active Directory account
+                            provisioning and deprovisioning.
+                        </li>
+
+                        <li>
+                            Automated Microsoft Entra ID group
+                            assignments.
+                        </li>
+
+                        <li>
+                            Automated Microsoft Teams channel
+                            access.
+                        </li>
+
+                        <li>
+                            Automated distribution list membership.
+                        </li>
+
+                        <li>
+                            Created consistent onboarding and
+                            offboarding workflows across the
+                            identity lifecycle.
+                        </li>
+
+                    </ul>
+
+                </div>
+
+
+                <div class="project-tech">
+
+                    <span>ManageEngine ADManager Plus</span>
+                    <span>Active Directory</span>
+                    <span>Entra ID</span>
+                    <span>Microsoft Teams</span>
+                    <span>Automation</span>
 
                 </div>
 
             </article>
 
 
+
+            <!-- ================= PROJECT 2 ================= -->
+
             <article class="project-card">
 
-                <div class="project-number">
-                    02
+                <div class="project-header">
+
+                    <span class="project-number">
+                        02
+                    </span>
+
+                    <span class="project-category">
+                        ENDPOINT · APPLE
+                    </span>
+
                 </div>
 
+
                 <h3>
-                    Microsoft Endpoint Management
+                    Jamf Pro Implementation
                 </h3>
 
-                <p>
 
-                    Worked with Intune and Microsoft cloud services
-                    to support modern endpoint operations.
+                <p class="project-summary">
+
+                    Designed an enterprise macOS management framework
+                    to standardize device configuration, application
+                    deployment and endpoint security.
 
                 </p>
 
-                <div class="project-footer">
 
-                    <span>
-                        Intune · M365 · Entra
-                    </span>
+                <div class="project-details">
 
-                    <span>
-                        →
-                    </span>
+                    <h5>
+                        What I implemented
+                    </h5>
+
+                    <ul>
+
+                        <li>
+                            Designed the enterprise macOS management
+                            framework using Jamf Pro.
+                        </li>
+
+                        <li>
+                            Configured device compliance policies
+                            and security controls.
+                        </li>
+
+                        <li>
+                            Implemented software deployment and
+                            application management.
+                        </li>
+
+                        <li>
+                            Standardized device management practices
+                            to improve endpoint security.
+                        </li>
+
+                    </ul>
+
+                </div>
+
+
+                <div class="project-tech">
+
+                    <span>Jamf Pro</span>
+                    <span>macOS</span>
+                    <span>Apple</span>
+                    <span>Endpoint Security</span>
+                    <span>Software Deployment</span>
 
                 </div>
 
             </article>
 
 
+
+            <!-- ================= PROJECT 3 ================= -->
+
             <article class="project-card">
 
-                <div class="project-number">
-                    03
+                <div class="project-header">
+
+                    <span class="project-number">
+                        03
+                    </span>
+
+                    <span class="project-category">
+                        IDENTITY · GOVERNANCE
+                    </span>
+
                 </div>
 
+
                 <h3>
-                    IT Automation
+                    Microsoft Entra ID
+                    Access Packages
                 </h3>
 
-                <p>
 
-                    Process automation and operational improvements
-                    designed to reduce manual IT work and improve
-                    employee onboarding.
+                <p class="project-summary">
+
+                    Implemented automated external-user access
+                    workflows using Microsoft Entra ID entitlement
+                    management and access reviews.
 
                 </p>
 
-                <div class="project-footer">
 
-                    <span>
-                        Automation · IT Operations
-                    </span>
+                <div class="project-details">
 
-                    <span>
-                        →
-                    </span>
+                    <h5>
+                        What I implemented
+                    </h5>
+
+                    <ul>
+
+                        <li>
+                            Implemented automated external-user
+                            access workflows.
+                        </li>
+
+                        <li>
+                            Configured entitlement management
+                            and access packages.
+                        </li>
+
+                        <li>
+                            Implemented access reviews to improve
+                            governance and visibility.
+                        </li>
+
+                        <li>
+                            Reduced manual provisioning while
+                            strengthening access governance.
+                        </li>
+
+                    </ul>
+
+                </div>
+
+
+                <div class="project-tech">
+
+                    <span>Microsoft Entra ID</span>
+                    <span>Access Packages</span>
+                    <span>Entitlement Management</span>
+                    <span>Access Reviews</span>
+                    <span>Identity Governance</span>
 
                 </div>
 
@@ -674,18 +1210,742 @@
     </div>
 
 </section>
+<!-- =========================================================
+     05 — EDUCATION & CREDENTIALS
+========================================================= -->
 
+<section id="credentials" class="section credentials-section">
+
+    <div class="container">
+
+        <div class="section-heading credentials-heading">
+
+            <div>
+                <p class="section-label">05 — EDUCATION &amp; CREDENTIALS</p>
+
+                <h2>
+                    Education, certifications
+                    <span>& recognition.</span>
+                </h2>
+
+                <p class="credentials-intro">
+                    A collection of academic achievements, professional
+                    certifications and recognition earned throughout my
+                    technology journey.
+                </p>
+            </div>
+
+        </div>
+
+
+        <div class="credentials-grid">
+
+            <!-- DEGREE — FEATURED -->
+
+            <article class="credential-card credential-degree">
+
+                <div class="credential-image">
+                    <img
+                        src="assets/seneca-advanced-diploma.png"
+                        alt="Ontario College Advanced Diploma in Computer Systems Technology with Honours">
+                </div>
+
+                <div class="credential-content">
+
+                    <div class="credential-topline">
+                        <span class="credential-type">EDUCATION</span>
+                        <span class="credential-year">2024</span>
+                    </div>
+
+                    <h3>
+                        Ontario College Advanced Diploma
+                    </h3>
+
+                    <h4>
+                        Computer Systems Technology · With Honours
+                    </h4>
+
+                    <p>
+                        Seneca Polytechnic · Toronto, Canada
+                    </p>
+
+                    <a
+                        href="assets/seneca-advanced-diploma.png"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="credential-link">
+                        View Credential ↗
+                    </a>
+
+                </div>
+
+            </article>
+
+
+            <!-- UTU — DIPLOMA IN INFORMATION TECHNOLOGY -->
+
+            <article class="credential-card credential-degree credential-utu">
+
+                <div class="credential-image">
+                    <img
+                        src="assets/utu-diploma-information-technology.png"
+                        alt="Uka Tarsadia University Diploma in Information Technology certificate">
+                </div>
+
+                <div class="credential-content">
+
+                    <div class="credential-topline">
+                        <span class="credential-type">EDUCATION</span>
+                        <span class="credential-year">2021</span>
+                    </div>
+
+                    <h3>
+                        Diploma in Information Technology
+                    </h3>
+
+                    <h4>
+                        First Class Distinction
+                    </h4>
+
+                    <p>
+                        Uka Tarsadia University · Bardoli, Surat, Gujarat, India
+                    </p>
+
+                    <a
+                        href="assets/Kushal_Koshiya_UTU_Degree.pdf"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="credential-link">
+                        View Diploma ↗
+                    </a>
+
+                </div>
+
+            </article>
+
+
+            <!-- MICROSOFT -->
+
+            <article class="credential-card">
+
+                <div class="credential-image credential-image-cert">
+                    <img
+                        src="assets/microsoft-azure-fundamentals.png"
+                        alt="Microsoft Certified Azure Fundamentals certificate">
+                </div>
+
+                <div class="credential-content">
+
+                    <div class="credential-topline">
+                        <span class="credential-type microsoft-type">
+                            MICROSOFT
+                        </span>
+
+                        <span class="credential-year">
+                            2024
+                        </span>
+                    </div>
+
+                    <h3>
+                        Azure Fundamentals
+                    </h3>
+
+                    <h4>
+                        Microsoft Certified
+                    </h4>
+
+                    <p>
+                        Azure · Cloud Fundamentals
+                    </p>
+
+                    <a
+                        href="assets/microsoft-azure-fundamentals.png"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="credential-link">
+                        View Certificate ↗
+                    </a>
+
+                </div>
+
+            </article>
+
+
+            <!-- JAMF -->
+
+            <article class="credential-card">
+
+                <div class="credential-image credential-image-cert">
+                    <img
+                        src="assets/jamf-certified-associate.png"
+                        alt="Jamf Certified Associate - Jamf Pro certificate">
+                </div>
+
+                <div class="credential-content">
+
+                    <div class="credential-topline">
+                        <span class="credential-type jamf-type">
+                            JAMF
+                        </span>
+
+                        <span class="credential-year">
+                            2026
+                        </span>
+                    </div>
+
+                    <h3>
+                        Jamf Certified Associate
+                    </h3>
+
+                    <h4>
+                        Jamf Pro
+                    </h4>
+
+                    <p>
+                        Apple Device Management
+                    </p>
+
+                    <a
+                        href="assets/jamf-certified-associate.png"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="credential-link">
+                        View Certificate ↗
+                    </a>
+
+                </div>
+
+            </article>
+
+
+            <!-- PRESIDENT'S HONOUR LIST — FALL 2022 -->
+
+            <article class="credential-card credential-award">
+
+                <div class="credential-image credential-image-award">
+                    <img
+                        src="assets/presidents-honour-fall-2022.png"
+                        alt="Seneca President's Honour List Fall 2022 certificate">
+                </div>
+
+                <div class="credential-content">
+
+                    <div class="credential-topline">
+                        <span class="credential-type award-type">
+                            ACADEMIC HONOUR
+                        </span>
+                    </div>
+
+                    <h3>
+                        President's Honour List
+                    </h3>
+
+                    <h4>
+                        Fall 2022
+                    </h4>
+
+                    <p>
+                        Seneca Polytechnic
+                    </p>
+
+                    <a
+                        href="assets/presidents-honour-fall-2022.png"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="credential-link">
+                        View Recognition ↗
+                    </a>
+
+                </div>
+
+            </article>
+
+
+            <!-- PRESIDENT'S HONOUR LIST — WINTER 2022 -->
+
+            <article class="credential-card credential-award">
+
+                <div class="credential-image credential-image-award">
+                    <img
+                        src="assets/presidents-honour-winter-2022.png"
+                        alt="Seneca President's Honour List Winter 2022 certificate">
+                </div>
+
+                <div class="credential-content">
+
+                    <div class="credential-topline">
+                        <span class="credential-type award-type">
+                            ACADEMIC HONOUR
+                        </span>
+                    </div>
+
+                    <h3>
+                        President's Honour List
+                    </h3>
+
+                    <h4>
+                        Winter 2022
+                    </h4>
+
+                    <p>
+                        Seneca Polytechnic
+                    </p>
+
+                    <a
+                        href="assets/presidents-honour-winter-2022.png"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="credential-link">
+                        View Recognition ↗
+                    </a>
+
+                </div>
+
+            </article>
+
+
+            <!-- PRESIDENT'S HONOUR LIST — WINTER 2023 -->
+
+            <article class="credential-card credential-award">
+
+                <div class="credential-image credential-image-award">
+                    <img
+                        src="assets/presidents-honour-winter-2023.jpg"
+                        alt="Seneca President's Honour List Winter 2023 certificate">
+                </div>
+
+                <div class="credential-content">
+
+                    <div class="credential-topline">
+                        <span class="credential-type award-type">
+                            ACADEMIC HONOUR
+                        </span>
+                    </div>
+
+                    <h3>
+                        President's Honour List
+                    </h3>
+
+                    <h4>
+                        Winter 2023
+                    </h4>
+
+                    <p>
+                        Seneca Polytechnic
+                    </p>
+
+                    <a
+                        href="assets/presidents-honour-winter-2023.jpg"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="credential-link">
+                        View Recognition ↗
+                    </a>
+
+                </div>
+
+            </article>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= SENECA RECOGNITION ================= -->
+
+<section id="seneca-feature" class="seneca-section">
+
+    <div class="container">
+
+        <p class="section-label seneca-section-label">
+            06 — RECOGNITION
+        </p>
+
+        <div class="seneca-heading">
+
+            <div>
+                <h2>
+                    Featured by
+                    <span>Seneca Polytechnic.</span>
+                </h2>
+
+                <p>
+                    A proud moment from my <strong class="seneca-program-name">Computer Systems Technology</strong>
+                    journey, featured by Seneca Polytechnic.
+                </p>
+            </div>
+
+            <div class="seneca-badge">
+                <span class="seneca-badge-dot"></span>
+                OFFICIAL GRADUATE FEATURE
+            </div>
+
+        </div>
+
+
+        <!-- SCREENSHOT CARD -->
+
+        <div class="seneca-feature-card">
+
+            <div class="seneca-card-top">
+
+                <div class="seneca-card-brand">
+
+                    <div>
+                        <strong>
+                            SENECA POLYTECHNIC
+                        </strong>
+
+                        <span>
+                            What Our Graduates Say
+                        </span>
+                    </div>
+
+                </div>
+
+
+                <span class="seneca-card-label">
+                    COMPUTER SYSTEMS TECHNOLOGY
+                </span>
+
+            </div>
+
+
+            <div class="seneca-image-wrapper">
+
+                <img
+                    src="assets/seneca-feature.png"
+                    alt="Kushal Koshiya featured in Seneca Polytechnic's What Our Graduates Say section"
+                    loading="lazy">
+
+            </div>
+
+
+            <div class="seneca-card-bottom">
+
+    <div class="seneca-identity">
+
+        <div class="seneca-logo">
+            <img
+                src="assets/seneca-logo.png"
+                alt="Seneca Polytechnic">
+        </div>
+
+        <div class="seneca-divider"></div>
+
+        <div class="seneca-identity-text">
+
+            <strong>
+                SENECA POLYTECHNIC
+            </strong>
+
+            <span>
+                What Our Graduates Say
+            </span>
+
+        </div>
+
+    </div>
+
+    <a
+        href="https://www.senecapolytechnic.ca/programs/fulltime/CTY.html"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="seneca-view-button">
+
+        View Feature on Seneca
+
+        <span>↗</span>
+
+    </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= FEATURED MOMENTS ================= -->
+
+<section id="moments" class="section moments-section">
+
+    <div class="container">
+
+        <div class="section-heading moments-heading">
+
+            <div>
+                <p class="section-label">07 — FEATURED MOMENTS</p>
+
+                <h2>
+                    A few moments that
+                    <span>shaped my journey.</span>
+                </h2>
+
+                <p class="moments-intro">
+                    From graduating with honours to learning with industry leaders
+                    and growing from a co-op student into a full-time IT professional,
+                    these are a few milestones and experiences I am proud to share.
+                </p>
+            </div>
+
+        </div>
+
+
+        <!-- ================= GRADUATION ================= -->
+
+        <article class="moment-card moment-graduation">
+
+            <div class="moment-card-heading">
+
+                <div>
+                    <span class="moment-kicker">EDUCATION · 2024</span>
+
+                    <h3>
+                        Seneca Polytechnic Graduation
+                    </h3>
+
+                    <p>
+                        A milestone that marked the completion of my
+                        <strong>Ontario College Advanced Diploma in Computer Systems Technology with Honours.</strong>
+                    </p>
+                </div>
+
+                <span class="moment-badge">GRADUATION</span>
+
+            </div>
+
+            <div class="moment-gallery graduation-gallery">
+
+                <a href="assets/graduation-1.jpg" target="_blank" rel="noopener noreferrer">
+                    <img
+                        src="assets/graduation-1.jpg"
+                        alt="Kushal Koshiya at Seneca Polytechnic graduation"
+                        loading="lazy">
+                </a>
+
+                <a href="assets/graduation-2.jpg" target="_blank" rel="noopener noreferrer">
+                    <img
+                        src="assets/graduation-2.jpg"
+                        alt="Kushal Koshiya receiving his Seneca Polytechnic diploma"
+                        loading="lazy">
+                </a>
+
+                <a href="assets/graduation-3.jpg" target="_blank" rel="noopener noreferrer">
+                    <img
+                        src="assets/graduation-3.jpg"
+                        alt="Kushal Koshiya walking across the Seneca Polytechnic graduation stage"
+                        loading="lazy">
+                </a>
+
+            </div>
+
+        </article>
+
+
+        <!-- ================= FUNDSERV JOURNEY ================= -->
+
+        <article class="moment-card moment-fundserv">
+
+            <div class="moment-card-heading">
+
+                <div>
+                    <span class="moment-kicker">FUNDSERV · 2023 — PRESENT</span>
+
+                    <h3>
+                        From Co-op to Desktop Administrator
+                    </h3>
+
+                    <p>
+                        A few memories from starting my journey at Fundserv as a
+                        <strong>Junior Desktop Administrator Co-op</strong> and growing
+                        into my current role as a <strong>Desktop Administrator</strong>.
+                    </p>
+                </div>
+
+                <span class="moment-badge fundserv-badge">FUNDSERV</span>
+
+            </div>
+
+            <div class="moment-gallery fundserv-gallery">
+
+                <a href="assets/fundserv-office.jpg" target="_blank" rel="noopener noreferrer">
+                    <img
+                        src="assets/fundserv-office.jpg"
+                        alt="Fundserv Toronto office"
+                        loading="lazy">
+                </a>
+
+                <a href="assets/fundserv-desk.jpg" target="_blank" rel="noopener noreferrer">
+                    <img
+                        src="assets/fundserv-desk.jpg"
+                        alt="Kushal Koshiya's Fundserv workstation"
+                        loading="lazy">
+                </a>
+
+                <a href="assets/fundserv-team.jpg" target="_blank" rel="noopener noreferrer">
+                    <img
+                        src="assets/fundserv-team.jpg"
+                        alt="Kushal Koshiya with Fundserv colleagues at a team lunch"
+                        loading="lazy">
+                </a>
+
+            </div>
+
+            <div class="fundserv-journey">
+
+                <div>
+                    <strong>CO-OP</strong>
+                    <span>Junior Desktop Administrator</span>
+                </div>
+
+                <div class="fundserv-journey-line"></div>
+
+                <div>
+                    <strong>NOW</strong>
+                    <span>Desktop Administrator</span>
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <!-- ================= MICROSOFT ================= -->
+
+        <article class="moment-card moment-microsoft">
+
+            <div class="moment-card-heading">
+
+                <div>
+                    <span class="moment-kicker">MICROSOFT · APRIL 25, 2025</span>
+
+                    <h3>
+                        Copilot Prompt-a-thon
+                    </h3>
+
+                    <p>
+                        An incredible hands-on experience at the
+                        <strong>Microsoft Toronto headquarters</strong>, exploring
+                        Microsoft Copilot and prompt engineering.
+                    </p>
+                </div>
+
+                <span class="moment-badge microsoft-badge">MICROSOFT</span>
+
+            </div>
+
+            <div class="moment-gallery microsoft-gallery">
+
+                <a href="assets/microsoft-copilot-1.jpg" target="_blank" rel="noopener noreferrer">
+                    <img
+                        src="assets/microsoft-copilot-1.jpg"
+                        alt="Kushal Koshiya at Microsoft Toronto headquarters"
+                        loading="lazy">
+                </a>
+
+                <a href="assets/microsoft-copilot-2.jpg" target="_blank" rel="noopener noreferrer">
+                    <img
+                        src="assets/microsoft-copilot-2.jpg"
+                        alt="Microsoft Copilot Prompt-a-thon session"
+                        loading="lazy">
+                </a>
+
+            </div>
+
+            <div class="moment-note">
+                <span>AI</span>
+                <span>Prompt Engineering</span>
+                <span>Microsoft Copilot</span>
+                <span>Modern Workplace</span>
+            </div>
+
+        </article>
+
+
+        <!-- ================= APPLE ================= -->
+
+        <article class="moment-card moment-apple">
+
+            <div class="moment-card-heading">
+
+                <div>
+                    <span class="moment-kicker">APPLE CANADA · TORONTO</span>
+
+                    <h3>
+                        Apple Canada Corporate Office
+                    </h3>
+
+                    <p>
+                        An opportunity to meet Apple Support Engineers and learn
+                        more about Apple products, enterprise environments,
+                        <strong>Intune</strong> and <strong>MDM</strong> solutions.
+                    </p>
+                </div>
+
+                <span class="moment-badge apple-badge">APPLE</span>
+
+            </div>
+
+            <div class="apple-moment-layout">
+
+                <a
+                    href="assets/apple-canada.jpg"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="apple-moment-image">
+
+                    <img
+                        src="assets/apple-canada.jpg"
+                        alt="Apple Canada corporate office in Toronto"
+                        loading="lazy">
+
+                </a>
+
+                <div class="apple-moment-content">
+
+                    <span class="apple-event-label">
+                        ENTERPRISE APPLE &amp; MDM
+                    </span>
+
+                    <p>
+                        The session reinforced the importance of collaboration,
+                        continuous learning and staying current with technology
+                        used across modern enterprise environments.
+                    </p>
+
+                    <div class="moment-note">
+                        <span>Apple</span>
+                        <span>Intune</span>
+                        <span>MDM</span>
+                        <span>Enterprise Technology</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+    </div>
+
+</section>
 
 <!-- ================= RESUME ================= -->
 
-<section class="section resume-section">
+<section id="resume" class="section resume-section">
 
     <div class="container resume-card">
 
         <div>
 
             <p class="section-label">
-                05 — RESUME
+                08 — RESUME
             </p>
 
             <h2>
@@ -718,8 +1978,6 @@
     </div>
 
 </section>
-
-
 <!-- ================= CONTACT ================= -->
 
 <section id="contact" class="section contact-section">
@@ -727,7 +1985,7 @@
     <div class="container">
 
         <p class="section-label">
-            06 — CONTACT
+            09 — CONTACT
         </p>
 
         <h2>
@@ -760,9 +2018,13 @@
             <a
                 href="https://www.linkedin.com/in/kushalkoshiya"
                 target="_blank"
-                class="button secondary">
+                rel="noopener noreferrer"
+                class="nav-linkedin"
+                aria-label="Open Kushal Koshiya's LinkedIn profile">
 
-                LinkedIn ↗
+                <span class="linkedin-icon">in</span>
+                LinkedIn
+                <span class="linkedin-arrow">↗</span>
 
             </a>
 
@@ -793,7 +2055,7 @@
         </span>
 
         <span>
-            IT Operations • Endpoint Management
+            IT OPERATIONS • ENDPOINT MANAGEMENT • MODERN WORKPLACE TECHNOLOGIES
         </span>
 
     </div>
