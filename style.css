@@ -4521,3 +4521,170 @@ footer {
         height: 17px;
     }
 }
+
+
+/* =========================================================
+   ANIMATED SKILLS ICONS — ADDED ONLY
+   CSS-only animation. No other sections changed.
+========================================================= */
+
+.skills-grid .skill-icon {
+    position: relative;
+    width: 46px;
+    height: 46px;
+    margin-bottom: 20px;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    border-radius: 13px;
+    font-size: 0;
+    background: rgba(118,103,255,0.08);
+}
+
+/* 01 — Endpoint Management */
+.skills-grid .skill-card:nth-child(1) .skill-icon::before {
+    content: "";
+    position: relative;
+    width: 23px;
+    height: 17px;
+    border: 2px solid var(--purple);
+    border-radius: 3px;
+    animation: skillsEndpointFloat 2.8s ease-in-out infinite;
+}
+
+.skills-grid .skill-card:nth-child(1) .skill-icon::after {
+    content: "";
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    top: 8px;
+    right: 7px;
+    border-radius: 50%;
+    background: var(--green);
+    box-shadow:
+        -20px 9px 0 var(--purple-light),
+        -10px 20px 0 var(--purple-light);
+    animation: skillsEndpointNodes 2s ease-in-out infinite;
+}
+
+@keyframes skillsEndpointFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-3px); }
+}
+
+@keyframes skillsEndpointNodes {
+    0%, 100% { opacity: .55; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.35); }
+}
+
+
+/* 02 — Identity & Access Management */
+.skills-grid .skill-card:nth-child(2) .skill-icon::before {
+    content: "◆";
+    position: relative;
+    z-index: 3;
+    color: var(--purple);
+    font-size: 15px;
+    animation: skillsIdentityCore 2.5s ease-in-out infinite;
+}
+
+.skills-grid .skill-card:nth-child(2) .skill-icon::after {
+    content: "";
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border: 1px solid rgba(118,103,255,.35);
+    border-radius: 50%;
+    animation: skillsIdentityOrbit 5s linear infinite;
+}
+
+@keyframes skillsIdentityCore {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.12); }
+}
+
+@keyframes skillsIdentityOrbit {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+
+/* 03 — Security & Productivity */
+.skills-grid .skill-card:nth-child(3) .skill-icon::before {
+    content: "☁";
+    position: relative;
+    z-index: 2;
+    color: var(--purple);
+    font-size: 25px;
+    line-height: 1;
+    animation: skillsCloudFloat 3.2s ease-in-out infinite;
+}
+
+.skills-grid .skill-card:nth-child(3) .skill-icon::after {
+    content: "";
+    position: absolute;
+    width: 27px;
+    height: 27px;
+    border: 1px solid rgba(84,214,140,.35);
+    border-radius: 50%;
+    animation: skillsCloudPulse 2.8s ease-out infinite;
+}
+
+@keyframes skillsCloudFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-4px); }
+}
+
+@keyframes skillsCloudPulse {
+    0% {
+        transform: scale(.75);
+        opacity: .65;
+    }
+    100% {
+        transform: scale(1.55);
+        opacity: 0;
+    }
+}
+
+
+/* 04 — Tools, Scripting & Operating Systems */
+.skills-grid .skill-card:nth-child(4) .skill-icon::before {
+    content: ">_";
+    position: relative;
+    z-index: 2;
+    color: var(--purple);
+    font-size: 13px;
+    font-weight: 800;
+    font-family: monospace;
+    animation: skillsTerminalFloat 2.6s ease-in-out infinite;
+}
+
+.skills-grid .skill-card:nth-child(4) .skill-icon::after {
+    content: "";
+    position: absolute;
+    width: 2px;
+    height: 14px;
+    margin-left: 24px;
+    background: var(--green);
+    animation: skillsCursorBlink .9s steps(1) infinite;
+}
+
+@keyframes skillsTerminalFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-3px); }
+}
+
+@keyframes skillsCursorBlink {
+    0%, 45% { opacity: 1; }
+    46%, 100% { opacity: 0; }
+}
+
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+    .skills-grid .skill-icon::before,
+    .skills-grid .skill-icon::after {
+        animation: none !important;
+    }
+}
+
