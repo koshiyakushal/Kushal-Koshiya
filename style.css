@@ -4414,26 +4414,51 @@ footer {
     }
 }
 
-/* LinkedIn Featured Post */
+/* =========================================================
+   LINKEDIN FEATURED POST
+   ========================================================= */
+
 .linkedin-post {
     width: 100%;
     display: flex;
     justify-content: center;
-    margin: 2rem 0 0;
+    margin-top: 24px;
+    margin-bottom: 48px;
     overflow: hidden;
 }
 
 .linkedin-post iframe {
-    width: 504px;
-    max-width: 100%;
-    min-height: 1027px;
+    width: 560px !important;
+    max-width: 100% !important;
+    height: 1050px;
     border: 0;
     display: block;
 }
 
-@media (max-width: 600px) {
-    .linkedin-post iframe {
-        width: 100%;
-        min-height: 900px;
+/* Extra separation before the next Moment */
+.linkedin-moment {
+    margin-bottom: 30px;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+    .linkedin-post {
+        margin-top: 20px;
+        margin-bottom: 40px;
     }
+
+    .linkedin-post iframe {
+        width: 100% !important;
+        height: 1000px;
+    }
+
+    .linkedin-moment {
+        margin-bottom: 40px;
+    }
+
 }
