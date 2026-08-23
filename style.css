@@ -4423,7 +4423,7 @@ footer {
     display: flex;
     justify-content: center;
     margin-top: 24px;
-    margin-bottom: 48px;
+    margin-bottom: 0;
     overflow: hidden;
 }
 
@@ -4435,9 +4435,9 @@ footer {
     display: block;
 }
 
-/* Extra separation before the next Moment */
+/* Match spacing with the other Moments cards */
 .linkedin-moment {
-    margin-bottom: 30px;
+    margin-bottom: 34px !important;
 }
 
 
@@ -4449,7 +4449,7 @@ footer {
 
     .linkedin-post {
         margin-top: 20px;
-        margin-bottom: 40px;
+        margin-bottom: 0;
     }
 
     .linkedin-post iframe {
@@ -4458,7 +4458,7 @@ footer {
     }
 
     .linkedin-moment {
-        margin-bottom: 40px;
+        margin-bottom: 34px !important;
     }
 
 }
