@@ -5678,3 +5678,131 @@ nav {
 #moment-apple {
     scroll-margin-top: 96px;
 }
+
+
+
+/* =========================================================
+   CONTACT — TORONTO LOCATION CARD
+   ========================================================= */
+
+.contact-location {
+    width: min(720px, 100%);
+    margin: 30px auto 0;
+    display: grid;
+    grid-template-columns: 0.75fr 1.25fr;
+    gap: 18px;
+    align-items: stretch;
+    text-align: left;
+}
+
+.contact-location-copy {
+    padding: 22px 4px 22px 0;
+    align-self: center;
+}
+
+.contact-location-kicker {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--purple);
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 1.8px;
+}
+
+.contact-location-copy h3 {
+    margin-bottom: 4px;
+    color: var(--text);
+    font-size: 22px;
+    line-height: 1.2;
+}
+
+.contact-location-copy p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.toronto-map-card {
+    display: block;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    background: var(--white);
+    color: inherit;
+    box-shadow: 0 14px 35px rgba(16,21,34,0.07);
+    transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.toronto-map-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(118,103,255,0.38);
+    box-shadow: 0 20px 45px rgba(16,21,34,0.11);
+}
+
+.toronto-live-map {
+    position: relative;
+    width: 100%;
+    height: 180px;
+    min-height: 180px;
+    overflow: hidden;
+    background: #eef2f5;
+}
+
+.toronto-map-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 11px 13px;
+}
+
+.toronto-map-footer span {
+    color: var(--muted);
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.toronto-map-footer strong {
+    color: var(--purple);
+    font-size: 11px;
+    font-weight: 800;
+}
+
+html.dark-mode .contact-location-copy h3 {
+    color: #f3f6fb;
+}
+
+html.dark-mode .toronto-map-card {
+    background: #101722;
+    border-color: rgba(255,255,255,0.09);
+    box-shadow: 0 16px 38px rgba(0,0,0,0.20);
+}
+
+html.dark-mode .toronto-live-map {
+    background: #151c29;
+}
+
+@media (max-width: 760px) {
+    .contact-location {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        margin-top: 24px;
+    }
+
+    .contact-location-copy {
+        padding: 0;
+        text-align: center;
+    }
+
+    .toronto-live-map {
+        height: 180px;
+        min-height: 180px;
+    }
+
+    .toronto-map-footer {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+    }
+}
+
