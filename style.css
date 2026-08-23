@@ -5748,27 +5748,6 @@ nav {
     background: #eef2f5;
 }
 
-.toronto-google-map {
-    width: 100%;
-    height: 100%;
-}
-
-.toronto-map-label {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    z-index: 2;
-    padding: 5px 8px;
-    border-radius: 7px;
-    background: rgba(255,255,255,0.92);
-    color: #242b39;
-    font-size: 9px;
-    font-weight: 900;
-    letter-spacing: 1.4px;
-    box-shadow: 0 4px 14px rgba(16,21,34,0.10);
-    pointer-events: none;
-}
-
 .toronto-map-footer {
     display: flex;
     align-items: center;
@@ -5801,12 +5780,6 @@ html.dark-mode .toronto-map-card {
 
 html.dark-mode .toronto-live-map {
     background: #151c29;
-}
-
-html.dark-mode .toronto-map-label {
-    background: rgba(16,23,34,0.92);
-    color: #f3f6fb;
-    box-shadow: 0 4px 14px rgba(0,0,0,0.25);
 }
 
 @media (max-width: 760px) {
@@ -5843,42 +5816,15 @@ html.dark-mode .toronto-map-label {
 }
 
 
+
 /* =========================================================
-   TORONTO MAP — POLISHED CONTACT TREATMENT
+   TORONTO MAP — USER EMBED
    ========================================================= */
 
-.contact-location-copy h3 {
-    letter-spacing: -0.4px;
-}
-
-.contact-location-copy p {
-    margin-top: 5px;
-}
-
-.toronto-map-card {
-    position: relative;
-}
-
-.toronto-map-card::before {
-    content: "TORONTO";
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    z-index: 3;
-    padding: 5px 8px;
-    border-radius: 7px;
-    background: rgba(255,255,255,0.92);
-    color: #242b39;
-    font-size: 9px;
-    font-weight: 900;
-    letter-spacing: 1.4px;
-    box-shadow: 0 4px 14px rgba(16,21,34,0.10);
-    pointer-events: none;
-}
-
-html.dark-mode .toronto-map-card::before {
-    background: rgba(16,23,34,0.92);
-    color: #f3f6fb;
-    box-shadow: 0 4px 14px rgba(0,0,0,0.25);
+.toronto-live-map iframe {
+    width: 100% !important;
+    height: 220px !important;
+    display: block;
+    border: 0;
 }
 

@@ -63,13 +63,6 @@ html.dark-mode .currently-learning-pills span {
 
 
 
-
-<style>
-html.dark-mode .toronto-google-map {
-    filter: brightness(0.84) saturate(0.84);
-}
-</style>
-
 </head>
 
 <body>
@@ -2475,16 +2468,15 @@ html.dark-mode .toronto-google-map {
             <div class="toronto-map-card">
 
                 <div class="toronto-live-map">
-                    <div
-                        id="torontoGoogleMap"
-                        class="toronto-google-map"
-                        aria-label="Interactive Google Map showing Toronto, Ontario">
-                    </div>
-
-                    <div class="toronto-map-label" aria-hidden="true">
-                        TORONTO
-                    </div>
-
+                    <iframe
+                        width="600"
+                        height="450"
+                        style="border:0;"
+                        src="https://maps.google.com/maps?q=toronto&amp;t=m&amp;z=10&amp;ie=UTF8&amp;iwloc=&amp;output=embed"
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"
+                        title="Google Map showing Toronto, Ontario">
+                    </iframe>
                 </div>
 
                 <div class="toronto-map-footer">
@@ -2664,55 +2656,6 @@ html.dark-mode .toronto-google-map {
 
 
 
-
-
-<script>
-(function () {
-    const script = document.createElement("script");
-    script.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyBVizdQeh3udy11xDc5Ao2YStR2gLc-rfc&callback=initKushalTorontoMap";
-    script.async = true;
-    script.defer = true;
-    document.head.appendChild(script);
-
-    window.initKushalTorontoMap = function () {
-        const element = document.getElementById("torontoGoogleMap");
-        if (!element || !window.google || !google.maps) return;
-
-        const toronto = {
-            lat: 43.6532,
-            lng: -79.3832
-        };
-
-        const map = new google.maps.Map(element, {
-            center: toronto,
-            zoom: 11,
-            mapTypeId: "roadmap",
-            streetViewControl: false,
-            mapTypeControl: false,
-            fullscreenControl: true,
-            zoomControl: true,
-            clickableIcons: false,
-            gestureHandling: "cooperative",
-            styles: [
-                {
-                    featureType: "poi.business",
-                    stylers: [{ visibility: "off" }]
-                },
-                {
-                    featureType: "transit",
-                    stylers: [{ visibility: "simplified" }]
-                }
-            ]
-        });
-
-        new google.maps.Marker({
-            position: toronto,
-            map: map,
-            title: "Toronto, Ontario"
-        });
-    };
-})();
-</script>
 
 <script src="script.js"></script>
 
