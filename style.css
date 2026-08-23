@@ -6605,3 +6605,161 @@ html.dark-mode .kushpilot-mode-button.is-active {
         grid-column: auto;
     }
 }
+
+
+/* =========================================================
+   KUSHPILOT MASCOT
+   ========================================================= */
+
+.kushpilot-launcher-avatar {
+    width: 27px;
+    height: 27px;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+    animation: kushPilotMascotFloat 3s ease-in-out infinite;
+}
+
+.kushpilot-avatar {
+    width: 42px;
+    height: 42px;
+    flex: 0 0 42px;
+    overflow: hidden;
+    border-radius: 50%;
+    background: #101827;
+    border: 1px solid rgba(118,103,255,0.30);
+    box-shadow: 0 5px 16px rgba(118,103,255,0.18);
+}
+
+.kushpilot-avatar img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+}
+
+html.dark-mode .kushpilot-avatar {
+    border-color: rgba(143,131,255,0.35);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.30);
+}
+
+@keyframes kushPilotMascotFloat {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(-2px) rotate(2deg);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .kushpilot-launcher-avatar {
+        animation: none;
+    }
+}
+
+
+/* =========================================================
+   KUSHPILOT — QUICK CONTACT LINKS
+   ========================================================= */
+
+.kushpilot-quick-links {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 7px;
+    margin: 2px 0 12px;
+}
+
+.kushpilot-quick-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 34px;
+    padding: 8px 7px;
+
+    border: 1px solid var(--border);
+    border-radius: 9px;
+
+    background: var(--white);
+    color: var(--text);
+
+    font-size: 10px;
+    font-weight: 800;
+    text-align: center;
+
+    transition: 0.2s ease;
+}
+
+.kushpilot-quick-link:hover {
+    transform: translateY(-1px);
+    border-color: rgba(118,103,255,0.40);
+    color: var(--purple);
+    background: rgba(118,103,255,0.05);
+}
+
+html.dark-mode .kushpilot-quick-link {
+    background: #111827;
+    color: #f3f6fb;
+    border-color: rgba(255,255,255,0.10);
+}
+
+html.dark-mode .kushpilot-quick-link:hover {
+    background: #182135;
+    color: #b6afff;
+    border-color: rgba(143,131,255,0.42);
+}
+
+@media (max-width: 420px) {
+    .kushpilot-quick-links {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* KushPilot LinkedIn quick link — match site branding */
+.kushpilot-quick-link.kushpilot-linkedin-link {
+    gap: 6px;
+    background: var(--linkedin);
+    border-color: var(--linkedin);
+    color: #ffffff;
+}
+
+.kushpilot-quick-link.kushpilot-linkedin-link:hover {
+    background: var(--linkedin-dark);
+    border-color: var(--linkedin-dark);
+    color: #ffffff;
+}
+
+.kushpilot-linkedin-link .linkedin-icon {
+    width: 19px;
+    height: 19px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    background: #ffffff;
+    color: var(--linkedin);
+    font-size: 12px;
+    font-weight: 800;
+    line-height: 1;
+}
+
+.kushpilot-linkedin-link .linkedin-arrow {
+    font-size: 12px;
+    opacity: 0.9;
+}
+
+html.dark-mode .kushpilot-linkedin-link {
+    background: var(--linkedin);
+    border-color: var(--linkedin);
+    color: #ffffff;
+}
+
+html.dark-mode .kushpilot-linkedin-link:hover {
+    background: var(--linkedin-dark);
+    border-color: var(--linkedin-dark);
+    color: #ffffff;
+}
+
