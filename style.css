@@ -4414,3 +4414,26 @@ footer {
     }
 }
 
+/* LinkedIn Featured Post */
+.linkedin-post {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0 0;
+    overflow: hidden;
+}
+
+.linkedin-post iframe {
+    width: 504px;
+    max-width: 100%;
+    min-height: 1027px;
+    border: 0;
+    display: block;
+}
+
+@media (max-width: 600px) {
+    .linkedin-post iframe {
+        width: 100%;
+        min-height: 900px;
+    }
+}
