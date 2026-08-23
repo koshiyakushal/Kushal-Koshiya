@@ -7260,3 +7260,388 @@ html.dark-mode:has(.portfolio-intro) body {
     background: #070b14;
 }
 
+
+/* =========================================================
+   KUSHPILOT — FRIENDLY IDLE / GREETING ANIMATION
+   ========================================================= */
+
+.kushpilot-greeting {
+    position: fixed;
+    right: 18px;
+    bottom: 123px;
+    z-index: 1490;
+
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+
+    max-width: min(280px, calc(100vw - 40px));
+    padding: 9px 11px;
+
+    border: 1px solid rgba(118,103,255,0.20);
+    border-radius: 12px 12px 5px 12px;
+
+    background: rgba(255,255,255,0.94);
+    color: var(--text);
+
+    font-size: 11px;
+    font-weight: 700;
+
+    box-shadow: 0 12px 30px rgba(16,21,34,0.12);
+    backdrop-filter: blur(14px);
+
+    opacity: 0;
+    transform: translateY(8px) scale(0.96);
+    visibility: hidden;
+    pointer-events: none;
+
+    transition:
+        opacity 0.28s ease,
+        transform 0.28s ease,
+        visibility 0.28s ease;
+}
+
+.kushpilot-greeting.is-visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    visibility: visible;
+}
+
+.kushpilot-greeting::after {
+    content: "";
+    position: absolute;
+    right: 17px;
+    bottom: -6px;
+
+    width: 11px;
+    height: 11px;
+
+    background: rgba(255,255,255,0.94);
+    border-right: 1px solid rgba(118,103,255,0.20);
+    border-bottom: 1px solid rgba(118,103,255,0.20);
+
+    transform: rotate(45deg);
+}
+
+.kushpilot-greeting-dot {
+    width: 7px;
+    height: 7px;
+    flex: 0 0 7px;
+
+    border-radius: 50%;
+
+    background: var(--green);
+    box-shadow: 0 0 10px rgba(84,214,140,0.70);
+
+    animation: kushPilotOnlinePulse 1.7s ease-in-out infinite;
+}
+
+@keyframes kushPilotOnlinePulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 0.72;
+    }
+
+    50% {
+        transform: scale(1.35);
+        opacity: 1;
+    }
+}
+
+/* Give KushPilot a subtle breathing motion while idle. */
+.kushpilot-launcher {
+    animation: kushPilotIdleFloat 3.8s ease-in-out infinite;
+}
+
+@keyframes kushPilotIdleFloat {
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-3px);
+    }
+}
+
+/* Let the launcher feel responsive when opened. */
+.kushpilot-launcher:active {
+    transform: translateY(0) scale(0.97);
+}
+
+html.dark-mode .kushpilot-greeting {
+    background: rgba(16,23,34,0.96);
+    color: #f3f6fb;
+    border-color: rgba(143,131,255,0.24);
+    box-shadow: 0 16px 36px rgba(0,0,0,0.30);
+}
+
+html.dark-mode .kushpilot-greeting::after {
+    background: rgba(16,23,34,0.96);
+    border-color: rgba(143,131,255,0.24);
+    border-left: 0;
+    border-top: 0;
+}
+
+@media (max-width: 760px) {
+    .kushpilot-greeting {
+        right: 14px;
+        bottom: 183px;
+        max-width: calc(100vw - 28px);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .kushpilot-greeting-dot,
+    .kushpilot-launcher {
+        animation: none;
+    }
+
+    .kushpilot-greeting {
+        transition: none;
+    }
+}
+
+
+/* =========================================================
+   KUSHPILOT — RECRUITER + NAVIGATION UPGRADES
+   ========================================================= */
+
+.kushpilot-mode-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+}
+
+.kushpilot-summary-button {
+    border-color: rgba(84,214,140,0.30);
+}
+
+.kushpilot-summary-button:hover {
+    border-color: rgba(84,214,140,0.55);
+    color: #238451;
+}
+
+.kushpilot-take-me {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+
+    margin-top: 9px;
+    padding-top: 8px;
+
+    border-top: 1px solid rgba(118,103,255,0.13);
+}
+
+.kushpilot-take-me-label {
+    color: var(--muted);
+    font-size: 9px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.7px;
+}
+
+.kushpilot-take-link {
+    display: inline-flex;
+    align-items: center;
+
+    min-height: 25px;
+    padding: 4px 7px;
+
+    border: 1px solid rgba(118,103,255,0.16);
+    border-radius: 7px;
+
+    background: rgba(118,103,255,0.04);
+    color: var(--purple);
+
+    font-size: 9px;
+    font-weight: 800;
+}
+
+.kushpilot-take-link:hover {
+    background: rgba(118,103,255,0.09);
+    border-color: rgba(118,103,255,0.32);
+}
+
+html.dark-mode .kushpilot-summary-button {
+    border-color: rgba(99,227,155,0.20);
+}
+
+html.dark-mode .kushpilot-summary-button:hover {
+    color: #63e39b;
+}
+
+html.dark-mode .kushpilot-take-me {
+    border-top-color: rgba(143,131,255,0.16);
+}
+
+html.dark-mode .kushpilot-take-link {
+    background: rgba(143,131,255,0.07);
+    border-color: rgba(143,131,255,0.18);
+    color: #b6afff;
+}
+
+@media (max-width: 420px) {
+    .kushpilot-mode-row {
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+
+    .kushpilot-mode-button {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .kushpilot-take-link {
+        font-size: 9px;
+    }
+}
+
+
+
+/* =========================================================
+   KUSHPILOT — LAUNCHER FIX
+   ========================================================= */
+
+.kushpilot-launcher {
+    z-index: 5000 !important;
+    pointer-events: auto !important;
+}
+
+.kushpilot-panel {
+    z-index: 5001 !important;
+    pointer-events: auto;
+}
+
+.kushpilot-greeting {
+    z-index: 4999 !important;
+}
+
+
+/* =========================================================
+   KUSHPILOT — ONLINE STATUS + IDLE GREETING
+   ========================================================= */
+
+.kushpilot-online-dot,
+.kushpilot-greeting-dot {
+    width: 6px;
+    height: 6px;
+    flex: 0 0 6px;
+    display: inline-block;
+    border-radius: 50%;
+    background: #63e39b;
+    box-shadow: 0 0 10px rgba(99,227,155,0.75);
+    animation: kushPilotOnlinePulse 1.7s ease-in-out infinite;
+}
+
+.kushpilot-greeting {
+    position: fixed;
+    right: 18px;
+    bottom: 123px;
+    z-index: 4999;
+
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+
+    max-width: min(280px, calc(100vw - 40px));
+    padding: 9px 11px;
+
+    border: 1px solid rgba(118,103,255,0.20);
+    border-radius: 12px 12px 5px 12px;
+
+    background: rgba(255,255,255,0.94);
+    color: var(--text);
+
+    font-size: 11px;
+    font-weight: 700;
+
+    box-shadow: 0 12px 30px rgba(16,21,34,0.12);
+    backdrop-filter: blur(14px);
+
+    opacity: 0;
+    transform: translateY(8px) scale(0.96);
+    visibility: hidden;
+    pointer-events: none;
+
+    transition: opacity 0.28s ease, transform 0.28s ease, visibility 0.28s ease;
+}
+
+.kushpilot-greeting.is-visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    visibility: visible;
+}
+
+.kushpilot-greeting::after {
+    content: "";
+    position: absolute;
+    right: 17px;
+    bottom: -6px;
+    width: 11px;
+    height: 11px;
+    background: rgba(255,255,255,0.94);
+    border-right: 1px solid rgba(118,103,255,0.20);
+    border-bottom: 1px solid rgba(118,103,255,0.20);
+    transform: rotate(45deg);
+}
+
+.kushpilot-launcher {
+    z-index: 5000 !important;
+    pointer-events: auto !important;
+    animation: kushPilotIdleFloat 3.8s ease-in-out infinite;
+}
+
+@keyframes kushPilotOnlinePulse {
+    0%, 100% { transform: scale(1); opacity: 0.72; }
+    50% { transform: scale(1.35); opacity: 1; }
+}
+
+@keyframes kushPilotIdleFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-3px); }
+}
+
+html.dark-mode .kushpilot-greeting {
+    background: rgba(16,23,34,0.96);
+    color: #f3f6fb;
+    border-color: rgba(143,131,255,0.24);
+    box-shadow: 0 16px 36px rgba(0,0,0,0.30);
+}
+
+html.dark-mode .kushpilot-greeting::after {
+    background: rgba(16,23,34,0.96);
+    border-color: rgba(143,131,255,0.24);
+}
+
+@media (max-width: 760px) {
+    .kushpilot-greeting {
+        right: 14px;
+        bottom: 183px;
+        max-width: calc(100vw - 28px);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .kushpilot-online-dot,
+    .kushpilot-greeting-dot,
+    .kushpilot-launcher {
+        animation: none;
+    }
+}
+
+
+/* Quick question buttons — clickable layer */
+#kushPilotSuggestions {
+    position: relative;
+    z-index: 20;
+    pointer-events: auto !important;
+}
+
+#kushPilotSuggestions button {
+    position: relative;
+    z-index: 21;
+    pointer-events: auto !important;
+    cursor: pointer !important;
+}
+

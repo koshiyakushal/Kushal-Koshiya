@@ -2852,6 +2852,15 @@ html.dark-mode .currently-learning-pills span {
 
 <!-- ================= KUSHPILOT ================= -->
 
+
+<div
+    class="kushpilot-greeting"
+    id="kushPilotGreeting"
+    aria-hidden="true">
+    <span class="kushpilot-greeting-dot" aria-hidden="true"></span>
+    <span id="kushPilotGreetingText">Hi! I'm KushPilot 👋</span>
+</div>
+
 <button
     class="kushpilot-launcher"
     id="kushPilotLauncher"
@@ -2862,6 +2871,7 @@ html.dark-mode .currently-learning-pills span {
         src="assets/kushpilot.png"
         class="kushpilot-launcher-avatar"
         alt="KushPilot">
+    <span class="kushpilot-online-dot" aria-hidden="true"></span>
     <span>KushPilot</span>
 </button>
 
@@ -2909,6 +2919,7 @@ html.dark-mode .currently-learning-pills span {
         </div>
 
         <div class="kushpilot-mode-row" id="kushPilotModeRow">
+
             <button
                 type="button"
                 class="kushpilot-mode-button"
@@ -2916,6 +2927,14 @@ html.dark-mode .currently-learning-pills span {
                 aria-pressed="false">
                 🎯 Recruiter Mode
             </button>
+
+            <button
+                type="button"
+                class="kushpilot-mode-button kushpilot-summary-button"
+                id="kushPilotSummaryButton">
+                ✦ Recruiter Summary
+            </button>
+
         </div>
 
         <div class="kushpilot-quick-links" aria-label="Quick links">
@@ -2976,6 +2995,10 @@ html.dark-mode .currently-learning-pills span {
                 Contact
             </button>
 
+            <button type="button" data-action="fit">
+                Good Fit for a Role?
+            </button>
+
         </div>
 
     </div>
@@ -3003,356 +3026,240 @@ html.dark-mode .currently-learning-pills span {
 
 
 <script>
-(function () {
-    const launcher = document.getElementById("kushPilotLauncher");
-    const panel = document.getElementById("kushPilotPanel");
-    const close = document.getElementById("kushPilotClose");
-    const form = document.getElementById("kushPilotForm");
-    const input = document.getElementById("kushPilotInput");
-    const messages = document.getElementById("kushPilotMessages");
-    const suggestions = document.getElementById("kushPilotSuggestions");
-    const recruiterMode = document.getElementById("kushPilotRecruiterMode");
+(() => {
+    "use strict";
 
-    if (!launcher || !panel || !close || !form || !input || !messages) return;
+    function initKushPilot() {
+        const launcher = document.getElementById("kushPilotLauncher");
+        const panel = document.getElementById("kushPilotPanel");
+        const close = document.getElementById("kushPilotClose");
+        const form = document.getElementById("kushPilotForm");
+        const input = document.getElementById("kushPilotInput");
+        const messages = document.getElementById("kushPilotMessages");
+        const suggestions = document.getElementById("kushPilotSuggestions");
+        const recruiterMode = document.getElementById("kushPilotRecruiterMode");
+        const summaryButton = document.getElementById("kushPilotSummaryButton");
+        const greeting = document.getElementById("kushPilotGreeting");
+        const greetingText = document.getElementById("kushPilotGreetingText");
 
-    let recruiterModeOn = false;
-    let conversation = [];
+        if (!launcher || !panel || !close || !form || !input || !messages) return;
 
-    const portfolioLinks = {
-        experience: "#experience",
-        skills: "#skills",
-        projects: "#projects",
-        education: "#credentials",
-        contact: "#contact",
-        resume: "#resume"
-    };
+        const quickQuestions = {
+            about: "Who is Kushal Koshiya?",
+            experience: "Tell me about Kushal's Fundserv experience.",
+            projects: "What are Kushal's projects and results?",
+            skills: "What are Kushal's main technical skills?",
+            education: "Where did Kushal study?",
+            contact: "How can I contact Kushal?",
+            fit: "Why would Kushal be a good fit for an Endpoint Engineer role?"
+        };
 
-    const knowledge = [
-        {
-            keywords: ["who is kushal", "who is kushal koshiya", "background", "tell me about kushal", "about kushal", "introduce kushal"],
-            answer:
-                "Kushal Koshiya is an IT Operations and Endpoint Management professional based in Toronto, Canada. He currently works as a Desktop Administrator at Fundserv, where he works across Apple and Microsoft environments including Jamf Pro, Microsoft Intune, Microsoft 365, Entra ID, Azure Virtual Desktop and endpoint administration. His background includes endpoint management, identity and access management, cloud infrastructure, IT support and process automation. He has delivered projects such as identity lifecycle automation and enterprise macOS management, with highlighted results including a 50% Azure cost reduction, 90% faster employee onboarding and automation supporting 200+ users.",
-            followUp: "You can ask me about his Fundserv experience, projects, skills, education or certifications."
-        },
-        {
-            keywords: ["fundserv", "current role", "current job", "currently employed", "employer"],
-            answer:
-                "Kushal is currently a Desktop Administrator at Fundserv in Toronto. His work includes Microsoft Intune, Jamf Pro, SCCM, Azure Virtual Desktop, NinjaOne and Microsoft 365, along with endpoint security and automation.",
-            followUp: "Related: Experience → Fundserv"
-        },
-        {
-            keywords: ["specialize", "specialization", "focus", "expertise", "what does kushal specialize in"],
-            answer:
-                "Kushal focuses on IT Operations, Endpoint Management, Apple administration, Microsoft 365, Intune, Entra ID and modern workplace technology. His experience also includes cloud infrastructure, identity and access management, endpoint security and IT automation.",
-            followUp: "Related: Skills → What I Actually Do"
-        },
-        {
-            keywords: ["impact", "results", "achievement", "achievements", "numbers"],
-            answer:
-                "Kushal's highlighted results include a 50% Azure cost reduction, a 90% reduction in onboarding time and automation supporting 200+ users.",
-            followUp: "Related: Experience → Impact metrics"
-        },
-        {
-            keywords: ["project", "projects", "built", "automation", "jamf pro implementation", "entra id access packages"],
-            answer:
-                "Featured projects include Identity Lifecycle Automation using ManageEngine ADManager Plus, a Jamf Pro Implementation for enterprise macOS management, and Microsoft Entra ID Access Packages for automated access workflows.",
-            followUp: "Related: Projects"
-        },
-        {
-            keywords: ["skills", "skill", "technology", "technologies", "tools", "stack"],
-            answer:
-                "Kushal works across Jamf Pro, Microsoft Intune, SCCM (MECM), Windows Autopilot, Azure Virtual Desktop, NinjaOne, ManageEngine Endpoint Central, Microsoft Entra ID, Active Directory, Group Policy, IAM, ILM, RBAC, ADManager Plus, SSO, Microsoft 365, Azure, Endpoint Security, Power BI, Microsoft Copilot Studio, Microsoft Copilot Administration, ServiceNow, Jira, Confluence, PowerShell, Bash, Windows, macOS and Linux.",
-            followUp: "Related: Skills"
-        },
-        {
-            keywords: ["education", "study", "studied", "college", "university", "school"],
-            answer:
-                "Kushal studied Computer Science at Seneca Polytechnic in Toronto and also completed a Diploma in Information Technology from Uka Tarsadiya University in Bardoli, Gujarat, India.",
-            followUp: "Related: Credentials"
-        },
-        {
-            keywords: ["certification", "certifications", "certified", "credential"],
-            answer:
-                "Kushal's portfolio includes certification and academic credential information in the Credentials section, along with academic recognition such as Honour List awards.",
-            followUp: "Related: Credentials"
-        },
-        {
-            keywords: ["currently exploring", "currently learning", "learning", "learn", "copilot", "helpdesk agent", "ai"],
-            answer:
-                "Kushal is currently exploring AI & Copilot, Automation, Modern Endpoint Security, Cloud Optimization and designing an IT Helpdesk Agent via Copilot Studio.",
-            followUp: "Related: Skills → Currently Exploring"
-        },
-        {
-            keywords: ["location", "where is kushal", "based", "toronto"],
-            answer:
-                "Kushal is based in Toronto, Ontario, Canada.",
-            followUp: "Related: Contact"
-        },
-        {
-            keywords: ["contact", "email", "reach", "linkedin", "resume"],
-            answer:
-                "Visitors can contact Kushal through the Contact section, connect with him on LinkedIn, or open his resume from the navigation.",
-            followUp: "Related: Contact & Resume"
-        }
-    ];
+        let recruiterModeOn = false;
 
-    const recruiterAnswer =
-        "For a recruiter, Kushal's strongest positioning is as an IT Operations and Endpoint Management professional with hands-on Apple and Microsoft experience. His stack includes Jamf Pro, Microsoft Intune, Entra ID, Microsoft 365, Azure Virtual Desktop, SCCM, PowerShell and automation. His strongest measurable outcomes include a 50% Azure cost reduction, 90% faster onboarding and automation supporting 200+ users. He is a strong fit for Endpoint Engineering, Modern Workplace, IT Operations and IT Automation-focused roles.";
-
-    const fallback =
-        "I can tell you about Kushal's background, Fundserv experience, skills, projects, education, certifications, current learning, location and contact information.";
-
-    const quickQuestions = {
-        about: "Who is Kushal Koshiya and what is his background?",
-        experience: "Tell me about Kushal's Fundserv experience.",
-        projects: "What are Kushal's biggest projects and results?",
-        skills: "What are Kushal's main technical skills?",
-        education: "Where did Kushal study and what did he study?",
-        contact: "How can I contact Kushal?"
-    };
-
-    function normalize(text) {
-        return text
-            .toLowerCase()
-            .replace(/[^\w\s+&%-]/g, " ")
-            .replace(/\s+/g, " ")
-            .trim();
-    }
-
-    function getAnswer(question) {
-        if (recruiterModeOn) {
-            const q = normalize(question);
-            if (
-                q.includes("fit") ||
-                q.includes("hire") ||
-                q.includes("recruit") ||
-                q.includes("role") ||
-                q.includes("job") ||
-                q.includes("why kushal") ||
-                q.includes("candidate") ||
-                q.includes("good") ||
-                q.includes("strong")
-            ) {
-                return {
-                    answer: recruiterAnswer,
-                    followUp: "Related: Experience → Skills → Projects"
-                };
-            }
+        function getGreeting() {
+            const hour = new Date().getHours();
+            if (hour >= 5 && hour < 12) return "Good morning! I'm KushPilot ☀️";
+            if (hour >= 12 && hour < 17) return "Good afternoon! I'm KushPilot 👋";
+            if (hour >= 17 && hour < 22) return "Good evening! I'm KushPilot 🌆";
+            return "Hey! I'm KushPilot 🌙";
         }
 
-        const q = normalize(question);
-
-        let best = null;
-        let bestScore = 0;
-
-        knowledge.forEach(function (item) {
-            let score = 0;
-
-            item.keywords.forEach(function (keyword) {
-                const k = normalize(keyword);
-
-                if (q === k) {
-                    score += 10;
-                } else if (q.includes(k)) {
-                    score += k.length >= 10 ? 5 : 3;
-                }
-            });
-
-            if (score > bestScore) {
-                bestScore = score;
-                best = item;
-            }
-        });
-
-        if (!best) {
-            // Lightweight conversational memory for references like "which one?"
-            const lastBot = conversation.filter(function (m) {
-                return m.role === "bot";
-            }).slice(-1)[0];
-
-            if (lastBot && /which one|tell me more|more about it|that project/i.test(question)) {
-                return {
-                    answer: "The most relevant item from my previous answer is the Identity Lifecycle Automation project. It used ManageEngine ADManager Plus for onboarding and offboarding workflows across Active Directory, Entra ID, Teams and distribution lists.",
-                    followUp: "Related: Projects"
-                };
-            }
-
-            return {
-                answer: fallback,
-                followUp: "Try: About Kushal, Fundserv, Projects, Skills, Education or Recruiter Mode."
-            };
+        function showIdleGreeting() {
+            if (!greeting || !greetingText || panel.classList.contains("is-open")) return;
+            greetingText.textContent = getGreeting();
+            greeting.classList.add("is-visible");
+            greeting.setAttribute("aria-hidden", "false");
+            clearTimeout(showIdleGreeting.timer);
+            showIdleGreeting.timer = setTimeout(() => {
+                greeting.classList.remove("is-visible");
+                greeting.setAttribute("aria-hidden", "true");
+            }, 6500);
         }
 
-        return best;
-    }
-
-    function addMessage(answer, type, followUp) {
-        const wrapper = document.createElement("div");
-        wrapper.className =
-            "kushpilot-message " +
-            (type === "user"
-                ? "kushpilot-message-user"
-                : "kushpilot-message-bot");
-
-        const p = document.createElement("p");
-        p.textContent = answer;
-        wrapper.appendChild(p);
-
-        if (followUp && type === "bot") {
-            const small = document.createElement("div");
-            small.className = "kushpilot-followup";
-
-            if (followUp.indexOf("Related:") === 0) {
-                const parts = followUp.split("→");
-                small.innerHTML = parts[0].trim() + " → " + (parts[1] || "").trim();
-            } else {
-                small.textContent = followUp;
+        function openPanel() {
+            panel.classList.add("is-open");
+            panel.setAttribute("aria-hidden", "false");
+            launcher.setAttribute("aria-expanded", "true");
+            if (greeting) {
+                greeting.classList.remove("is-visible");
+                greeting.setAttribute("aria-hidden", "true");
             }
-
-            wrapper.appendChild(small);
+            requestAnimationFrame(() => input.focus());
         }
 
-        messages.appendChild(wrapper);
-        messages.scrollTop = messages.scrollHeight;
-    }
+        function closePanel() {
+            panel.classList.remove("is-open");
+            panel.setAttribute("aria-hidden", "true");
+            launcher.setAttribute("aria-expanded", "false");
+            setTimeout(showIdleGreeting, 350);
+        }
 
-    function addTypingIndicator() {
-        const wrapper = document.createElement("div");
-        wrapper.className = "kushpilot-message kushpilot-message-bot kushpilot-typing";
-        wrapper.setAttribute("aria-label", "KushPilot is typing");
-
-        const label = document.createElement("span");
-        label.className = "kushpilot-typing-label";
-        label.textContent = "KushPilot";
-
-        const dots = document.createElement("span");
-        dots.className = "kushpilot-typing-dots";
-        dots.innerHTML = "<i></i><i></i><i></i>";
-
-        wrapper.appendChild(label);
-        wrapper.appendChild(dots);
-
-        messages.appendChild(wrapper);
-        messages.scrollTop = messages.scrollHeight;
-
-        return wrapper;
-    }
-
-    function typeBotResponse(answer, followUp) {
-        return new Promise(function (resolve) {
+        function addMessage(text, type) {
             const wrapper = document.createElement("div");
-            wrapper.className = "kushpilot-message kushpilot-message-bot";
+            wrapper.className =
+                "kushpilot-message " +
+                (type === "user" ? "kushpilot-message-user" : "kushpilot-message-bot");
 
             const p = document.createElement("p");
+            p.textContent = text;
             wrapper.appendChild(p);
 
             messages.appendChild(wrapper);
-
-            let index = 0;
-            const speed = 10;
-
-            function typeNext() {
-                p.textContent = answer.slice(0, index);
-                messages.scrollTop = messages.scrollHeight;
-                index += 1;
-
-                if (index <= answer.length) {
-                    window.setTimeout(typeNext, speed);
-                    return;
-                }
-
-                if (followUp) {
-                    const small = document.createElement("div");
-                    small.className = "kushpilot-followup";
-                    small.textContent = followUp;
-                    wrapper.appendChild(small);
-                }
-
-                conversation.push({
-                    role: "bot",
-                    text: answer
-                });
-
-                resolve();
-            }
-
-            typeNext();
-        });
-    }
-
-    function openPanel() {
-        panel.setAttribute("aria-hidden", "false");
-        launcher.setAttribute("aria-expanded", "true");
-        panel.classList.add("is-open");
-        input.focus();
-    }
-
-    function closePanel() {
-        panel.setAttribute("aria-hidden", "true");
-        launcher.setAttribute("aria-expanded", "false");
-        panel.classList.remove("is-open");
-    }
-
-    launcher.addEventListener("click", function () {
-        const isOpen = panel.classList.contains("is-open");
-        if (isOpen) closePanel();
-        else openPanel();
-    });
-
-    close.addEventListener("click", closePanel);
-
-    if (recruiterMode) {
-        recruiterMode.addEventListener("click", function () {
-            recruiterModeOn = !recruiterModeOn;
-            recruiterMode.setAttribute("aria-pressed", String(recruiterModeOn));
-            recruiterMode.classList.toggle("is-active", recruiterModeOn);
-
-            const message = recruiterModeOn
-                ? "Recruiter Mode is on. Ask me why Kushal could be a good fit for a role."
-                : "Recruiter Mode is off. I'll answer from the general portfolio.";
-            addMessage(message, "bot");
-        });
-    }
-
-    form.addEventListener("submit", function (event) {
-        event.preventDefault();
-
-        const question = input.value.trim();
-        if (!question) return;
-
-        addMessage(question, "user");
-        conversation.push({
-            role: "user",
-            text: question
-        });
-
-        input.value = "";
-
-        const typing = addTypingIndicator();
-
-        window.setTimeout(async function () {
-            typing.remove();
-
-            const result = getAnswer(question);
-            await typeBotResponse(result.answer, result.followUp);
-        }, 600);
-    });
-
-    if (suggestions) {
-        suggestions.querySelectorAll("button[data-action]").forEach(function (button) {
-            button.addEventListener("click", function () {
-                const action = button.getAttribute("data-action");
-                input.value = quickQuestions[action] || "";
-                form.requestSubmit();
-            });
-        });
-    }
-
-    document.addEventListener("keydown", function (event) {
-        if (event.key === "Escape" && panel.classList.contains("is-open")) {
-            closePanel();
+            messages.scrollTop = messages.scrollHeight;
         }
-    });
+
+        function addTyping() {
+            const wrapper = document.createElement("div");
+            wrapper.className = "kushpilot-message kushpilot-message-bot kushpilot-typing";
+            wrapper.innerHTML =
+                '<span class="kushpilot-typing-label">KushPilot</span>' +
+                '<span class="kushpilot-typing-dots"><i></i><i></i><i></i></span>';
+            messages.appendChild(wrapper);
+            messages.scrollTop = messages.scrollHeight;
+            return wrapper;
+        }
+
+        function answerQuestion(question) {
+            const q = question.toLowerCase().trim();
+
+            if (/^(hi|hello|hey|yo|hiya)[!. ]*$/i.test(q)) {
+                return getGreeting();
+            }
+            if (/(who are you|what are you|what is kushpilot)/i.test(q)) {
+                return "I'm KushPilot — Kushal's portfolio assistant. I can help you explore his experience, projects, skills, education and more.";
+            }
+            if (/(thanks|thank you|thx|ty|thank u)/i.test(q)) {
+                return "You're welcome! ✦";
+            }
+            if (/(fuck you|f u|f\*\*k you|shut up|idiot|stupid)/i.test(q)) {
+                return "😂 Damn, straight to business. I'm still here though. Ask me something about Kushal and I'll do my best.";
+            }
+            if (recruiterModeOn && /(fit|hire|recruit|role|job|candidate|why kushal|good)/i.test(q)) {
+                return "Kushal Koshiya is an IT Operations and Endpoint Management professional with 3+ years of IT experience and 2+ years at Fundserv. His core strength is working across Apple and Microsoft environments with Jamf Pro, Intune, Entra ID, Microsoft 365, Azure Virtual Desktop, SCCM, PowerShell and automation. He has delivered measurable results including a 50% Azure cost reduction, 90% faster employee onboarding and automation supporting 200+ users.";
+            }
+            if (/(who is kushal|background|tell me about kushal)/i.test(q)) {
+                return "Kushal Koshiya is an IT Operations and Endpoint Management professional based in Toronto. He currently works as a Desktop Administrator at Fundserv and works across Apple and Microsoft environments including Jamf Pro, Intune, Microsoft 365, Entra ID and Azure Virtual Desktop.";
+            }
+            if (q.includes("fundserv")) {
+                return "Kushal is currently a Desktop Administrator at Fundserv in Toronto. His work includes Intune, Jamf Pro, SCCM, Azure Virtual Desktop, NinjaOne, Microsoft 365, endpoint security and automation.";
+            }
+            if (q.includes("project")) {
+                return "Kushal's featured projects include Identity Lifecycle Automation, Jamf Pro Implementation and Microsoft Entra ID Access Packages.";
+            }
+            if (q.includes("skill") || q.includes("technology") || q.includes("stack")) {
+                return "Kushal's core stack includes Jamf Pro, Intune, SCCM, Azure Virtual Desktop, Entra ID, Active Directory, Microsoft 365, PowerShell, ServiceNow, Copilot Studio and endpoint management across Windows and macOS.";
+            }
+            if (q.includes("education") || q.includes("study") || q.includes("college") || q.includes("university")) {
+                return "Kushal studied Computer Science at Seneca Polytechnic in Toronto and completed a Diploma in Information Technology from Uka Tarsadiya University in Bardoli, Gujarat, India.";
+            }
+            if (q.includes("contact") || q.includes("email") || q.includes("linkedin") || q.includes("resume")) {
+                return "You can contact Kushal by email, connect with him on LinkedIn, or open his resume using the quick links in KushPilot.";
+            }
+            return "I can tell you about Kushal's background, Fundserv experience, skills, projects, achievements, education, current learning and contact details.";
+        }
+
+        async function respond(question) {
+            addMessage(question, "user");
+            input.value = "";
+
+            const typing = addTyping();
+
+            setTimeout(() => {
+                typing.remove();
+
+                const answer = answerQuestion(question);
+                const wrapper = document.createElement("div");
+                wrapper.className = "kushpilot-message kushpilot-message-bot";
+                const p = document.createElement("p");
+                wrapper.appendChild(p);
+                messages.appendChild(wrapper);
+
+                let i = 0;
+                function type() {
+                    p.textContent = answer.slice(0, i++);
+                    messages.scrollTop = messages.scrollHeight;
+                    if (i <= answer.length) {
+                        setTimeout(type, 9);
+                    }
+                }
+                type();
+            }, 550);
+        }
+
+        launcher.addEventListener("click", (event) => {
+            event.preventDefault();
+            event.stopPropagation();
+            panel.classList.contains("is-open") ? closePanel() : openPanel();
+        });
+
+        close.addEventListener("click", (event) => {
+            event.preventDefault();
+            event.stopPropagation();
+            closePanel();
+        });
+
+        form.addEventListener("submit", (event) => {
+            event.preventDefault();
+            respond(input.value.trim());
+        });
+
+        // Reliable quick-action wiring.
+        if (suggestions) {
+            suggestions.querySelectorAll("button").forEach((button) => {
+                button.addEventListener("click", (event) => {
+                    event.preventDefault();
+                    event.stopPropagation();
+
+                    const action = button.getAttribute("data-action");
+                    const question = quickQuestions[action];
+
+                    if (!question) return;
+                    openPanel();
+                    respond(question);
+                });
+            });
+        }
+
+        if (recruiterMode) {
+            recruiterMode.addEventListener("click", (event) => {
+                event.preventDefault();
+                event.stopPropagation();
+                recruiterModeOn = !recruiterModeOn;
+                recruiterMode.classList.toggle("is-active", recruiterModeOn);
+                recruiterMode.setAttribute("aria-pressed", String(recruiterModeOn));
+                addMessage(
+                    recruiterModeOn
+                        ? "Recruiter Mode is on. Ask me why Kushal could be a strong fit for a role."
+                        : "Recruiter Mode is off. I'm back to general portfolio questions.",
+                    "bot"
+                );
+            });
+        }
+
+        if (summaryButton) {
+            summaryButton.addEventListener("click", () => {
+                openPanel();
+                respond("Why would Kushal be a good fit for an Endpoint Engineer role?");
+            });
+        }
+
+        document.addEventListener("keydown", (event) => {
+            if (event.key === "Escape" && panel.classList.contains("is-open")) {
+                closePanel();
+            }
+        });
+
+        showIdleGreeting();
+        setInterval(() => {
+            if (!panel.classList.contains("is-open")) showIdleGreeting();
+        }, 30000);
+    }
+
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", initKushPilot);
+    } else {
+        initKushPilot();
+    }
 })();
 </script>
 
@@ -3472,6 +3379,66 @@ html.dark-mode .currently-learning-pills span {
 })();
 </script>
 
+
+
+<script>
+/* kushpilot quick-question delegated click fix */
+(function () {
+    const questionMap = {
+        about: "Who is Kushal Koshiya?",
+        experience: "Tell me about Kushal's Fundserv experience.",
+        projects: "What are Kushal's projects and results?",
+        skills: "What are Kushal's main technical skills?",
+        education: "Where did Kushal study?",
+        contact: "How can I contact Kushal?",
+        fit: "Why would Kushal be a good fit for an Endpoint Engineer role?"
+    };
+
+    document.addEventListener("click", function (event) {
+        const button = event.target.closest("#kushPilotSuggestions button[data-action]");
+        if (!button) return;
+
+        event.preventDefault();
+        event.stopImmediatePropagation();
+
+        const question = questionMap[button.getAttribute("data-action")];
+        if (!question) return;
+
+        const panel = document.getElementById("kushPilotPanel");
+        const launcher = document.getElementById("kushPilotLauncher");
+        const input = document.getElementById("kushPilotInput");
+        const form = document.getElementById("kushPilotForm");
+
+        if (!panel || !launcher || !input || !form) return;
+
+        // Open the chatbot directly, without depending on the original
+        // launcher click handler.
+        panel.classList.add("is-open");
+        panel.setAttribute("aria-hidden", "false");
+        launcher.setAttribute("aria-expanded", "true");
+
+        const greeting = document.getElementById("kushPilotGreeting");
+        if (greeting) {
+            greeting.classList.remove("is-visible");
+            greeting.setAttribute("aria-hidden", "true");
+        }
+
+        input.value = question;
+
+        // Give the browser one paint cycle, then submit the form.
+        requestAnimationFrame(function () {
+            if (typeof form.requestSubmit === "function") {
+                form.requestSubmit();
+            } else {
+                form.dispatchEvent(new Event("submit", {
+                    bubbles: true,
+                    cancelable: true
+                }));
+            }
+        });
+    }, true);
+})();
+</script>
 
 <script src="script.js"></script>
 
