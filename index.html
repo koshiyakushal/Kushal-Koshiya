@@ -62,11 +62,13 @@ html.dark-mode .currently-learning-pills span {
 </style>
 
 
-    <link
-        rel="stylesheet"
-        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-        integrity="sha256-p4NxAoJBhIINfQ3w5mQbHIt8JfS7vQ0nX9J3sGfP1j4="
-        crossorigin="">
+
+
+<style>
+html.dark-mode .toronto-google-map {
+    filter: brightness(0.84) saturate(0.84);
+}
+</style>
 
 </head>
 
@@ -2465,23 +2467,28 @@ html.dark-mode .currently-learning-pills span {
                 </h3>
 
                 <p>
-                    Canada
+                    Canada · Open to opportunities
                 </p>
 
             </div>
 
             <div class="toronto-map-card">
 
-                <div id="torontoLiveMap" class="toronto-live-map" aria-label="Interactive map of Toronto"></div>
+                <div class="toronto-live-map">
+                    <div
+                        id="torontoGoogleMap"
+                        class="toronto-google-map"
+                        aria-label="Interactive Google Map showing Toronto, Ontario">
+                    </div>
+
+                    <div class="toronto-map-label" aria-hidden="true">
+                        TORONTO
+                    </div>
+
+                </div>
 
                 <div class="toronto-map-footer">
                     <span>Toronto, Ontario</span>
-                    <a
-                        href="https://maps.apple.com/?q=Toronto%2C%20Ontario%2C%20Canada"
-                        target="_blank"
-                        rel="noopener noreferrer">
-                        Open in Apple Maps ↗
-                    </a>
                 </div>
 
             </div>
@@ -2656,38 +2663,54 @@ html.dark-mode .currently-learning-pills span {
 </script>
 
 
-<script
-    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-    crossorigin=""></script>
+
+
 
 <script>
 (function () {
-    const mapElement = document.getElementById("torontoLiveMap");
-    if (!mapElement || typeof L === "undefined") return;
+    const script = document.createElement("script");
+    script.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyBVizdQeh3udy11xDc5Ao2YStR2gLc-rfc&callback=initKushalTorontoMap";
+    script.async = true;
+    script.defer = true;
+    document.head.appendChild(script);
 
-    const map = L.map("torontoLiveMap", {
-        scrollWheelZoom: false,
-        zoomControl: true
-    }).setView([43.6532, -79.3832], 11);
+    window.initKushalTorontoMap = function () {
+        const element = document.getElementById("torontoGoogleMap");
+        if (!element || !window.google || !google.maps) return;
 
-    setTimeout(function () {
-        map.invalidateSize();
-    }, 100);
+        const toronto = {
+            lat: 43.6532,
+            lng: -79.3832
+        };
 
-    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-        maxZoom: 19,
-        attribution: '&copy; OpenStreetMap contributors'
-    }).addTo(map);
+        const map = new google.maps.Map(element, {
+            center: toronto,
+            zoom: 11,
+            mapTypeId: "roadmap",
+            streetViewControl: false,
+            mapTypeControl: false,
+            fullscreenControl: true,
+            zoomControl: true,
+            clickableIcons: false,
+            gestureHandling: "cooperative",
+            styles: [
+                {
+                    featureType: "poi.business",
+                    stylers: [{ visibility: "off" }]
+                },
+                {
+                    featureType: "transit",
+                    stylers: [{ visibility: "simplified" }]
+                }
+            ]
+        });
 
-    L.marker([43.6532, -79.3832])
-        .addTo(map)
-        .bindPopup("<strong>Toronto, Ontario</strong>")
-        .openPopup();
-
-    map.on("click", function () {
-        map.scrollWheelZoom.enable();
-    });
+        new google.maps.Marker({
+            position: toronto,
+            map: map,
+            title: "Toronto, Ontario"
+        });
+    };
 })();
 </script>
 
