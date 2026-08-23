@@ -4424,7 +4424,7 @@ footer {
     justify-content: center;
     margin-top: 24px;
     margin-bottom: 0;
-    overflow: hidden;
+    overflow: visible;
 }
 
 .linkedin-post iframe {
@@ -4435,26 +4435,31 @@ footer {
     display: block;
 }
 
-/* Match spacing with the other Moments cards */
+/* Match spacing with other Moments cards */
 .linkedin-moment {
     margin-bottom: 34px !important;
 }
 
 
 /* =========================================================
-   MOBILE
+   MOBILE / iPHONE
    ========================================================= */
 
 @media (max-width: 768px) {
 
     .linkedin-post {
+        width: 100%;
         margin-top: 20px;
         margin-bottom: 0;
+        overflow: visible;
     }
 
     .linkedin-post iframe {
         width: 100% !important;
-        height: 1000px;
+        max-width: 100% !important;
+        height: 1150px;
+        border: 0;
+        display: block;
     }
 
     .linkedin-moment {
