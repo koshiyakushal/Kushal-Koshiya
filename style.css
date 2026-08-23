@@ -4467,3 +4467,57 @@ footer {
     }
 
 }
+
+/* =========================================================
+   SKILLS — BRAND LOGO TAGS
+   Add this block to the END of your existing style.css
+   ========================================================= */
+
+.skill-logo-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.skill-logo-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 11px;
+    border: 1px solid rgba(15, 23, 42, 0.10);
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.72);
+    color: #242b39;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1;
+}
+
+.skill-logo-tag img {
+    width: 18px;
+    height: 18px;
+    object-fit: contain;
+    display: block;
+}
+
+.skill-text-only {
+    display: inline-flex;
+    align-items: center;
+    min-height: 18px;
+}
+
+@media (max-width: 768px) {
+    .skill-logo-tags {
+        gap: 8px;
+    }
+
+    .skill-logo-tag {
+        padding: 8px 10px;
+        font-size: 11px;
+    }
+
+    .skill-logo-tag img {
+        width: 17px;
+        height: 17px;
+    }
+}
