@@ -15,6 +15,52 @@
           rel="stylesheet">
 
     <link rel="stylesheet" href="style.css">
+<style>
+/* Currently Exploring — visibility enhancement only */
+.currently-learning-title {
+    margin-bottom: 16px !important;
+    font-size: 13px !important;
+    font-weight: 900 !important;
+    letter-spacing: 2.2px !important;
+}
+
+.currently-learning-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.currently-learning-pills span {
+    display: inline-flex;
+    align-items: center;
+    padding: 10px 14px;
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    background: var(--white);
+    color: var(--text);
+    font-size: 13px;
+    font-weight: 800;
+    line-height: 1.2;
+}
+
+html.dark-mode .currently-learning-pills span {
+    background: #151d2c;
+    border-color: rgba(255,255,255,0.12);
+    color: #f3f6fb;
+}
+
+@media (max-width: 600px) {
+    .currently-learning-title {
+        font-size: 12px !important;
+    }
+
+    .currently-learning-pills span {
+        font-size: 12px;
+        padding: 9px 12px;
+    }
+}
+</style>
+
 </head>
 
 <body>
@@ -43,14 +89,158 @@
         <nav id="navMenu">
 
             <a href="#about">About</a>
-            <a href="#experience">Experience</a>
-            <a href="#skills">Skills</a>
+
+            <div class="nav-dropdown">
+                <button
+                    class="nav-dropdown-toggle"
+                    type="button"
+                    aria-expanded="false"
+                    aria-controls="experienceDropdownMenu">
+                    Experience
+                    <span class="nav-dropdown-chevron">⌄</span>
+                </button>
+
+                <div class="nav-dropdown-menu" id="experienceDropdownMenu">
+                    <a href="#experience">
+                        <span>02</span>
+                        Professional Experience
+                    </a>
+                    <a href="#fundserv-current">
+                        <span>01</span>
+                        Fundserv
+                    </a>
+                    <a href="#fundserv-coop">
+                        <span>02</span>
+                        Fundserv Co-op
+                    </a>
+                    <a href="#seneca-experience">
+                        <span>03</span>
+                        Seneca Polytechnic
+                    </a>
+                </div>
+            </div>
+
+            <div class="nav-dropdown">
+                <button
+                    class="nav-dropdown-toggle"
+                    type="button"
+                    aria-expanded="false"
+                    aria-controls="skillsDropdownMenu">
+                    Skills
+                    <span class="nav-dropdown-chevron">⌄</span>
+                </button>
+
+                <div class="nav-dropdown-menu" id="skillsDropdownMenu">
+                    <a href="#skills">
+                        <span>03</span>
+                        Technical Skills
+                    </a>
+                    <a href="#what-i-do">
+                        <span>03A</span>
+                        What I Actually Do
+                    </a>
+                    <a href="#how-i-work">
+                        <span>→</span>
+                        How I Work
+                    </a>
+                </div>
+            </div>
+
             <a href="#projects">Projects</a>
-            <a href="#credentials">Credentials</a>
-            <a href="#seneca-feature">Recognition</a>
-            <a href="#moments">Moments</a>
-            <a href="#resume">Resume</a>
+
+            <div class="nav-dropdown">
+                <button
+                    class="nav-dropdown-toggle"
+                    type="button"
+                    aria-expanded="false"
+                    aria-controls="credentialsDropdownMenu">
+                    Credentials
+                    <span class="nav-dropdown-chevron">⌄</span>
+                </button>
+
+                <div class="nav-dropdown-menu" id="credentialsDropdownMenu">
+                    <a href="#credentials">
+                        <span>05</span>
+                        Education &amp; Credentials
+                    </a>
+                    <a href="#credential-seneca">
+                        <span>ED</span>
+                        Seneca Polytechnic
+                    </a>
+                    <a href="#credential-utu">
+                        <span>ED</span>
+                        Uka Tarsadia University
+                    </a>
+                    <a href="#credential-certifications">
+                        <span>CT</span>
+                        Certifications
+                    </a>
+                    <a href="#credential-awards">
+                        <span>AW</span>
+                        President's Honour List
+                    </a>
+                    <a href="#seneca-feature">
+                        <span>06</span>
+                        Seneca Recognition
+                    </a>
+                </div>
+            </div>
+
+            <div class="nav-dropdown">
+                <button
+                    class="nav-dropdown-toggle"
+                    type="button"
+                    aria-expanded="false"
+                    aria-controls="momentsDropdownMenu">
+                    Moments
+                    <span class="nav-dropdown-chevron">⌄</span>
+                </button>
+
+                <div class="nav-dropdown-menu" id="momentsDropdownMenu">
+                    <a href="#moments">
+                        <span>07</span>
+                        Featured Moments
+                    </a>
+                    <a href="#moment-graduation">
+                        <span>01</span>
+                        Graduation
+                    </a>
+                    <a href="#moment-fundserv">
+                        <span>02</span>
+                        Fundserv Journey
+                    </a>
+                    <a href="#moment-microsoft">
+                        <span>03</span>
+                        Microsoft Copilot Prompt-a-thon
+                    </a>
+                    <a href="#moment-apple">
+                        <span>04</span>
+                        Apple Canada
+                    </a>
+                    <a href="#moment-linkedin">
+                        <span>IN</span>
+                        LinkedIn Featured Post
+                    </a>
+                </div>
+            </div>
             <a href="#contact">Contact</a>
+
+            <a href="assets/resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="nav-resume">
+                Resume ↗
+            </a>
+
+            <button
+                class="theme-toggle"
+                id="themeToggle"
+                type="button"
+                aria-label="Switch to dark mode"
+                aria-pressed="false">
+                <span class="theme-icon theme-icon-sun">☀</span>
+                <span class="theme-icon theme-icon-moon">☾</span>
+            </button>
 
             <a
                 href="https://www.linkedin.com/in/kushalkoshiya"
@@ -416,7 +606,7 @@
 
             <!-- ================= FUNDserv — CURRENT ================= -->
 
-            <article class="experience-card featured-experience">
+            <article id="fundserv-current" class="experience-card featured-experience">
 
                 <div class="experience-top">
 
@@ -579,7 +769,7 @@
 
             <!-- ================= FUNDserv — CO-OP ================= -->
 
-            <article class="experience-card">
+            <article id="fundserv-coop" class="experience-card">
 
                 <div class="experience-top">
 
@@ -670,7 +860,7 @@
 
             <!-- ================= SENECA ================= -->
 
-            <article class="experience-card">
+            <article id="seneca-experience" class="experience-card">
 
                 <div class="experience-top">
 
@@ -1019,6 +1209,127 @@
 
         </div>
 
+        <div class="currently-learning" style="margin-top: 42px;">
+
+            <p class="section-label currently-learning-title">
+                CURRENTLY EXPLORING
+            </p>
+
+            <div class="currently-learning-pills">
+
+                <span>AI &amp; Copilot</span>
+                <span>Automation</span>
+                <span>Modern Endpoint Security</span>
+                <span>Cloud Optimization</span>
+                <span>Designing IT Helpdesk Agent via Copilot Studio</span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ================= WHAT I ACTUALLY DO ================= -->
+
+<section id="what-i-do" class="section what-i-do-section">
+
+    <div class="container">
+
+        <p class="section-label">
+            03A — WHAT I ACTUALLY DO
+        </p>
+
+        <div class="section-heading">
+            <div>
+                <h2>
+                    What I
+                    <span>actually do.</span>
+                </h2>
+
+                <p>
+                    Practical IT work focused on keeping endpoints secure,
+                    users productive and technology operations efficient.
+                </p>
+            </div>
+        </div>
+
+        <div class="what-i-do-grid">
+
+            <article class="what-i-do-card">
+                <div class="what-i-do-number">01</div>
+                <h3>Manage</h3>
+                <p>Windows, macOS, iOS endpoints</p>
+            </article>
+
+            <article class="what-i-do-card">
+                <div class="what-i-do-number">02</div>
+                <h3>Secure</h3>
+                <p>Devices, identities, access</p>
+            </article>
+
+            <article class="what-i-do-card">
+                <div class="what-i-do-number">03</div>
+                <h3>Automate</h3>
+                <p>Onboarding, offboarding, IT workflows</p>
+            </article>
+
+            <article class="what-i-do-card">
+                <div class="what-i-do-number">04</div>
+                <h3>Optimize</h3>
+                <p>Azure, AVD, workplace technology</p>
+            </article>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= HOW I WORK ================= -->
+
+<section id="how-i-work" class="section how-i-work-section">
+
+    <div class="container">
+
+        <p class="section-label">
+            HOW I WORK
+        </p>
+
+        <div class="how-i-work-card">
+
+            <div class="how-step">
+                <span>01</span>
+                <strong>Understand</strong>
+            </div>
+
+            <div class="how-arrow">→</div>
+
+            <div class="how-step">
+                <span>02</span>
+                <strong>Automate</strong>
+            </div>
+
+            <div class="how-arrow">→</div>
+
+            <div class="how-step">
+                <span>03</span>
+                <strong>Secure</strong>
+            </div>
+
+            <div class="how-arrow">→</div>
+
+            <div class="how-step">
+                <span>04</span>
+                <strong>Measure</strong>
+            </div>
+
+        </div>
+
     </div>
 
 </section>
@@ -1361,7 +1672,7 @@
 
             <!-- DEGREE — FEATURED -->
 
-            <article class="credential-card credential-degree">
+            <article id="credential-seneca" class="credential-card credential-degree">
 
                 <div class="credential-image">
                     <img
@@ -1403,7 +1714,7 @@
 
             <!-- UTU — DIPLOMA IN INFORMATION TECHNOLOGY -->
 
-            <article class="credential-card credential-degree credential-utu">
+            <article id="credential-utu" class="credential-card credential-degree credential-utu">
 
                 <div class="credential-image">
                     <img
@@ -1445,7 +1756,7 @@
 
             <!-- MICROSOFT -->
 
-            <article class="credential-card">
+            <article id="credential-certifications" class="credential-card">
 
                 <div class="credential-image credential-image-cert">
                     <img
@@ -1539,7 +1850,7 @@
 
             <!-- PRESIDENT'S HONOUR LIST — FALL 2022 -->
 
-            <article class="credential-card credential-award">
+            <article class="credential-card credential-award" id="credential-awards">
 
                 <div class="credential-image credential-image-award">
                     <img
@@ -1813,7 +2124,7 @@
             </div>
 
         </div>
-        <div class="linkedin-post">
+        <div id="moment-linkedin" class="linkedin-post">
     <iframe
         src="https://www.linkedin.com/embed/feed/update/urn:li:share:7488287744083984384"
         height="1027"
@@ -1828,7 +2139,7 @@
 
         <!-- ================= GRADUATION ================= -->
 
-        <article class="moment-card moment-graduation">
+        <article id="moment-graduation" class="moment-card moment-graduation">
 
             <div class="moment-card-heading">
 
@@ -1879,7 +2190,7 @@
 
         <!-- ================= FUNDSERV JOURNEY ================= -->
 
-        <article class="moment-card moment-fundserv">
+        <article id="moment-fundserv" class="moment-card moment-fundserv">
 
             <div class="moment-card-heading">
 
@@ -1947,7 +2258,7 @@
 
         <!-- ================= MICROSOFT ================= -->
 
-        <article class="moment-card moment-microsoft">
+        <article id="moment-microsoft" class="moment-card moment-microsoft">
 
             <div class="moment-card-heading">
 
@@ -1999,7 +2310,7 @@
 
         <!-- ================= APPLE ================= -->
 
-        <article class="moment-card moment-apple">
+        <article id="moment-apple" class="moment-card moment-apple">
 
             <div class="moment-card-heading">
 
@@ -2192,6 +2503,113 @@
 
 </footer>
 
+
+
+    <!-- Mobile sticky contact -->
+    <a href="#contact" class="mobile-contact-button" aria-label="Let's Talk">
+        Let's Talk →
+    </a>
+
+
+<script>
+(function () {
+    const toggle = document.getElementById("themeToggle");
+    if (!toggle) return;
+
+    const storageKey = "kushal-theme";
+
+    function applyTheme(theme) {
+        const isDark = theme === "dark";
+        document.documentElement.classList.toggle("dark-mode", isDark);
+
+        toggle.setAttribute("aria-pressed", String(isDark));
+        toggle.setAttribute(
+            "aria-label",
+            isDark ? "Switch to light mode" : "Switch to dark mode"
+        );
+    }
+
+    const saved = localStorage.getItem(storageKey);
+
+    if (saved === "dark" || saved === "light") {
+        applyTheme(saved);
+    } else {
+        applyTheme(
+            window.matchMedia &&
+            window.matchMedia("(prefers-color-scheme: dark)").matches
+                ? "dark"
+                : "light"
+        );
+    }
+
+    toggle.addEventListener("click", function () {
+        const next = document.documentElement.classList.contains("dark-mode")
+            ? "light"
+            : "dark";
+
+        localStorage.setItem(storageKey, next);
+        applyTheme(next);
+    });
+})();
+</script>
+
+
+<script>
+(function () {
+    const dropdowns = document.querySelectorAll(".nav-dropdown");
+
+    if (!dropdowns.length) return;
+
+    function closeAll(except) {
+        dropdowns.forEach(function (dropdown) {
+            if (dropdown !== except) {
+                const button = dropdown.querySelector(".nav-dropdown-toggle");
+                const menu = dropdown.querySelector(".nav-dropdown-menu");
+
+                if (button) button.setAttribute("aria-expanded", "false");
+                if (menu) menu.classList.remove("is-open");
+            }
+        });
+    }
+
+    dropdowns.forEach(function (dropdown) {
+        const button = dropdown.querySelector(".nav-dropdown-toggle");
+        const menu = dropdown.querySelector(".nav-dropdown-menu");
+
+        if (!button || !menu) return;
+
+        button.addEventListener("click", function (event) {
+            event.stopPropagation();
+
+            const isOpen = button.getAttribute("aria-expanded") === "true";
+
+            closeAll(dropdown);
+
+            button.setAttribute("aria-expanded", String(!isOpen));
+            menu.classList.toggle("is-open", !isOpen);
+        });
+
+        menu.querySelectorAll("a").forEach(function (link) {
+            link.addEventListener("click", function () {
+                button.setAttribute("aria-expanded", "false");
+                menu.classList.remove("is-open");
+            });
+        });
+    });
+
+    document.addEventListener("click", function (event) {
+        if (!event.target.closest(".nav-dropdown")) {
+            closeAll(null);
+        }
+    });
+
+    document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape") {
+            closeAll(null);
+        }
+    });
+})();
+</script>
 
 <script src="script.js"></script>
 

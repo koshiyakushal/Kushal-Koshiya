@@ -4688,3 +4688,993 @@ footer {
     }
 }
 
+/* =========================================================
+   DARK MODE — ADDED ONLY
+   ========================================================= */
+
+.theme-toggle {
+    width: 42px;
+    height: 38px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 2px;
+    padding: 0;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: rgba(255,255,255,0.78);
+    color: #596375;
+    cursor: pointer;
+    transition: 0.25s ease;
+}
+
+.theme-toggle:hover {
+    transform: translateY(-1px);
+}
+
+.theme-icon {
+    font-size: 15px;
+    line-height: 1;
+}
+
+.theme-icon-moon {
+    display: none;
+}
+
+html.dark-mode {
+    color-scheme: dark;
+    --background: #070b14;
+    --white: #101827;
+    --text: #f3f6fb;
+    --muted: #a4adbd;
+    --border: #253047;
+    --purple: #8f83ff;
+    --purple-light: #b6afff;
+    --purple-dark: #7f72f2;
+    --dark: #050912;
+    --dark-2: #0a1020;
+    --dark-card: #101827;
+    --dark-border: rgba(255,255,255,0.10);
+    --green: #63e39b;
+}
+
+html.dark-mode body {
+    background:
+        radial-gradient(circle at 10% 5%, rgba(118,103,255,0.10), transparent 28%),
+        radial-gradient(circle at 90% 85%, rgba(84,214,140,0.045), transparent 24%),
+        #070b14;
+    color: var(--text);
+}
+
+html.dark-mode .navbar {
+    background: rgba(7,11,20,0.88);
+    border-bottom-color: rgba(255,255,255,0.08);
+}
+
+html.dark-mode nav a {
+    color: #d2d7e1;
+}
+
+html.dark-mode nav a:hover {
+    color: var(--purple-light);
+}
+
+html.dark-mode .theme-toggle {
+    border-color: rgba(255,255,255,0.11);
+    background: rgba(255,255,255,0.06);
+    color: #f8d66d;
+}
+
+html.dark-mode .theme-icon-sun {
+    display: none;
+}
+
+html.dark-mode .theme-icon-moon {
+    display: inline-block;
+}
+
+html.dark-mode .hero {
+    background:
+        radial-gradient(circle at 10% 10%, rgba(118,103,255,0.12), transparent 30%),
+        #070b14;
+}
+
+html.dark-mode .hero-description,
+html.dark-mode .stats small,
+html.dark-mode .section-heading p,
+html.dark-mode .two-column p:not(.large-text),
+html.dark-mode .skill-card p,
+html.dark-mode .moments-intro,
+html.dark-mode .moment-card-heading p,
+html.dark-mode .contact-section > p {
+    color: #a4adbd;
+}
+
+html.dark-mode .section:not(.dark-section),
+html.dark-mode .moments-section,
+html.dark-mode .contact-section,
+html.dark-mode .resume-section {
+    background: #0a0f19;
+}
+
+html.dark-mode .section h2,
+html.dark-mode .skill-card h3,
+html.dark-mode .moment-card h3 {
+    color: #f3f6fb;
+}
+
+html.dark-mode .large-text {
+    color: #dbe1ea;
+}
+
+html.dark-mode .secondary {
+    border-color: rgba(255,255,255,0.12);
+    background: rgba(255,255,255,0.05);
+    color: #f3f6fb;
+}
+
+html.dark-mode .technology-bar {
+    background: #0b101b;
+    border-top-color: rgba(255,255,255,0.08);
+    border-bottom-color: rgba(255,255,255,0.08);
+}
+
+html.dark-mode .technology-container strong {
+    color: #dfe4ec;
+}
+
+html.dark-mode .skill-card,
+html.dark-mode .credential-card,
+html.dark-mode .moment-card {
+    background: #101722;
+    border-color: rgba(255,255,255,0.08);
+    box-shadow: 0 18px 45px rgba(0,0,0,0.20);
+}
+
+html.dark-mode .tags.light span,
+html.dark-mode .pills span {
+    background: #151d2c;
+    border-color: rgba(255,255,255,0.08);
+    color: #c5cdda;
+}
+
+html.dark-mode .projects-section {
+    background: linear-gradient(180deg, #0a0f19, #070b14);
+}
+
+html.dark-mode .seneca-section {
+    background:
+        radial-gradient(circle at 80% 15%, rgba(200,16,46,0.07), transparent 28%),
+        #0b1018;
+}
+
+html.dark-mode .seneca-heading p,
+html.dark-mode .credential-content p {
+    color: #a4adbd;
+}
+
+html.dark-mode .seneca-feature-card,
+html.dark-mode .seneca-card-top,
+html.dark-mode .seneca-card-bottom {
+    background: #101722;
+    border-color: rgba(255,255,255,0.10);
+}
+
+html.dark-mode .seneca-image-wrapper {
+    background: #0b1018;
+    border-color: rgba(255,255,255,0.08);
+}
+
+html.dark-mode .seneca-card-brand strong,
+html.dark-mode .seneca-identity-text strong {
+    color: #f3f6fb;
+}
+
+html.dark-mode .seneca-card-brand span,
+html.dark-mode .seneca-identity-text span {
+    color: #a4adbd;
+}
+
+html.dark-mode .seneca-divider {
+    background: rgba(255,255,255,0.12);
+}
+
+html.dark-mode .resume-card {
+    box-shadow: 0 25px 60px rgba(0,0,0,0.28);
+}
+
+@media (max-width: 760px) {
+    html.dark-mode .menu-toggle {
+        color: #f3f6fb;
+    }
+
+    html.dark-mode nav {
+        background: #0b101b;
+    }
+}
+
+
+/* =========================================================
+   DARK MODE — READABILITY FIXES ONLY
+   ========================================================= */
+
+/* General text elements that commonly inherit muted/dark colors */
+html.dark-mode p,
+html.dark-mode li,
+html.dark-mode span,
+html.dark-mode small,
+html.dark-mode strong,
+html.dark-mode h4,
+html.dark-mode h5 {
+    /* Preserve specific component colors below where applicable */
+}
+
+/* About / general body copy */
+html.dark-mode .two-column p,
+html.dark-mode .about-text,
+html.dark-mode .about-section p {
+    color: #c2c9d6;
+}
+
+/* Hero availability text */
+html.dark-mode .availability-text {
+    color: #c7ceda;
+}
+
+html.dark-mode .fundserv-brand {
+    color: #63e39b;
+}
+
+/* Stats */
+html.dark-mode .stats small {
+    color: #aeb7c6;
+}
+
+/* Technology bar */
+html.dark-mode .technology-container > span {
+    color: #a7b0bf;
+}
+
+/* Section descriptions */
+html.dark-mode .section-heading p,
+html.dark-mode .credentials-intro,
+html.dark-mode .moments-intro {
+    color: #b5bdca;
+}
+
+/* Experience text */
+html.dark-mode .company-description,
+html.dark-mode .experience-details li {
+    color: rgba(255,255,255,0.72);
+}
+
+html.dark-mode .experience-top h4 {
+    color: rgba(255,255,255,0.72);
+}
+
+/* Skills */
+html.dark-mode .skill-card p {
+    color: #b9c1cf;
+}
+
+html.dark-mode .skill-logo-tag {
+    color: #d6dce6;
+    background: #151d2c;
+    border-color: rgba(255,255,255,0.10);
+}
+
+/* Projects */
+html.dark-mode .project-summary,
+html.dark-mode .project-details li {
+    color: rgba(255,255,255,0.72);
+}
+
+/* Credentials */
+html.dark-mode .credential-content h4 {
+    color: #d9dfe8;
+}
+
+html.dark-mode .credential-content p {
+    color: #b4bcc9;
+}
+
+html.dark-mode .credential-link {
+    color: #a79cff;
+}
+
+/* Seneca */
+html.dark-mode .seneca-card-brand span,
+html.dark-mode .seneca-identity-text span {
+    color: #b1bac8;
+}
+
+/* Moments */
+html.dark-mode .moment-card-heading p {
+    color: #b9c1cf;
+}
+
+html.dark-mode .moment-kicker {
+    color: #b6afff;
+}
+
+html.dark-mode .moment-note span {
+    color: #d0d7e2;
+    background: #151d2b;
+    border-color: rgba(255,255,255,0.10);
+}
+
+/* Resume */
+html.dark-mode .resume-card p {
+    color: #b3bdcc;
+}
+
+/* Contact */
+html.dark-mode .contact-section > p {
+    color: #b5bdca;
+}
+
+/* Footer */
+html.dark-mode footer,
+html.dark-mode .footer {
+    color: #aeb7c6;
+}
+
+/* Navigation mobile menu / links */
+html.dark-mode .menu-toggle {
+    color: #f3f6fb;
+}
+
+/* Make dark-mode links readable without changing branded buttons */
+html.dark-mode a:not(.button):not(.nav-linkedin):not(.credential-link):not(.seneca-view-button) {
+    color: #d6dce6;
+}
+
+html.dark-mode a:not(.button):not(.nav-linkedin):not(.credential-link):not(.seneca-view-button):hover {
+    color: #b6afff;
+}
+
+
+/* =========================================================
+   DARK MODE — FINAL TEXT VISIBILITY FIXES
+   ========================================================= */
+
+/* Hero primary CTA */
+html.dark-mode .hero .button.primary {
+    background: #f3f6fb;
+    color: #070b14;
+    border-color: #f3f6fb;
+}
+
+html.dark-mode .hero .button.primary:hover {
+    background: #ffffff;
+    color: #050912;
+}
+
+/* Education / credentials */
+html.dark-mode .credential-card h3,
+html.dark-mode .credential-card h4,
+html.dark-mode .credential-card p,
+html.dark-mode .credential-card .credential-year {
+    color: #f3f6fb;
+}
+
+html.dark-mode .credential-card h4 {
+    color: #d6dce6;
+}
+
+html.dark-mode .credential-card p {
+    color: #b8c1cf;
+}
+
+html.dark-mode .credential-card .credential-year {
+    color: #b6afff;
+}
+
+/* Seneca and other white-background content blocks */
+html.dark-mode .seneca-feature-card h2,
+html.dark-mode .seneca-feature-card h3,
+html.dark-mode .seneca-feature-card h4,
+html.dark-mode .seneca-feature-card p,
+html.dark-mode .seneca-feature-card span {
+    color: #f3f6fb;
+}
+
+/* Make normal dark-mode section headings unmistakable */
+html.dark-mode .section h2,
+html.dark-mode .section h3 {
+    color: #f3f6fb;
+}
+
+/* Preserve accent headings */
+html.dark-mode .section h2 span,
+html.dark-mode .section h3 span {
+    color: var(--purple-light);
+}
+/* =========================================================
+   CONTACT BUTTONS — DARK MODE VISIBILITY
+   ========================================================= */
+
+html.dark-mode .contact-buttons {
+    gap: 14px;
+}
+
+html.dark-mode .contact-buttons .primary {
+    background: #ffffff !important;
+    color: #070b14 !important;
+    border: 1px solid #ffffff !important;
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.25);
+}
+
+html.dark-mode .contact-buttons .primary:hover {
+    background: #f3f6fb !important;
+    color: #050912 !important;
+}
+
+html.dark-mode .contact-buttons .nav-linkedin {
+    background: #0a66c2 !important;
+    color: #ffffff !important;
+    border-color: #0a66c2 !important;
+}
+
+html.dark-mode .contact-buttons .nav-linkedin:hover {
+    background: #004182 !important;
+    color: #ffffff !important;
+}
+
+html.dark-mode .contact-buttons .secondary {
+    background: #151d2c !important;
+    color: #f3f6fb !important;
+    border: 1px solid rgba(255,255,255,0.16) !important;
+}
+
+html.dark-mode .contact-buttons .secondary:hover {
+    background: #1d2738 !important;
+    color: #ffffff !important;
+    border-color: #8f83ff !important;
+}
+/* =========================================================
+   RESUME BUTTON — DARK MODE VISIBILITY
+   ========================================================= */
+
+html.dark-mode .resume-button {
+    background: #ffffff !important;
+    color: #070b14 !important;
+    border: 1px solid #ffffff !important;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+}
+
+html.dark-mode .resume-button:hover {
+    background: #f3f6fb !important;
+    color: #050912 !important;
+    border-color: #f3f6fb !important;
+}
+/* =========================================================
+   CONTACT — SPACE ABOVE BUTTONS
+   ========================================================= */
+
+.contact-buttons {
+    margin-top: 24px;
+}
+
+
+/* =========================================================
+   NEW PORTFOLIO UPGRADES
+   What I Actually Do / How I Work / Resume / Dark Mode /
+   Mobile Contact
+   ========================================================= */
+
+/* Navbar Resume */
+.nav-resume {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 9px 13px;
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    background: var(--white);
+    color: var(--text);
+    font-size: 13px;
+    font-weight: 700;
+    transition: 0.25s ease;
+}
+
+.nav-resume:hover {
+    transform: translateY(-2px);
+    border-color: var(--purple);
+    color: var(--purple);
+}
+
+/* Theme toggle */
+.theme-toggle {
+    width: 42px;
+    height: 38px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: var(--white);
+    color: var(--text);
+    cursor: pointer;
+    transition: 0.25s ease;
+}
+
+.theme-toggle:hover {
+    transform: translateY(-1px);
+}
+
+.theme-icon {
+    font-size: 15px;
+    line-height: 1;
+}
+
+.theme-icon-moon {
+    display: none;
+}
+
+/* What I Actually Do */
+.what-i-do-section {
+    background: #ffffff;
+}
+
+.what-i-do-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+}
+
+.what-i-do-card {
+    position: relative;
+    min-height: 190px;
+    padding: 26px;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    background: var(--white);
+    transition: 0.3s ease;
+}
+
+.what-i-do-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(118,103,255,0.35);
+    box-shadow: 0 20px 45px rgba(20,25,35,0.08);
+}
+
+.what-i-do-number {
+    margin-bottom: 28px;
+    color: var(--purple);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+}
+
+.what-i-do-card h3 {
+    margin-bottom: 9px;
+    font-size: 21px;
+}
+
+.what-i-do-card p {
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.65;
+}
+
+/* How I Work */
+.how-i-work-section {
+    padding-top: 70px;
+    padding-bottom: 80px;
+    background: #f8f9fc;
+}
+
+.how-i-work-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    padding: 28px 30px;
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    background: var(--white);
+}
+
+.how-step {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.how-step span {
+    color: var(--purple);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.how-step strong {
+    color: var(--text);
+    font-size: 16px;
+}
+
+.how-arrow {
+    color: var(--purple);
+    font-size: 20px;
+    font-weight: 700;
+}
+
+/* Mobile sticky contact */
+.mobile-contact-button {
+    display: none;
+}
+
+/* ---------- DARK MODE ---------- */
+
+html.dark-mode {
+    color-scheme: dark;
+    --background: #070b14;
+    --white: #101722;
+    --text: #f3f6fb;
+    --muted: #a4adbd;
+    --border: #253047;
+    --purple: #8f83ff;
+    --purple-light: #b6afff;
+    --purple-dark: #7f72f2;
+}
+
+html.dark-mode body {
+    background: #070b14;
+    color: var(--text);
+}
+
+html.dark-mode .navbar {
+    background: rgba(7,11,20,0.90);
+    border-bottom-color: rgba(255,255,255,0.08);
+}
+
+html.dark-mode nav a {
+    color: #d2d7e1;
+}
+
+html.dark-mode nav a:hover {
+    color: var(--purple-light);
+}
+
+html.dark-mode .nav-resume,
+html.dark-mode .theme-toggle {
+    background: #111827;
+    color: #f3f6fb;
+    border-color: rgba(255,255,255,0.12);
+}
+
+html.dark-mode .theme-icon-sun {
+    display: none;
+}
+
+html.dark-mode .theme-icon-moon {
+    display: inline-block;
+}
+
+html.dark-mode .what-i-do-section,
+html.dark-mode .how-i-work-section {
+    background: #0a0f19;
+}
+
+html.dark-mode .what-i-do-card,
+html.dark-mode .how-i-work-card {
+    background: #101722;
+    border-color: rgba(255,255,255,0.08);
+}
+
+html.dark-mode .what-i-do-card h3,
+html.dark-mode .what-i-do-card p,
+html.dark-mode .how-step strong {
+    color: #f3f6fb;
+}
+
+html.dark-mode .what-i-do-card p {
+    color: #b7c0ce;
+}
+
+html.dark-mode .how-arrow {
+    color: var(--purple-light);
+}
+
+/* Keep existing dark-mode component styling while ensuring new cards match */
+html.dark-mode .section h2,
+html.dark-mode .section h3 {
+    color: #f3f6fb;
+}
+
+/* ---------- MOBILE ---------- */
+
+@media (max-width: 900px) {
+    .what-i-do-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .how-i-work-card {
+        flex-wrap: wrap;
+    }
+}
+
+@media (max-width: 760px) {
+    .what-i-do-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .how-i-work-card {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 14px;
+    }
+
+    .how-arrow {
+        transform: rotate(90deg);
+        margin-left: 12px;
+    }
+
+    .mobile-contact-button {
+        display: inline-flex;
+        position: fixed;
+        left: 16px;
+        right: 16px;
+        bottom: 16px;
+        z-index: 1200;
+        align-items: center;
+        justify-content: center;
+        min-height: 48px;
+        padding: 12px 18px;
+        border: 1px solid var(--purple);
+        border-radius: 12px;
+        background: var(--purple);
+        color: #ffffff;
+        font-size: 13px;
+        font-weight: 800;
+        box-shadow: 0 12px 30px rgba(0,0,0,0.20);
+    }
+
+    html.dark-mode .mobile-contact-button {
+        background: #8f83ff;
+        border-color: #8f83ff;
+        color: #070b14;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .nav-resume,
+    .theme-toggle,
+    .what-i-do-card {
+        transition: none;
+    }
+}
+
+
+/* =========================================================
+   SKILLS NAV DROPDOWN
+   Only the Skills navigation item is changed.
+   ========================================================= */
+
+.nav-dropdown {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+}
+
+.nav-dropdown-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    cursor: pointer;
+}
+
+.nav-dropdown-toggle:hover {
+    color: var(--purple);
+}
+
+.nav-dropdown-chevron {
+    font-size: 13px;
+    line-height: 1;
+    transition: transform 0.2s ease;
+}
+
+.nav-dropdown-toggle[aria-expanded="true"] .nav-dropdown-chevron {
+    transform: rotate(180deg);
+}
+
+.nav-dropdown-menu {
+    position: absolute;
+    top: calc(100% + 12px);
+    left: 50%;
+    transform: translateX(-50%) translateY(-5px);
+    min-width: 235px;
+    padding: 8px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: var(--white);
+    box-shadow: 0 18px 45px rgba(16,21,34,0.12);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+    z-index: 1100;
+}
+
+.nav-dropdown-menu.is-open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateX(-50%) translateY(0);
+}
+
+.nav-dropdown-menu a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 11px;
+    border-radius: 8px;
+    color: var(--text) !important;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.nav-dropdown-menu a span {
+    min-width: 28px;
+    color: var(--purple);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+}
+
+.nav-dropdown-menu a:hover {
+    background: rgba(118,103,255,0.08);
+    color: var(--purple) !important;
+}
+
+/* Dark mode */
+html.dark-mode .nav-dropdown-menu {
+    background: #101722;
+    border-color: rgba(255,255,255,0.10);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.35);
+}
+
+html.dark-mode .nav-dropdown-menu a {
+    color: #f3f6fb !important;
+}
+
+html.dark-mode .nav-dropdown-menu a:hover {
+    background: rgba(143,131,255,0.10);
+    color: #b6afff !important;
+}
+
+/* Mobile */
+@media (max-width: 760px) {
+    .nav-dropdown {
+        width: 100%;
+        display: block;
+    }
+
+    .nav-dropdown-toggle {
+        width: 100%;
+        justify-content: space-between;
+        padding: 12px 0;
+    }
+
+    .nav-dropdown-menu {
+        position: static;
+        min-width: 0;
+        width: 100%;
+        margin: 0;
+        padding: 2px 0 8px 12px;
+        border: 0;
+        border-radius: 0;
+        background: transparent;
+        box-shadow: none;
+        opacity: 1;
+        visibility: visible;
+        pointer-events: none;
+        transform: none;
+        display: none;
+    }
+
+    .nav-dropdown-menu.is-open {
+        pointer-events: auto;
+        display: block;
+    }
+
+    html.dark-mode .nav-dropdown-menu {
+        background: transparent;
+        box-shadow: none;
+    }
+
+    .nav-dropdown-menu a {
+        padding: 9px 10px;
+    }
+}
+
+
+
+/* =========================================================
+   NAV DROPDOWNS — CLEAN COMPACT NAVIGATION
+   ========================================================= */
+
+nav {
+    gap: 21px;
+    white-space: nowrap;
+}
+
+.nav-dropdown {
+    position: relative;
+    flex: 0 0 auto;
+}
+
+.nav-dropdown-toggle {
+    white-space: nowrap;
+    font-size: 13px;
+}
+
+.nav-dropdown-chevron {
+    margin-left: 1px;
+    font-size: 11px;
+    line-height: 1;
+}
+
+.nav-dropdown-menu {
+    min-width: 245px;
+    max-width: 300px;
+}
+
+.nav-dropdown-menu a span {
+    flex: 0 0 30px;
+}
+
+.nav-resume {
+    flex: 0 0 auto;
+    white-space: nowrap;
+    padding: 8px 11px;
+}
+
+@media (max-width: 1180px) and (min-width: 761px) {
+    nav {
+        gap: 15px;
+    }
+
+    .nav-dropdown-toggle,
+    nav a {
+        font-size: 12px;
+    }
+
+    .nav-resume {
+        padding: 8px 10px;
+    }
+
+    .nav-linkedin {
+        padding: 8px 10px;
+    }
+}
+
+@media (max-width: 760px) {
+    nav {
+        gap: 0;
+        white-space: normal;
+    }
+
+    .nav-dropdown-menu {
+        max-width: none;
+    }
+}
+
+/* =========================================================
+   MOMENTS DROPDOWN — SCROLL LANDING
+   ========================================================= */
+
+#moments,
+#moment-linkedin,
+#moment-graduation,
+#moment-fundserv,
+#moment-microsoft,
+#moment-apple {
+    scroll-margin-top: 96px;
+}

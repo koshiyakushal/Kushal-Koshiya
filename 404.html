@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>404 — Kushal Koshiya</title>
+
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='white'/><text x='32' y='40' text-anchor='middle' font-family='Arial,sans-serif' font-size='25' font-weight='800' fill='black'>KK<tspan fill='%237667ff'>.</tspan></text></svg>">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .error-page {
+            min-height: 100vh;
+            display: grid;
+            place-items: center;
+            padding: 40px 20px;
+            overflow: hidden;
+            position: relative;
+            background:
+                radial-gradient(circle at 18% 15%, rgba(118,103,255,0.12), transparent 28%),
+                radial-gradient(circle at 82% 78%, rgba(84,214,140,0.07), transparent 25%),
+                var(--background);
+            color: var(--text);
+        }
+
+        .error-page::before,
+        .error-page::after {
+            content: "";
+            position: absolute;
+            border: 1px solid rgba(118,103,255,0.14);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .error-page::before {
+            width: 520px;
+            height: 520px;
+            animation: errorOrbit 18s linear infinite;
+        }
+
+        .error-page::after {
+            width: 700px;
+            height: 300px;
+            transform: rotate(-22deg);
+            border-color: rgba(84,214,140,0.10);
+            animation: errorOrbitReverse 24s linear infinite;
+        }
+
+        .error-card {
+            position: relative;
+            z-index: 2;
+            width: min(760px, 100%);
+            padding: clamp(36px, 7vw, 72px);
+            text-align: center;
+            border: 1px solid var(--border);
+            border-radius: 28px;
+            background: rgba(255,255,255,0.74);
+            backdrop-filter: blur(18px);
+            box-shadow: 0 30px 90px rgba(16,21,34,0.10);
+        }
+
+        .dark-mode .error-card {
+            background: rgba(16,23,34,0.82);
+            box-shadow: 0 30px 90px rgba(0,0,0,0.32);
+        }
+
+        .error-logo {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 78px;
+            height: 56px;
+            margin-bottom: 30px;
+            position: relative;
+            font-size: 31px;
+            font-weight: 800;
+            letter-spacing: -2px;
+        }
+
+        .error-logo::before,
+        .error-logo::after {
+            content: "";
+            position: absolute;
+            inset: 50% auto auto 50%;
+            border: 1px solid rgba(118,103,255,0.28);
+            border-radius: 50%;
+            transform: translate(-50%, -50%) rotate(-18deg);
+            width: 70px;
+            height: 34px;
+        }
+
+        .error-logo::after {
+            width: 76px;
+            height: 28px;
+            transform: translate(-50%, -50%) rotate(55deg);
+            border-color: rgba(84,214,140,0.20);
+        }
+
+        .error-logo span {
+            position: relative;
+            z-index: 2;
+        }
+
+        .error-logo em {
+            color: var(--purple);
+            font-style: normal;
+        }
+
+        .error-code {
+            margin-bottom: 8px;
+            color: var(--purple);
+            font-size: clamp(76px, 13vw, 140px);
+            font-weight: 800;
+            line-height: 0.95;
+            letter-spacing: -8px;
+        }
+
+        .error-kicker {
+            display: inline-block;
+            margin-bottom: 14px;
+            color: var(--muted);
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 2px;
+        }
+
+        .error-title {
+            margin-bottom: 16px;
+            color: var(--text);
+            font-size: clamp(28px, 5vw, 46px);
+            line-height: 1.1;
+            letter-spacing: -2px;
+        }
+
+        .error-title span {
+            color: var(--purple);
+        }
+
+        .error-copy {
+            max-width: 570px;
+            margin: 0 auto;
+            color: var(--muted);
+            font-size: 15px;
+            line-height: 1.75;
+        }
+
+        .error-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 9px;
+            margin-top: 30px;
+            padding: 13px 20px;
+            border-radius: 10px;
+            background: var(--text);
+            color: var(--background);
+            font-size: 13px;
+            font-weight: 700;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .error-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(16,21,34,0.18);
+        }
+
+        .dark-mode .error-button {
+            background: #f3f6fb;
+            color: #070b14;
+        }
+
+        @keyframes errorOrbit {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes errorOrbitReverse {
+            from { transform: rotate(360deg); }
+            to { transform: rotate(0deg); }
+        }
+
+        @media (max-width: 600px) {
+            .error-card {
+                padding: 34px 24px 38px;
+                border-radius: 22px;
+            }
+
+            .error-code {
+                letter-spacing: -5px;
+            }
+
+            .error-copy {
+                font-size: 14px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .error-page::before,
+            .error-page::after {
+                animation: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <main class="error-page">
+
+        <section class="error-card" aria-labelledby="error-title">
+
+            <div class="error-logo" aria-hidden="true">
+                <span>KK<em>.</em></span>
+            </div>
+
+            <div class="error-code">404</div>
+
+            <span class="error-kicker">
+                ENDPOINT NOT FOUND
+            </span>
+
+            <h1 class="error-title" id="error-title">
+                This endpoint isn't <span>managed.</span>
+            </h1>
+
+            <p class="error-copy">
+                The page you're looking for couldn't be found.
+                It may have moved, been removed, or the link may be outdated.
+            </p>
+
+            <a href="index.html" class="error-button">
+                Back to Portfolio →
+            </a>
+
+        </section>
+
+    </main>
+
+    <script>
+        (function () {
+            const storedTheme = localStorage.getItem("kushal-theme");
+
+            if (storedTheme === "dark") {
+                document.documentElement.classList.add("dark-mode");
+            } else if (storedTheme !== "light" &&
+                       window.matchMedia &&
+                       window.matchMedia("(prefers-color-scheme: dark)").matches) {
+                document.documentElement.classList.add("dark-mode");
+            }
+        })();
+    </script>
+
+</body>
+</html>
