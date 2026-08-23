@@ -6763,3 +6763,500 @@ html.dark-mode .kushpilot-linkedin-link:hover {
     color: #ffffff;
 }
 
+
+/* =========================================================
+   CINEMATIC PORTFOLIO INTRO
+   ========================================================= */
+
+body.portfolio-intro-active {
+    overflow: hidden;
+}
+
+.portfolio-intro {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+
+    display: grid;
+    place-items: center;
+
+    overflow: hidden;
+
+    background:
+        radial-gradient(circle at 50% 42%, rgba(118,103,255,0.16), transparent 28%),
+        radial-gradient(circle at 28% 75%, rgba(84,214,140,0.07), transparent 22%),
+        #070b14;
+
+    color: #f3f6fb;
+
+    opacity: 1;
+    visibility: visible;
+
+    transition:
+        opacity 0.8s ease,
+        visibility 0.8s ease;
+}
+
+.portfolio-intro-hide {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.portfolio-intro::before,
+.portfolio-intro::after {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid rgba(118,103,255,0.10);
+    pointer-events: none;
+}
+
+.portfolio-intro::before {
+    width: 850px;
+    height: 850px;
+    animation: portfolioIntroRotate 28s linear infinite;
+}
+
+.portfolio-intro::after {
+    width: 1050px;
+    height: 420px;
+    border-color: rgba(84,214,140,0.07);
+    transform: rotate(-22deg);
+    animation: portfolioIntroReverse 36s linear infinite;
+}
+
+.portfolio-intro-content {
+    position: relative;
+    z-index: 3;
+
+    width: min(760px, calc(100vw - 40px));
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    text-align: center;
+}
+
+.portfolio-intro-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 106px;
+    height: 74px;
+
+    margin-bottom: 26px;
+
+    position: relative;
+
+    font-size: 46px;
+    font-weight: 800;
+    letter-spacing: -3px;
+}
+
+.portfolio-intro-logo::before,
+.portfolio-intro-logo::after {
+    content: "";
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    border: 1px solid rgba(118,103,255,0.36);
+    border-radius: 50%;
+
+    transform: translate(-50%, -50%) rotate(-18deg);
+
+    animation: portfolioIntroOrbit 10s linear infinite;
+}
+
+.portfolio-intro-logo::before {
+    width: 106px;
+    height: 52px;
+}
+
+.portfolio-intro-logo::after {
+    width: 118px;
+    height: 42px;
+
+    border-color: rgba(84,214,140,0.18);
+
+    transform:
+        translate(-50%, -50%)
+        rotate(58deg);
+
+    animation-name: portfolioIntroOrbitReverse;
+    animation-duration: 13s;
+}
+
+.portfolio-intro-logo > span {
+    position: relative;
+    z-index: 2;
+}
+
+.portfolio-intro-dot {
+    color: var(--purple);
+}
+
+.portfolio-intro-kicker {
+    margin-bottom: 13px;
+
+    color: #a7a1ff;
+
+    font-size: 10px;
+    font-weight: 900;
+
+    letter-spacing: 2.4px;
+}
+
+.portfolio-intro h1 {
+    margin: 0;
+
+    font-size: clamp(36px, 8vw, 68px);
+    line-height: 1;
+
+    letter-spacing: -4px;
+
+    animation: portfolioIntroTextIn 0.85s ease both;
+}
+
+.portfolio-intro-systems {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    gap: 9px;
+
+    margin-top: 18px;
+}
+
+.portfolio-intro-systems span {
+    padding: 7px 10px;
+
+    border: 1px solid rgba(255,255,255,0.10);
+    border-radius: 999px;
+
+    background: rgba(255,255,255,0.04);
+
+    color: #aeb8c8;
+
+    font-size: 9px;
+    font-weight: 800;
+
+    letter-spacing: 1px;
+
+    opacity: 0;
+    transform: translateY(8px);
+
+    animation: portfolioIntroTagIn 0.6s ease forwards;
+}
+
+.portfolio-intro-systems span:nth-child(1) {
+    animation-delay: 0.45s;
+}
+
+.portfolio-intro-systems span:nth-child(2) {
+    animation-delay: 0.60s;
+}
+
+.portfolio-intro-systems span:nth-child(3) {
+    animation-delay: 0.75s;
+}
+
+.portfolio-intro-status {
+    display: inline-flex;
+    align-items: center;
+
+    gap: 9px;
+
+    margin-top: 28px;
+
+    color: #97a3b5;
+
+    font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+    font-size: 11px;
+}
+
+.intro-status-dot {
+    width: 7px;
+    height: 7px;
+
+    border-radius: 50%;
+
+    background: var(--green);
+
+    box-shadow: 0 0 14px rgba(84,214,140,0.65);
+
+    animation: introStatusPulse 1.6s ease-in-out infinite;
+}
+
+.portfolio-intro-skip {
+    margin-top: 24px;
+
+    border: 0;
+
+    background: transparent;
+
+    color: #7e899a;
+
+    font-family: inherit;
+    font-size: 10px;
+    font-weight: 700;
+
+    letter-spacing: 0.8px;
+
+    cursor: pointer;
+
+    opacity: 0.86;
+
+    transition:
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.portfolio-intro-skip:hover {
+    color: #c9d2df;
+    transform: translateY(-1px);
+}
+
+.portfolio-intro-orbit {
+    position: absolute;
+    inset: 0;
+
+    pointer-events: none;
+}
+
+.intro-orbit-ring {
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    border: 1px solid rgba(118,103,255,0.17);
+    border-radius: 50%;
+
+    transform: translate(-50%, -50%) rotate(-15deg);
+}
+
+.intro-orbit-ring-one {
+    width: 420px;
+    height: 190px;
+
+    animation: portfolioIntroOrbit 10s linear infinite;
+}
+
+.intro-orbit-ring-two {
+    width: 350px;
+    height: 150px;
+
+    border-color: rgba(84,214,140,0.10);
+
+    transform: translate(-50%, -50%) rotate(55deg);
+
+    animation: portfolioIntroOrbitReverse 12s linear infinite;
+}
+
+.intro-orbit-node {
+    position: absolute;
+
+    width: 6px;
+    height: 6px;
+
+    border-radius: 50%;
+
+    background: #a79cff;
+
+    box-shadow: 0 0 15px rgba(118,103,255,0.75);
+
+    animation: introNodeFloat 3.4s ease-in-out infinite;
+}
+
+.intro-node-one {
+    left: calc(50% - 228px);
+    top: calc(50% - 82px);
+}
+
+.intro-node-two {
+    right: calc(50% - 230px);
+    bottom: calc(50% - 95px);
+
+    background: var(--green);
+    box-shadow: 0 0 15px rgba(84,214,140,0.65);
+
+    animation-delay: 0.8s;
+}
+
+.intro-node-three {
+    left: calc(50% + 160px);
+    top: calc(50% - 135px);
+
+    width: 4px;
+    height: 4px;
+
+    animation-delay: 1.4s;
+}
+
+@keyframes portfolioIntroTextIn {
+    from {
+        opacity: 0;
+        transform: translateY(14px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes portfolioIntroTagIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes introStatusPulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 0.7;
+    }
+
+    50% {
+        transform: scale(1.35);
+        opacity: 1;
+    }
+}
+
+@keyframes portfolioIntroOrbit {
+    from {
+        transform:
+            translate(-50%, -50%)
+            rotate(0deg);
+    }
+
+    to {
+        transform:
+            translate(-50%, -50%)
+            rotate(360deg);
+    }
+}
+
+@keyframes portfolioIntroOrbitReverse {
+    from {
+        transform:
+            translate(-50%, -50%)
+            rotate(360deg);
+    }
+
+    to {
+        transform:
+            translate(-50%, -50%)
+            rotate(0deg);
+    }
+}
+
+@keyframes portfolioIntroRotate {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes portfolioIntroReverse {
+    from {
+        transform: rotate(360deg);
+    }
+
+    to {
+        transform: rotate(0deg);
+    }
+}
+
+@keyframes introNodeFloat {
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-9px);
+    }
+}
+
+@media (max-width: 760px) {
+    .portfolio-intro-logo {
+        margin-bottom: 20px;
+        font-size: 38px;
+    }
+
+    .portfolio-intro-logo::before {
+        width: 94px;
+        height: 46px;
+    }
+
+    .portfolio-intro-logo::after {
+        width: 102px;
+        height: 38px;
+    }
+
+    .portfolio-intro-systems {
+        gap: 6px;
+    }
+
+    .portfolio-intro-systems span {
+        font-size: 8px;
+        letter-spacing: 0.7px;
+    }
+
+    .intro-orbit-ring-one {
+        width: 300px;
+        height: 145px;
+    }
+
+    .intro-orbit-ring-two {
+        width: 250px;
+        height: 120px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .portfolio-intro::before,
+    .portfolio-intro::after,
+    .portfolio-intro-logo::before,
+    .portfolio-intro-logo::after,
+    .intro-orbit-ring,
+    .intro-orbit-node,
+    .intro-status-dot {
+        animation: none;
+    }
+
+    .portfolio-intro-systems span {
+        opacity: 1;
+        transform: none;
+    }
+
+    .portfolio-intro h1 {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+/* =========================================================
+   PORTFOLIO INTRO — ALWAYS RUN
+   ========================================================= */
+
+html:has(.portfolio-intro) {
+    min-height: 100%;
+}
+
+html:has(.portfolio-intro) body {
+    background: #070b14;
+}
+
+html.dark-mode:has(.portfolio-intro) body {
+    background: #070b14;
+}
+

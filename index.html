@@ -67,6 +67,63 @@ html.dark-mode .currently-learning-pills span {
 
 <body>
 
+
+<!-- ================= CINEMATIC INTRO ================= -->
+
+<div class="portfolio-intro" id="portfolioIntro">
+
+    <div class="portfolio-intro-orbit" aria-hidden="true">
+        <span class="intro-orbit-ring intro-orbit-ring-one"></span>
+        <span class="intro-orbit-ring intro-orbit-ring-two"></span>
+        <span class="intro-orbit-node intro-node-one"></span>
+        <span class="intro-orbit-node intro-node-two"></span>
+        <span class="intro-orbit-node intro-node-three"></span>
+    </div>
+
+    <div class="portfolio-intro-content">
+
+        <div class="portfolio-intro-logo">
+            <span>KK<span class="portfolio-intro-dot">.</span></span>
+        </div>
+
+        <p class="portfolio-intro-kicker">
+            KUSHPILOT INITIALIZING
+        </p>
+
+        <h1>
+            KUSHAL KOSHIYA
+        </h1>
+
+        <div class="portfolio-intro-systems">
+
+            <span>IT OPERATIONS</span>
+            <span>ENDPOINT MANAGEMENT</span>
+            <span>MODERN WORKPLACE</span>
+
+        </div>
+
+        <div class="portfolio-intro-status">
+
+            <span class="intro-status-dot"></span>
+            <span id="portfolioIntroStatus">
+                Initializing portfolio systems...
+            </span>
+
+        </div>
+
+        <button
+            class="portfolio-intro-skip"
+            id="portfolioIntroSkip"
+            type="button">
+            Skip Intro →
+        </button>
+
+    </div>
+
+</div>
+
+
+
 <!-- ================= NAVIGATION ================= -->
 
 <header class="navbar">
@@ -3352,6 +3409,70 @@ html.dark-mode .currently-learning-pills span {
     observer.observe(messages, { childList: true });
 })();
 </script>
+
+<script>
+(function () {
+    const intro = document.getElementById("portfolioIntro");
+    const skip = document.getElementById("portfolioIntroSkip");
+    const status = document.getElementById("portfolioIntroStatus");
+
+    if (!intro || !skip) return;
+
+    function finishIntro() {
+        intro.classList.add("portfolio-intro-hide");
+        document.body.classList.remove("portfolio-intro-active");
+
+        window.setTimeout(function () {
+            intro.remove();
+        }, 850);
+    }
+
+    function runIntro() {
+        document.body.classList.add("portfolio-intro-active");
+
+        const statuses = [
+            "Initializing portfolio systems...",
+            "Loading endpoint management...",
+            "Connecting cloud & identity...",
+            "Loading automation layer...",
+            "Synchronizing Apple & Microsoft stack...",
+            "KushPilot systems online.",
+            "Welcome, I'm Kushal."
+        ];
+
+        let index = 0;
+
+        /*
+         * Approximately 7 seconds total:
+         * 7 status steps × 700ms + 900ms final hold ≈ 5.8s
+         * plus the visual entrance/exit = roughly 6–7s.
+         */
+        const timer = window.setInterval(function () {
+            if (status && index < statuses.length) {
+                status.textContent = statuses[index];
+                index += 1;
+            }
+
+            if (index >= statuses.length) {
+                window.clearInterval(timer);
+
+                window.setTimeout(function () {
+                    finishIntro();
+                }, 900);
+            }
+        }, 700);
+
+        skip.addEventListener("click", function () {
+            window.clearInterval(timer);
+            finishIntro();
+        });
+    }
+
+    runIntro();
+})();
+</script>
+
+
 <script src="script.js"></script>
 
 </body>
