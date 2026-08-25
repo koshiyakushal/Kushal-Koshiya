@@ -2669,81 +2669,49 @@ html.dark-mode .currently-learning-pills span {
 
 <script>
 (function () {
-    const menuToggle = document.getElementById("menuToggle");
-    const navMenu = document.getElementById("navMenu");
-    const dropdowns = document.querySelectorAll(".nav-dropdown");
+    var menuToggle = document.getElementById("menuToggle");
+    var navMenu = document.getElementById("navMenu");
+    var dropdowns = document.querySelectorAll(".nav-dropdown");
 
     if (!navMenu) return;
 
-    const mobileBreakpoint = 760;
-
-    function isMobile() {
-        return window.innerWidth <= mobileBreakpoint;
+    function mobile() {
+        return window.innerWidth <= 760;
     }
 
     function closeDropdowns(except) {
         dropdowns.forEach(function (dropdown) {
             if (dropdown === except) return;
 
-            const button = dropdown.querySelector(".nav-dropdown-toggle");
-            const menu = dropdown.querySelector(".nav-dropdown-menu");
+            var btn = dropdown.querySelector(".nav-dropdown-toggle");
+            var menu = dropdown.querySelector(".nav-dropdown-menu");
 
-            if (button) {
-                button.setAttribute("aria-expanded", "false");
-            }
-
+            if (btn) btn.setAttribute("aria-expanded", "false");
             if (menu) {
                 menu.classList.remove("is-open");
-                if (isMobile()) {
-                    menu.style.display = "";
-                }
+                menu.removeAttribute("data-mobile-open");
             }
         });
     }
 
-    function closeMobileMenu() {
-        if (!isMobile()) return;
-
-        navMenu.classList.remove("active");
-        navMenu.style.display = "none";
-
-        if (menuToggle) {
-            menuToggle.setAttribute("aria-expanded", "false");
-            menuToggle.textContent = "☰";
-        }
-
-        closeDropdowns(null);
-    }
-
-    function openMobileMenu() {
-        if (!isMobile()) return;
-
-        /*
-         * Force the mobile menu open with inline values as a fallback.
-         * This avoids iOS Safari issues where a CSS-only display toggle
-         * can be affected by cached/competing nav rules.
-         */
+    function openMobileNav() {
         navMenu.classList.add("active");
-        navMenu.style.display = "flex";
-        navMenu.style.position = "fixed";
-        navMenu.style.top = "65px";
-        navMenu.style.left = "0";
-        navMenu.style.right = "0";
-        navMenu.style.width = "100%";
-        navMenu.style.zIndex = "3001";
-        navMenu.style.maxHeight = "calc(100dvh - 65px)";
-        navMenu.style.overflowY = "auto";
-        navMenu.style.webkitOverflowScrolling = "touch";
-        navMenu.style.background = getComputedStyle(document.documentElement).getPropertyValue("--background") || "#f5f7fb";
-        navMenu.style.padding = "15px 20px 24px";
-        navMenu.style.flexDirection = "column";
-        navMenu.style.alignItems = "stretch";
-        navMenu.style.gap = "0";
-        navMenu.style.boxSizing = "border-box";
+        navMenu.setAttribute("aria-hidden", "false");
 
         if (menuToggle) {
             menuToggle.setAttribute("aria-expanded", "true");
             menuToggle.textContent = "×";
+        }
+    }
+
+    function closeMobileNav() {
+        navMenu.classList.remove("active");
+        navMenu.setAttribute("aria-hidden", "true");
+        closeDropdowns(null);
+
+        if (menuToggle) {
+            menuToggle.setAttribute("aria-expanded", "false");
+            menuToggle.textContent = "☰";
         }
     }
 
@@ -2756,21 +2724,19 @@ html.dark-mode .currently-learning-pills span {
             event.preventDefault();
             event.stopPropagation();
 
-            if (!isMobile()) return;
+            if (!mobile()) return;
 
-            const isOpen = navMenu.classList.contains("active");
-
-            if (isOpen) {
-                closeMobileMenu();
+            if (navMenu.classList.contains("active")) {
+                closeMobileNav();
             } else {
-                openMobileMenu();
+                openMobileNav();
             }
         });
     }
 
     dropdowns.forEach(function (dropdown) {
-        const button = dropdown.querySelector(".nav-dropdown-toggle");
-        const menu = dropdown.querySelector(".nav-dropdown-menu");
+        var button = dropdown.querySelector(".nav-dropdown-toggle");
+        var menu = dropdown.querySelector(".nav-dropdown-menu");
 
         if (!button || !menu) return;
 
@@ -2780,74 +2746,59 @@ html.dark-mode .currently-learning-pills span {
             event.preventDefault();
             event.stopPropagation();
 
-            const isOpen = button.getAttribute("aria-expanded") === "true";
+            var currentlyOpen = button.getAttribute("aria-expanded") === "true";
 
             closeDropdowns(dropdown);
 
-            button.setAttribute("aria-expanded", String(!isOpen));
-            menu.classList.toggle("is-open", !isOpen);
-
-            if (isMobile()) {
-                menu.style.display = !isOpen ? "block" : "none";
-                menu.style.position = "static";
-                menu.style.width = "100%";
-                menu.style.maxWidth = "none";
-                menu.style.opacity = "1";
-                menu.style.visibility = "visible";
-                menu.style.pointerEvents = !isOpen ? "auto" : "none";
-                menu.style.transform = "none";
+            if (currentlyOpen) {
+                button.setAttribute("aria-expanded", "false");
+                menu.classList.remove("is-open");
+                return;
             }
+
+            button.setAttribute("aria-expanded", "true");
+            menu.classList.add("is-open");
+
+            if (mobile()) {
+                menu.setAttribute("data-mobile-open", "true");
+            }
+        });
+
+        menu.querySelectorAll("a").forEach(function (link) {
+            link.addEventListener("click", function () {
+                if (mobile()) closeMobileNav();
+            });
         });
     });
 
-    navMenu.querySelectorAll("a").forEach(function (link) {
+    navMenu.querySelectorAll(":scope > a").forEach(function (link) {
         link.addEventListener("click", function () {
-            if (isMobile()) {
-                closeMobileMenu();
-            }
+            if (mobile()) closeMobileNav();
         });
     });
 
     document.addEventListener("click", function (event) {
-        if (!event.target.closest(".navbar") && isMobile()) {
-            closeMobileMenu();
-        } else if (!event.target.closest(".nav-dropdown")) {
-            closeDropdowns(null);
+        if (!event.target.closest(".navbar")) {
+            closeMobileNav();
         }
     });
 
     document.addEventListener("keydown", function (event) {
         if (event.key === "Escape") {
-            closeMobileMenu();
-            closeDropdowns(null);
+            closeMobileNav();
         }
     });
 
     window.addEventListener("resize", function () {
-        if (!isMobile()) {
+        if (!mobile()) {
             navMenu.classList.remove("active");
-            navMenu.style.display = "";
-            navMenu.style.position = "";
-            navMenu.style.top = "";
-            navMenu.style.left = "";
-            navMenu.style.right = "";
-            navMenu.style.width = "";
-            navMenu.style.zIndex = "";
-            navMenu.style.maxHeight = "";
-            navMenu.style.overflowY = "";
-            navMenu.style.background = "";
-            navMenu.style.padding = "";
-            navMenu.style.flexDirection = "";
-            navMenu.style.alignItems = "";
-            navMenu.style.gap = "";
-            navMenu.style.boxSizing = "";
+            navMenu.removeAttribute("aria-hidden");
+            closeDropdowns(null);
 
             if (menuToggle) {
                 menuToggle.setAttribute("aria-expanded", "false");
                 menuToggle.textContent = "☰";
             }
-
-            closeDropdowns(null);
         }
     });
 })();
