@@ -8120,3 +8120,145 @@ html.dark-mode #navMenu .nav-resume {
     }
 }
 
+
+
+
+/* =========================================================
+   MOBILE NAV — EXACT DARK MODE COLOR FIX
+   ========================================================= */
+
+@media screen and (max-width: 760px) {
+    html.dark-mode .mobile-nav-native-panel > a.mobile-project-link,
+    html.dark-mode .mobile-nav-native-panel > a.mobile-contact-link,
+    html.dark-mode .mobile-nav-native-panel > a.mobile-resume-link {
+        color: #f3f6fb !important;
+        opacity: 1 !important;
+        -webkit-text-fill-color: #f3f6fb !important;
+        text-shadow: none !important;
+        filter: none !important;
+    }
+
+    html.dark-mode .mobile-nav-native-panel > a.mobile-project-link:visited,
+    html.dark-mode .mobile-nav-native-panel > a.mobile-contact-link:visited,
+    html.dark-mode .mobile-nav-native-panel > a.mobile-resume-link:visited {
+        color: #f3f6fb !important;
+        -webkit-text-fill-color: #f3f6fb !important;
+    }
+
+    html.dark-mode .mobile-nav-native-panel > a.mobile-project-link {
+        background: transparent !important;
+        border-color: transparent !important;
+    }
+
+    html.dark-mode .mobile-nav-native-panel > a.mobile-contact-link,
+    html.dark-mode .mobile-nav-native-panel > a.mobile-resume-link {
+        background: #111827 !important;
+        border-color: rgba(255,255,255,0.12) !important;
+    }
+}
+
+
+/* =========================================================
+   MOBILE NATIVE THEME TOGGLE
+   ========================================================= */
+
+.mobile-native-theme-toggle {
+    display: none;
+}
+
+@media screen and (max-width: 760px) {
+
+    .mobile-native-theme-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 10px;
+
+        width: 100%;
+        min-height: 46px;
+
+        margin-top: 8px;
+        padding: 10px 8px;
+
+        border: 1px solid var(--border);
+        border-radius: 9px;
+
+        background: var(--white);
+        color: var(--text);
+
+        font: inherit;
+        font-size: 14px;
+        font-weight: 700;
+
+        text-align: left;
+
+        -webkit-tap-highlight-color: transparent;
+        touch-action: manipulation;
+    }
+
+    .mobile-native-theme-icon {
+        width: 24px;
+        height: 24px;
+
+        display: inline-grid;
+        place-items: center;
+
+        border-radius: 7px;
+
+        background: rgba(118,103,255,0.08);
+        color: var(--purple);
+
+        font-size: 14px;
+        line-height: 1;
+    }
+
+    html.dark-mode .mobile-native-theme-toggle {
+        background: #111827;
+        color: #f3f6fb;
+        border-color: rgba(255,255,255,0.12);
+    }
+
+    html.dark-mode .mobile-native-theme-icon {
+        background: rgba(143,131,255,0.10);
+        color: #b6afff;
+    }
+}
+
+
+/* =========================================================
+   MOBILE NAV — PROJECTS / CONTACT TEXT MATCH
+   ========================================================= */
+
+@media screen and (max-width: 760px) {
+
+    .mobile-nav-native-panel > a.mobile-project-link,
+    .mobile-nav-native-panel > a.mobile-contact-link {
+        color: var(--text) !important;
+        -webkit-text-fill-color: var(--text) !important;
+        opacity: 1 !important;
+        filter: none !important;
+        text-shadow: none !important;
+    }
+
+    .mobile-nav-native-panel > a.mobile-project-link:visited,
+    .mobile-nav-native-panel > a.mobile-contact-link:visited {
+        color: var(--text) !important;
+        -webkit-text-fill-color: var(--text) !important;
+    }
+
+    html.dark-mode .mobile-nav-native-panel > a.mobile-project-link,
+    html.dark-mode .mobile-nav-native-panel > a.mobile-contact-link {
+        color: #f3f6fb !important;
+        -webkit-text-fill-color: #f3f6fb !important;
+        opacity: 1 !important;
+        filter: none !important;
+        text-shadow: none !important;
+    }
+
+    html.dark-mode .mobile-nav-native-panel > a.mobile-project-link:visited,
+    html.dark-mode .mobile-nav-native-panel > a.mobile-contact-link:visited {
+        color: #f3f6fb !important;
+        -webkit-text-fill-color: #f3f6fb !important;
+    }
+}
+

@@ -15,6 +15,41 @@
           rel="stylesheet">
 
     <link rel="stylesheet" href="style.css">
+
+
+<script>
+(function () {
+    const mobileToggle = document.getElementById("mobileNativeThemeToggle");
+    if (!mobileToggle) return;
+
+    function syncMobileThemeButton() {
+        const isDark = document.documentElement.classList.contains("dark-mode");
+
+        mobileToggle.setAttribute(
+            "aria-label",
+            isDark ? "Switch to light mode" : "Switch to dark mode"
+        );
+
+        mobileToggle.setAttribute("aria-pressed", String(isDark));
+
+        const icon = mobileToggle.querySelector(".mobile-native-theme-icon");
+        if (icon) icon.textContent = isDark ? "☀" : "☾";
+
+        const label = mobileToggle.querySelector(".mobile-native-theme-label");
+        if (label) label.textContent = isDark ? "Light Mode" : "Dark Mode";
+    }
+
+    mobileToggle.addEventListener("click", function () {
+        const isDark = document.documentElement.classList.contains("dark-mode");
+        document.documentElement.classList.toggle("dark-mode", !isDark);
+        syncMobileThemeButton();
+    });
+
+    syncMobileThemeButton();
+})();
+</script>
+
+
 <style>
 /* Currently Exploring — visibility enhancement only */
 .currently-learning-title {
@@ -184,7 +219,7 @@ html.dark-mode .currently-learning-pills span {
                 <a href="#how-i-work"><span>→</span> How I Work</a>
             </details>
 
-            <a href="#projects">Projects</a>
+            <a class="mobile-project-link" href="#projects">Projects</a>
 
             <details>
                 <summary>
@@ -212,10 +247,20 @@ html.dark-mode .currently-learning-pills span {
                 <a href="#moment-linkedin"><span>IN</span> LinkedIn Featured Post</a>
             </details>
 
-            <a class="mobile-nav-native-button-link" href="#contact">Contact</a>
+            <button
+                class="mobile-native-theme-toggle"
+                id="mobileNativeThemeToggle"
+                type="button"
+                aria-label="Switch to dark mode"
+                aria-pressed="false">
+                <span class="mobile-native-theme-icon">☾</span>
+                <span class="mobile-native-theme-label">Dark Mode</span>
+            </button>
+
+            <a class="mobile-contact-link mobile-nav-native-button-link" href="#contact">Contact</a>
 
             <a
-                class="mobile-nav-native-button-link"
+                class="mobile-resume-link mobile-nav-native-button-link"
                 href="assets/resume.pdf"
                 target="_blank"
                 rel="noopener noreferrer">
@@ -302,7 +347,7 @@ html.dark-mode .currently-learning-pills span {
                 </div>
             </div>
 
-            <a href="#projects">Projects</a>
+            <a class="mobile-project-link" href="#projects">Projects</a>
 
             <div class="nav-dropdown">
                 <button
@@ -2726,38 +2771,31 @@ html.dark-mode .currently-learning-pills span {
     const toggle = document.getElementById("themeToggle");
     if (!toggle) return;
 
-    const storageKey = "kushal-theme";
+    function applyTheme(mode) {
+        const isDark = mode === "dark";
 
-    function applyTheme(theme) {
-        const isDark = theme === "dark";
         document.documentElement.classList.toggle("dark-mode", isDark);
 
-        toggle.setAttribute("aria-pressed", String(isDark));
         toggle.setAttribute(
             "aria-label",
             isDark ? "Switch to light mode" : "Switch to dark mode"
         );
+
+        toggle.setAttribute("aria-pressed", String(isDark));
     }
 
-    const saved = localStorage.getItem(storageKey);
-
-    if (saved === "dark" || saved === "light") {
-        applyTheme(saved);
-    } else {
-        applyTheme(
-            window.matchMedia &&
-            window.matchMedia("(prefers-color-scheme: dark)").matches
-                ? "dark"
-                : "light"
-        );
-    }
+    /*
+     * Portfolio always starts in LIGHT mode on every page visit/refresh.
+     * The user's last mode is intentionally not restored automatically.
+     */
+    applyTheme("light");
 
     toggle.addEventListener("click", function () {
-        const next = document.documentElement.classList.contains("dark-mode")
-            ? "light"
-            : "dark";
+        const next =
+            document.documentElement.classList.contains("dark-mode")
+                ? "light"
+                : "dark";
 
-        localStorage.setItem(storageKey, next);
         applyTheme(next);
     });
 })();
