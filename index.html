@@ -32,10 +32,12 @@
 
         mobileToggle.setAttribute("aria-pressed", String(isDark));
 
-        const icon = mobileToggle.querySelector(".mobile-native-theme-icon");
-        if (icon) icon.textContent = isDark ? "☀" : "☾";
+        const sun = mobileToggle.querySelector(".mobile-theme-sun");
+        const moon = mobileToggle.querySelector(".mobile-theme-moon");
+        const label = document.getElementById("mobileNativeThemeLabel");
 
-        const label = mobileToggle.querySelector(".mobile-native-theme-label");
+        if (sun) sun.classList.toggle("is-visible", isDark);
+        if (moon) moon.classList.toggle("is-visible", !isDark);
         if (label) label.textContent = isDark ? "Light Mode" : "Dark Mode";
     }
 
@@ -253,8 +255,9 @@ html.dark-mode .currently-learning-pills span {
                 type="button"
                 aria-label="Switch to dark mode"
                 aria-pressed="false">
-                <span class="mobile-native-theme-icon">☾</span>
-                <span class="mobile-native-theme-label">Dark Mode</span>
+                <span class="mobile-theme-icon mobile-theme-sun">☀</span>
+                <span class="mobile-theme-icon mobile-theme-moon">☾</span>
+                <span class="mobile-theme-label" id="mobileNativeThemeLabel">Dark Mode</span>
             </button>
 
             <a class="mobile-contact-link mobile-nav-native-button-link" href="#contact">Contact</a>
@@ -3641,6 +3644,38 @@ html.dark-mode .currently-learning-pills span {
 </script>
 
 <script src="script.js"></script>
+
+
+<script>
+(function () {
+    const desktopNav = document.querySelector("nav");
+    if (!desktopNav) return;
+
+    desktopNav.querySelectorAll(".nav-dropdown-menu a").forEach(function (link) {
+        link.addEventListener("click", function () {
+            const dropdown = link.closest(".nav-dropdown");
+            if (!dropdown) return;
+
+            const button = dropdown.querySelector(".nav-dropdown-toggle");
+            const menu = dropdown.querySelector(".nav-dropdown-menu");
+
+            if (button) {
+                button.setAttribute("aria-expanded", "false");
+            }
+
+            if (menu) {
+                menu.classList.remove("is-open");
+            }
+
+            dropdown.classList.add("nav-item-selected");
+
+            window.setTimeout(function () {
+                dropdown.classList.remove("nav-item-selected");
+            }, 450);
+        });
+    });
+})();
+</script>
 
 </body>
 </html>

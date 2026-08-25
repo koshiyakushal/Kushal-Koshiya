@@ -8298,3 +8298,131 @@ html.dark-mode #navMenu .nav-resume {
     }
 }
 
+
+/* =========================================================
+   DESKTOP NAV — OPEN DROPDOWNS ON HOVER
+   ========================================================= */
+
+@media screen and (min-width: 761px) and (hover: hover) and (pointer: fine) {
+
+    .nav-dropdown:hover > .nav-dropdown-menu {
+        opacity: 1 !important;
+        visibility: visible !important;
+        pointer-events: auto !important;
+        transform: translateX(-50%) translateY(0) !important;
+    }
+
+    .nav-dropdown:hover > .nav-dropdown-toggle {
+        color: var(--purple) !important;
+    }
+
+    .nav-dropdown:hover > .nav-dropdown-toggle .nav-dropdown-chevron {
+        transform: rotate(180deg);
+    }
+
+    /* Keep the menu open while the cursor moves from the label into it. */
+    .nav-dropdown > .nav-dropdown-menu {
+        transition:
+            opacity 0.16s ease,
+            transform 0.16s ease,
+            visibility 0.16s ease;
+    }
+}
+
+
+/* =========================================================
+   NAV DROPDOWN — CLOSE AFTER SELECTION
+   ========================================================= */
+
+@media screen and (min-width: 761px) and (hover: hover) and (pointer: fine) {
+
+    /*
+     * When a submenu item is selected, briefly suppress hover opening
+     * while the browser lands on the destination section.
+     */
+    .nav-dropdown.nav-item-selected:hover > .nav-dropdown-menu {
+        opacity: 0 !important;
+        visibility: hidden !important;
+        pointer-events: none !important;
+        transform: translateX(-50%) translateY(-5px) !important;
+    }
+
+    .nav-dropdown.nav-item-selected:hover > .nav-dropdown-toggle {
+        color: inherit !important;
+    }
+}
+
+
+/* =========================================================
+   MOBILE THEME TOGGLE — MATCH DESKTOP STYLE
+   ========================================================= */
+
+@media screen and (max-width: 760px) {
+
+    .mobile-native-theme-toggle {
+        display: inline-flex !important;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+
+        width: auto !important;
+        min-width: 112px;
+        min-height: 42px !important;
+
+        margin-top: 8px;
+        padding: 8px 12px !important;
+
+        border: 1px solid var(--border) !important;
+        border-radius: 10px !important;
+
+        background: var(--white) !important;
+        color: var(--text) !important;
+
+        font-size: 12px !important;
+        font-weight: 700 !important;
+        line-height: 1 !important;
+
+        cursor: pointer;
+        -webkit-appearance: none;
+        appearance: none;
+        -webkit-tap-highlight-color: transparent;
+        touch-action: manipulation;
+    }
+
+    .mobile-theme-icon {
+        display: none;
+        align-items: center;
+        justify-content: center;
+
+        width: 24px;
+        height: 24px;
+
+        border-radius: 7px;
+
+        background: rgba(118,103,255,0.08);
+        color: var(--purple);
+
+        font-size: 13px;
+        line-height: 1;
+    }
+
+    .mobile-theme-icon.is-visible {
+        display: inline-flex;
+    }
+
+    .mobile-theme-label {
+        white-space: nowrap;
+    }
+
+    html.dark-mode .mobile-native-theme-toggle {
+        background: #111827 !important;
+        color: #f3f6fb !important;
+        border-color: rgba(255,255,255,0.12) !important;
+    }
+
+    html.dark-mode .mobile-theme-icon {
+        background: rgba(143,131,255,0.10);
+        color: #b6afff;
+    }
+}
+
