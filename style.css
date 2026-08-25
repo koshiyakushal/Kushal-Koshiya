@@ -8479,27 +8479,3 @@ html.dark-mode #navMenu .nav-resume {
         -webkit-tap-highlight-color: transparent !important;
     }
 }
-
-
-
-/* =========================================================
-   CINEMATIC INTRO — ALWAYS ABOVE HEADER / MOBILE NAV
-   ========================================================= */
-
-.portfolio-intro {
-    z-index: 200000 !important;
-    pointer-events: auto !important;
-}
-
-body.portfolio-intro-active {
-    overflow: hidden !important;
-    height: 100vh !important;
-}
-
-/* Prevent any sticky/fixed navigation from appearing above the intro. */
-body.portfolio-intro-active .navbar,
-body.portfolio-intro-active .mobile-nav-native-button,
-body.portfolio-intro-active .mobile-nav-native-panel,
-body.portfolio-intro-active .mobile-nav-native-backdrop {
-    z-index: auto !important;
-}
