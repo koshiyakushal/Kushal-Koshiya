@@ -146,8 +146,7 @@ html.dark-mode .currently-learning-pills span {
             id="menuToggle"
             type="button"
             aria-controls="navMenu"
-            aria-expanded="false"
-            onclick="(function(b){var n=document.getElementById('navMenu');var o=n.classList.toggle('active');b.setAttribute('aria-expanded',o?'true':'false');b.textContent=o?'×':'☰';})(this)">
+            aria-expanded="false">
             ☰
         </button>
 
@@ -159,7 +158,6 @@ html.dark-mode .currently-learning-pills span {
                 <button
                     class="nav-dropdown-toggle"
                     type="button"
-                    onclick="(function(b){var d=b.parentElement;var m=d.querySelector('.nav-dropdown-menu');var open=b.getAttribute('aria-expanded')==='true';document.querySelectorAll('.nav-dropdown-menu').forEach(function(x){x.classList.remove('is-open');});document.querySelectorAll('.nav-dropdown-toggle').forEach(function(x){x.setAttribute('aria-expanded','false');});if(!open){m.classList.add('is-open');b.setAttribute('aria-expanded','true');}})(this)"
                     aria-expanded="false"
                     aria-controls="experienceDropdownMenu">
                     Experience
@@ -190,7 +188,6 @@ html.dark-mode .currently-learning-pills span {
                 <button
                     class="nav-dropdown-toggle"
                     type="button"
-                    onclick="(function(b){var d=b.parentElement;var m=d.querySelector('.nav-dropdown-menu');var open=b.getAttribute('aria-expanded')==='true';document.querySelectorAll('.nav-dropdown-menu').forEach(function(x){x.classList.remove('is-open');});document.querySelectorAll('.nav-dropdown-toggle').forEach(function(x){x.setAttribute('aria-expanded','false');});if(!open){m.classList.add('is-open');b.setAttribute('aria-expanded','true');}})(this)"
                     aria-expanded="false"
                     aria-controls="skillsDropdownMenu">
                     Skills
@@ -219,7 +216,6 @@ html.dark-mode .currently-learning-pills span {
                 <button
                     class="nav-dropdown-toggle"
                     type="button"
-                    onclick="(function(b){var d=b.parentElement;var m=d.querySelector('.nav-dropdown-menu');var open=b.getAttribute('aria-expanded')==='true';document.querySelectorAll('.nav-dropdown-menu').forEach(function(x){x.classList.remove('is-open');});document.querySelectorAll('.nav-dropdown-toggle').forEach(function(x){x.setAttribute('aria-expanded','false');});if(!open){m.classList.add('is-open');b.setAttribute('aria-expanded','true');}})(this)"
                     aria-expanded="false"
                     aria-controls="credentialsDropdownMenu">
                     Credentials
@@ -258,7 +254,6 @@ html.dark-mode .currently-learning-pills span {
                 <button
                     class="nav-dropdown-toggle"
                     type="button"
-                    onclick="(function(b){var d=b.parentElement;var m=d.querySelector('.nav-dropdown-menu');var open=b.getAttribute('aria-expanded')==='true';document.querySelectorAll('.nav-dropdown-menu').forEach(function(x){x.classList.remove('is-open');});document.querySelectorAll('.nav-dropdown-toggle').forEach(function(x){x.setAttribute('aria-expanded','false');});if(!open){m.classList.add('is-open');b.setAttribute('aria-expanded','true');}})(this)"
                     aria-expanded="false"
                     aria-controls="momentsDropdownMenu">
                     Moments
@@ -2679,56 +2674,121 @@ html.dark-mode .currently-learning-pills span {
 
 <script>
 (function () {
-    const dropdowns = document.querySelectorAll(".nav-dropdown");
+    "use strict";
 
-    if (!dropdowns.length) return;
+    var menuButton = document.getElementById("menuToggle");
+    var nav = document.getElementById("navMenu");
+    var dropdowns = Array.prototype.slice.call(
+        document.querySelectorAll("#navMenu .nav-dropdown")
+    );
 
-    function closeAll(except) {
+    if (!nav || !menuButton) return;
+
+    var isMobile = function () {
+        return window.matchMedia("(max-width: 760px)").matches;
+    };
+
+    var closeDropdowns = function (except) {
         dropdowns.forEach(function (dropdown) {
-            if (dropdown !== except) {
-                const button = dropdown.querySelector(".nav-dropdown-toggle");
-                const menu = dropdown.querySelector(".nav-dropdown-menu");
+            if (dropdown === except) return;
 
-                if (button) button.setAttribute("aria-expanded", "false");
-                if (menu) menu.classList.remove("is-open");
+            var button = dropdown.querySelector(".nav-dropdown-toggle");
+            var menu = dropdown.querySelector(".nav-dropdown-menu");
+
+            if (button) button.setAttribute("aria-expanded", "false");
+            if (menu) {
+                menu.classList.remove("is-open");
+                menu.style.display = "";
             }
         });
-    }
+    };
+
+    var closeNav = function () {
+        nav.classList.remove("active");
+        nav.setAttribute("aria-hidden", "true");
+        menuButton.setAttribute("aria-expanded", "false");
+        menuButton.textContent = "☰";
+        closeDropdowns(null);
+    };
+
+    var openNav = function () {
+        nav.classList.add("active");
+        nav.setAttribute("aria-hidden", "false");
+        menuButton.setAttribute("aria-expanded", "true");
+        menuButton.textContent = "×";
+    };
+
+    menuButton.addEventListener("click", function (event) {
+        event.preventDefault();
+        event.stopPropagation();
+
+        if (!isMobile()) return;
+
+        if (nav.classList.contains("active")) {
+            closeNav();
+        } else {
+            openNav();
+        }
+    });
 
     dropdowns.forEach(function (dropdown) {
-        const button = dropdown.querySelector(".nav-dropdown-toggle");
-        const menu = dropdown.querySelector(".nav-dropdown-menu");
+        var button = dropdown.querySelector(".nav-dropdown-toggle");
+        var menu = dropdown.querySelector(".nav-dropdown-menu");
 
         if (!button || !menu) return;
 
+        button.setAttribute("type", "button");
+
         button.addEventListener("click", function (event) {
+            event.preventDefault();
             event.stopPropagation();
 
-            const isOpen = button.getAttribute("aria-expanded") === "true";
+            var open = button.getAttribute("aria-expanded") === "true";
 
-            closeAll(dropdown);
+            closeDropdowns(dropdown);
 
-            button.setAttribute("aria-expanded", String(!isOpen));
-            menu.classList.toggle("is-open", !isOpen);
+            if (!open) {
+                button.setAttribute("aria-expanded", "true");
+                menu.classList.add("is-open");
+
+                if (isMobile()) {
+                    menu.style.display = "block";
+                }
+            }
         });
 
         menu.querySelectorAll("a").forEach(function (link) {
             link.addEventListener("click", function () {
-                button.setAttribute("aria-expanded", "false");
-                menu.classList.remove("is-open");
+                if (isMobile()) closeNav();
             });
         });
     });
 
+    nav.querySelectorAll(":scope > a").forEach(function (link) {
+        link.addEventListener("click", function () {
+            if (isMobile()) closeNav();
+        });
+    });
+
     document.addEventListener("click", function (event) {
-        if (!event.target.closest(".nav-dropdown")) {
-            closeAll(null);
+        if (isMobile() && !event.target.closest(".navbar")) {
+            closeNav();
         }
     });
 
     document.addEventListener("keydown", function (event) {
         if (event.key === "Escape") {
-            closeAll(null);
+            closeNav();
+        }
+    });
+
+    window.addEventListener("resize", function () {
+        if (!isMobile()) {
+            nav.classList.remove("active");
+            nav.removeAttribute("aria-hidden");
+            menuButton.setAttribute("aria-expanded", "false");
+            menuButton.textContent = "☰";
+            closeDropdowns(null);
         }
     });
 })();
