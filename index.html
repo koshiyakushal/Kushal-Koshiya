@@ -141,7 +141,13 @@ html.dark-mode .currently-learning-pills span {
             <span class="logo-text">KK<span class="logo-dot">.</span></span>
         </a>
 
-        <button class="menu-toggle" id="menuToggle">
+        <button
+            class="menu-toggle"
+            id="menuToggle"
+            type="button"
+            aria-controls="navMenu"
+            aria-expanded="false"
+            onclick="(function(b){var n=document.getElementById('navMenu');var o=n.classList.toggle('active');b.setAttribute('aria-expanded',o?'true':'false');b.textContent=o?'×':'☰';})(this)">
             ☰
         </button>
 
@@ -153,6 +159,7 @@ html.dark-mode .currently-learning-pills span {
                 <button
                     class="nav-dropdown-toggle"
                     type="button"
+                    onclick="(function(b){var d=b.parentElement;var m=d.querySelector('.nav-dropdown-menu');var open=b.getAttribute('aria-expanded')==='true';document.querySelectorAll('.nav-dropdown-menu').forEach(function(x){x.classList.remove('is-open');});document.querySelectorAll('.nav-dropdown-toggle').forEach(function(x){x.setAttribute('aria-expanded','false');});if(!open){m.classList.add('is-open');b.setAttribute('aria-expanded','true');}})(this)"
                     aria-expanded="false"
                     aria-controls="experienceDropdownMenu">
                     Experience
@@ -183,6 +190,7 @@ html.dark-mode .currently-learning-pills span {
                 <button
                     class="nav-dropdown-toggle"
                     type="button"
+                    onclick="(function(b){var d=b.parentElement;var m=d.querySelector('.nav-dropdown-menu');var open=b.getAttribute('aria-expanded')==='true';document.querySelectorAll('.nav-dropdown-menu').forEach(function(x){x.classList.remove('is-open');});document.querySelectorAll('.nav-dropdown-toggle').forEach(function(x){x.setAttribute('aria-expanded','false');});if(!open){m.classList.add('is-open');b.setAttribute('aria-expanded','true');}})(this)"
                     aria-expanded="false"
                     aria-controls="skillsDropdownMenu">
                     Skills
@@ -211,6 +219,7 @@ html.dark-mode .currently-learning-pills span {
                 <button
                     class="nav-dropdown-toggle"
                     type="button"
+                    onclick="(function(b){var d=b.parentElement;var m=d.querySelector('.nav-dropdown-menu');var open=b.getAttribute('aria-expanded')==='true';document.querySelectorAll('.nav-dropdown-menu').forEach(function(x){x.classList.remove('is-open');});document.querySelectorAll('.nav-dropdown-toggle').forEach(function(x){x.setAttribute('aria-expanded','false');});if(!open){m.classList.add('is-open');b.setAttribute('aria-expanded','true');}})(this)"
                     aria-expanded="false"
                     aria-controls="credentialsDropdownMenu">
                     Credentials
@@ -249,6 +258,7 @@ html.dark-mode .currently-learning-pills span {
                 <button
                     class="nav-dropdown-toggle"
                     type="button"
+                    onclick="(function(b){var d=b.parentElement;var m=d.querySelector('.nav-dropdown-menu');var open=b.getAttribute('aria-expanded')==='true';document.querySelectorAll('.nav-dropdown-menu').forEach(function(x){x.classList.remove('is-open');});document.querySelectorAll('.nav-dropdown-toggle').forEach(function(x){x.setAttribute('aria-expanded','false');});if(!open){m.classList.add('is-open');b.setAttribute('aria-expanded','true');}})(this)"
                     aria-expanded="false"
                     aria-controls="momentsDropdownMenu">
                     Moments
@@ -2669,136 +2679,56 @@ html.dark-mode .currently-learning-pills span {
 
 <script>
 (function () {
-    var menuToggle = document.getElementById("menuToggle");
-    var navMenu = document.getElementById("navMenu");
-    var dropdowns = document.querySelectorAll(".nav-dropdown");
+    const dropdowns = document.querySelectorAll(".nav-dropdown");
 
-    if (!navMenu) return;
+    if (!dropdowns.length) return;
 
-    function mobile() {
-        return window.innerWidth <= 760;
-    }
-
-    function closeDropdowns(except) {
+    function closeAll(except) {
         dropdowns.forEach(function (dropdown) {
-            if (dropdown === except) return;
+            if (dropdown !== except) {
+                const button = dropdown.querySelector(".nav-dropdown-toggle");
+                const menu = dropdown.querySelector(".nav-dropdown-menu");
 
-            var btn = dropdown.querySelector(".nav-dropdown-toggle");
-            var menu = dropdown.querySelector(".nav-dropdown-menu");
-
-            if (btn) btn.setAttribute("aria-expanded", "false");
-            if (menu) {
-                menu.classList.remove("is-open");
-                menu.removeAttribute("data-mobile-open");
-            }
-        });
-    }
-
-    function openMobileNav() {
-        navMenu.classList.add("active");
-        navMenu.setAttribute("aria-hidden", "false");
-
-        if (menuToggle) {
-            menuToggle.setAttribute("aria-expanded", "true");
-            menuToggle.textContent = "×";
-        }
-    }
-
-    function closeMobileNav() {
-        navMenu.classList.remove("active");
-        navMenu.setAttribute("aria-hidden", "true");
-        closeDropdowns(null);
-
-        if (menuToggle) {
-            menuToggle.setAttribute("aria-expanded", "false");
-            menuToggle.textContent = "☰";
-        }
-    }
-
-    if (menuToggle) {
-        menuToggle.type = "button";
-        menuToggle.setAttribute("aria-controls", "navMenu");
-        menuToggle.setAttribute("aria-expanded", "false");
-
-        menuToggle.addEventListener("click", function (event) {
-            event.preventDefault();
-            event.stopPropagation();
-
-            if (!mobile()) return;
-
-            if (navMenu.classList.contains("active")) {
-                closeMobileNav();
-            } else {
-                openMobileNav();
+                if (button) button.setAttribute("aria-expanded", "false");
+                if (menu) menu.classList.remove("is-open");
             }
         });
     }
 
     dropdowns.forEach(function (dropdown) {
-        var button = dropdown.querySelector(".nav-dropdown-toggle");
-        var menu = dropdown.querySelector(".nav-dropdown-menu");
+        const button = dropdown.querySelector(".nav-dropdown-toggle");
+        const menu = dropdown.querySelector(".nav-dropdown-menu");
 
         if (!button || !menu) return;
 
-        button.type = "button";
-
         button.addEventListener("click", function (event) {
-            event.preventDefault();
             event.stopPropagation();
 
-            var currentlyOpen = button.getAttribute("aria-expanded") === "true";
+            const isOpen = button.getAttribute("aria-expanded") === "true";
 
-            closeDropdowns(dropdown);
+            closeAll(dropdown);
 
-            if (currentlyOpen) {
-                button.setAttribute("aria-expanded", "false");
-                menu.classList.remove("is-open");
-                return;
-            }
-
-            button.setAttribute("aria-expanded", "true");
-            menu.classList.add("is-open");
-
-            if (mobile()) {
-                menu.setAttribute("data-mobile-open", "true");
-            }
+            button.setAttribute("aria-expanded", String(!isOpen));
+            menu.classList.toggle("is-open", !isOpen);
         });
 
         menu.querySelectorAll("a").forEach(function (link) {
             link.addEventListener("click", function () {
-                if (mobile()) closeMobileNav();
+                button.setAttribute("aria-expanded", "false");
+                menu.classList.remove("is-open");
             });
         });
     });
 
-    navMenu.querySelectorAll(":scope > a").forEach(function (link) {
-        link.addEventListener("click", function () {
-            if (mobile()) closeMobileNav();
-        });
-    });
-
     document.addEventListener("click", function (event) {
-        if (!event.target.closest(".navbar")) {
-            closeMobileNav();
+        if (!event.target.closest(".nav-dropdown")) {
+            closeAll(null);
         }
     });
 
     document.addEventListener("keydown", function (event) {
         if (event.key === "Escape") {
-            closeMobileNav();
-        }
-    });
-
-    window.addEventListener("resize", function () {
-        if (!mobile()) {
-            navMenu.classList.remove("active");
-            navMenu.removeAttribute("aria-hidden");
-            closeDropdowns(null);
-
-            if (menuToggle) {
-                menuToggle.setAttribute("aria-expanded", "false");
-                menuToggle.textContent = "☰";
-            }
+            closeAll(null);
         }
     });
 })();
