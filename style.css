@@ -8262,3 +8262,39 @@ html.dark-mode #navMenu .nav-resume {
     }
 }
 
+
+/* =========================================================
+   DESKTOP NAV — TOP-LEVEL LINKS MATCH DROPDOWN LABELS
+   ========================================================= */
+
+@media screen and (min-width: 761px) {
+
+    html.dark-mode nav > a,
+    html.dark-mode nav > a:visited,
+    html.dark-mode nav > a:hover,
+    html.dark-mode nav > a:active {
+        color: #f3f6fb !important;
+        -webkit-text-fill-color: #f3f6fb !important;
+
+        font-size: 13px !important;
+        font-weight: 700 !important;
+        line-height: 1.3 !important;
+        letter-spacing: normal !important;
+
+        opacity: 1 !important;
+        filter: none !important;
+        text-shadow: none !important;
+        text-transform: none !important;
+    }
+
+    html.dark-mode nav > a.nav-contact {
+        color: #f3f6fb !important;
+        -webkit-text-fill-color: #f3f6fb !important;
+    }
+
+    html.dark-mode nav > a.nav-resume {
+        color: #f3f6fb !important;
+        -webkit-text-fill-color: #f3f6fb !important;
+    }
+}
+
