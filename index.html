@@ -19,35 +19,54 @@
 
 <script>
 (function () {
-    const mobileToggle = document.getElementById("mobileNativeThemeToggle");
-    if (!mobileToggle) return;
+    function initMobileThemeToggle() {
+        const mobileToggle = document.getElementById("mobileNativeThemeToggle");
+        if (!mobileToggle) return;
 
-    function syncMobileThemeButton() {
-        const isDark = document.documentElement.classList.contains("dark-mode");
+        function syncMobileThemeButton() {
+            const isDark = document.documentElement.classList.contains("dark-mode");
 
-        mobileToggle.setAttribute(
-            "aria-label",
-            isDark ? "Switch to light mode" : "Switch to dark mode"
-        );
+            mobileToggle.setAttribute(
+                "aria-label",
+                isDark ? "Switch to light mode" : "Switch to dark mode"
+            );
 
-        mobileToggle.setAttribute("aria-pressed", String(isDark));
+            mobileToggle.setAttribute("aria-pressed", String(isDark));
 
-        const sun = mobileToggle.querySelector(".mobile-theme-sun");
-        const moon = mobileToggle.querySelector(".mobile-theme-moon");
-        const label = document.getElementById("mobileNativeThemeLabel");
+            const sun = mobileToggle.querySelector(".mobile-theme-sun");
+            const moon = mobileToggle.querySelector(".mobile-theme-moon");
+            const label = document.getElementById("mobileNativeThemeLabel");
 
-        if (sun) sun.classList.toggle("is-visible", isDark);
-        if (moon) moon.classList.toggle("is-visible", !isDark);
-        if (label) label.textContent = isDark ? "Light Mode" : "Dark Mode";
+            if (sun) sun.classList.toggle("is-visible", isDark);
+            if (moon) moon.classList.toggle("is-visible", !isDark);
+            if (label) label.textContent = isDark ? "Light Mode" : "Dark Mode";
+        }
+
+        if (mobileToggle.dataset.themeBound === "true") {
+            syncMobileThemeButton();
+            return;
+        }
+
+        mobileToggle.dataset.themeBound = "true";
+
+        mobileToggle.addEventListener("click", function (event) {
+            event.preventDefault();
+            event.stopPropagation();
+
+            const isDark = document.documentElement.classList.contains("dark-mode");
+
+            document.documentElement.classList.toggle("dark-mode", !isDark);
+            syncMobileThemeButton();
+        });
+
+        syncMobileThemeButton();
     }
 
-    mobileToggle.addEventListener("click", function () {
-        const isDark = document.documentElement.classList.contains("dark-mode");
-        document.documentElement.classList.toggle("dark-mode", !isDark);
-        syncMobileThemeButton();
-    });
-
-    syncMobileThemeButton();
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", initMobileThemeToggle);
+    } else {
+        initMobileThemeToggle();
+    }
 })();
 </script>
 
