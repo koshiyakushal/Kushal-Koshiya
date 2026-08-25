@@ -2669,18 +2669,59 @@ html.dark-mode .currently-learning-pills span {
 
 <script>
 (function () {
+    const menuToggle = document.getElementById("menuToggle");
+    const navMenu = document.getElementById("navMenu");
     const dropdowns = document.querySelectorAll(".nav-dropdown");
 
-    if (!dropdowns.length) return;
+    if (!navMenu) return;
 
-    function closeAll(except) {
+    function closeDropdowns(except) {
         dropdowns.forEach(function (dropdown) {
             if (dropdown !== except) {
                 const button = dropdown.querySelector(".nav-dropdown-toggle");
                 const menu = dropdown.querySelector(".nav-dropdown-menu");
 
-                if (button) button.setAttribute("aria-expanded", "false");
-                if (menu) menu.classList.remove("is-open");
+                if (button) {
+                    button.setAttribute("aria-expanded", "false");
+                }
+
+                if (menu) {
+                    menu.classList.remove("is-open");
+                }
+            }
+        });
+    }
+
+    function closeMobileMenu() {
+        navMenu.classList.remove("active");
+        document.body.classList.remove("mobile-nav-open");
+
+        if (menuToggle) {
+            menuToggle.setAttribute("aria-expanded", "false");
+            menuToggle.innerHTML = "☰";
+        }
+
+        closeDropdowns(null);
+    }
+
+    if (menuToggle) {
+        menuToggle.setAttribute("type", "button");
+        menuToggle.setAttribute("aria-controls", "navMenu");
+        menuToggle.setAttribute("aria-expanded", "false");
+
+        menuToggle.addEventListener("click", function (event) {
+            event.preventDefault();
+            event.stopPropagation();
+
+            const isOpen = navMenu.classList.toggle("active");
+
+            menuToggle.setAttribute("aria-expanded", String(isOpen));
+            menuToggle.innerHTML = isOpen ? "×" : "☰";
+
+            document.body.classList.toggle("mobile-nav-open", isOpen);
+
+            if (!isOpen) {
+                closeDropdowns(null);
             }
         });
     }
@@ -2691,34 +2732,46 @@ html.dark-mode .currently-learning-pills span {
 
         if (!button || !menu) return;
 
-        button.addEventListener("click", function (event) {
+        button.setAttribute("type", "button");
+
+        function toggleDropdown(event) {
+            event.preventDefault();
             event.stopPropagation();
 
             const isOpen = button.getAttribute("aria-expanded") === "true";
 
-            closeAll(dropdown);
+            closeDropdowns(dropdown);
 
             button.setAttribute("aria-expanded", String(!isOpen));
             menu.classList.toggle("is-open", !isOpen);
-        });
+        }
+
+        // Pointer events work well on iPhone/iPad and desktop.
+        button.addEventListener("pointerup", toggleDropdown, { passive: false });
 
         menu.querySelectorAll("a").forEach(function (link) {
             link.addEventListener("click", function () {
-                button.setAttribute("aria-expanded", "false");
-                menu.classList.remove("is-open");
+                closeMobileMenu();
             });
         });
     });
 
+    // Close the mobile nav when a normal nav link is selected.
+    navMenu.querySelectorAll("a").forEach(function (link) {
+        link.addEventListener("click", function () {
+            closeMobileMenu();
+        });
+    });
+
     document.addEventListener("click", function (event) {
-        if (!event.target.closest(".nav-dropdown")) {
-            closeAll(null);
+        if (!event.target.closest(".navbar")) {
+            closeDropdowns(null);
         }
     });
 
     document.addEventListener("keydown", function (event) {
         if (event.key === "Escape") {
-            closeAll(null);
+            closeMobileMenu();
         }
     });
 })();
