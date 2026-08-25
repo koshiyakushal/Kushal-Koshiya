@@ -8479,3 +8479,28 @@ html.dark-mode #navMenu .nav-resume {
         -webkit-tap-highlight-color: transparent !important;
     }
 }
+
+
+/* =========================================================
+   CINEMATIC INTRO — HIDE HEADER UNTIL INTRO FINISHES
+   ========================================================= */
+
+body.portfolio-intro-active .navbar {
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+}
+
+body.portfolio-intro-active .portfolio-intro {
+    position: fixed !important;
+    inset: 0 !important;
+    z-index: 2147483647 !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+}
+
+body.portfolio-intro-active {
+    overflow: hidden !important;
+}
+
