@@ -2667,61 +2667,79 @@ html.dark-mode .currently-learning-pills span {
 </script>
 
 
+
 <script>
 (function () {
     const menuToggle = document.getElementById("menuToggle");
     const navMenu = document.getElementById("navMenu");
+
+    if (!menuToggle || !navMenu) return;
+
+    menuToggle.setAttribute("type", "button");
+    menuToggle.setAttribute("aria-controls", "navMenu");
+    menuToggle.setAttribute("aria-expanded", "false");
+
+    function closeMobileMenu() {
+        navMenu.classList.remove("active");
+        menuToggle.setAttribute("aria-expanded", "false");
+        menuToggle.textContent = "☰";
+
+        document.querySelectorAll(".nav-dropdown").forEach(function (dropdown) {
+            const button = dropdown.querySelector(".nav-dropdown-toggle");
+            const menu = dropdown.querySelector(".nav-dropdown-menu");
+
+            if (button) button.setAttribute("aria-expanded", "false");
+            if (menu) menu.classList.remove("is-open");
+        });
+    }
+
+    menuToggle.addEventListener("click", function (event) {
+        event.preventDefault();
+        event.stopPropagation();
+
+        const open = !navMenu.classList.contains("active");
+
+        navMenu.classList.toggle("active", open);
+        menuToggle.setAttribute("aria-expanded", String(open));
+        menuToggle.textContent = open ? "×" : "☰";
+    });
+
+    // Any normal navigation link closes the mobile drawer.
+    navMenu.querySelectorAll("a").forEach(function (link) {
+        link.addEventListener("click", function () {
+            closeMobileMenu();
+        });
+    });
+
+    // Dropdown links also close the drawer after navigation.
+    navMenu.querySelectorAll(".nav-dropdown-menu a").forEach(function (link) {
+        link.addEventListener("click", function () {
+            closeMobileMenu();
+        });
+    });
+
+    document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape") {
+            closeMobileMenu();
+        }
+    });
+})();
+</script>
+
+<script>
+(function () {
     const dropdowns = document.querySelectorAll(".nav-dropdown");
 
-    if (!navMenu) return;
+    if (!dropdowns.length) return;
 
-    function closeDropdowns(except) {
+    function closeAll(except) {
         dropdowns.forEach(function (dropdown) {
             if (dropdown !== except) {
                 const button = dropdown.querySelector(".nav-dropdown-toggle");
                 const menu = dropdown.querySelector(".nav-dropdown-menu");
 
-                if (button) {
-                    button.setAttribute("aria-expanded", "false");
-                }
-
-                if (menu) {
-                    menu.classList.remove("is-open");
-                }
-            }
-        });
-    }
-
-    function closeMobileMenu() {
-        navMenu.classList.remove("active");
-        document.body.classList.remove("mobile-nav-open");
-
-        if (menuToggle) {
-            menuToggle.setAttribute("aria-expanded", "false");
-            menuToggle.innerHTML = "☰";
-        }
-
-        closeDropdowns(null);
-    }
-
-    if (menuToggle) {
-        menuToggle.setAttribute("type", "button");
-        menuToggle.setAttribute("aria-controls", "navMenu");
-        menuToggle.setAttribute("aria-expanded", "false");
-
-        menuToggle.addEventListener("click", function (event) {
-            event.preventDefault();
-            event.stopPropagation();
-
-            const isOpen = navMenu.classList.toggle("active");
-
-            menuToggle.setAttribute("aria-expanded", String(isOpen));
-            menuToggle.innerHTML = isOpen ? "×" : "☰";
-
-            document.body.classList.toggle("mobile-nav-open", isOpen);
-
-            if (!isOpen) {
-                closeDropdowns(null);
+                if (button) button.setAttribute("aria-expanded", "false");
+                if (menu) menu.classList.remove("is-open");
             }
         });
     }
@@ -2732,46 +2750,34 @@ html.dark-mode .currently-learning-pills span {
 
         if (!button || !menu) return;
 
-        button.setAttribute("type", "button");
-
-        function toggleDropdown(event) {
-            event.preventDefault();
+        button.addEventListener("click", function (event) {
             event.stopPropagation();
 
             const isOpen = button.getAttribute("aria-expanded") === "true";
 
-            closeDropdowns(dropdown);
+            closeAll(dropdown);
 
             button.setAttribute("aria-expanded", String(!isOpen));
             menu.classList.toggle("is-open", !isOpen);
-        }
-
-        // Pointer events work well on iPhone/iPad and desktop.
-        button.addEventListener("pointerup", toggleDropdown, { passive: false });
+        });
 
         menu.querySelectorAll("a").forEach(function (link) {
             link.addEventListener("click", function () {
-                closeMobileMenu();
+                button.setAttribute("aria-expanded", "false");
+                menu.classList.remove("is-open");
             });
         });
     });
 
-    // Close the mobile nav when a normal nav link is selected.
-    navMenu.querySelectorAll("a").forEach(function (link) {
-        link.addEventListener("click", function () {
-            closeMobileMenu();
-        });
-    });
-
     document.addEventListener("click", function (event) {
-        if (!event.target.closest(".navbar")) {
-            closeDropdowns(null);
+        if (!event.target.closest(".nav-dropdown")) {
+            closeAll(null);
         }
     });
 
     document.addEventListener("keydown", function (event) {
         if (event.key === "Escape") {
-            closeMobileMenu();
+            closeAll(null);
         }
     });
 })();

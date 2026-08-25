@@ -7647,39 +7647,23 @@ html.dark-mode .kushpilot-greeting::after {
 
 
 /* =========================================================
-   iOS / MOBILE NAVIGATION FIX
+   IOS / MOBILE NAVIGATION — STABILITY FIX
    ========================================================= */
 
-html,
-body {
+.menu-toggle,
+.nav-dropdown-toggle,
+.nav-dropdown-menu a,
+#navMenu > a {
     -webkit-tap-highlight-color: transparent;
-}
-
-body.mobile-nav-open {
-    overflow: hidden;
+    touch-action: manipulation;
 }
 
 .menu-toggle {
-    position: relative;
-    z-index: 1201;
-    touch-action: manipulation;
-    -webkit-user-select: none;
-    user-select: none;
     -webkit-appearance: none;
     appearance: none;
 }
 
-.nav-dropdown-toggle,
-.nav-dropdown-menu a,
-nav > a,
-.nav-resume,
-.nav-linkedin,
-.theme-toggle {
-    -webkit-tap-highlight-color: transparent;
-    touch-action: manipulation;
-}
-
-@media (max-width: 760px) {
+@media (max-width: 680px) {
 
     .navbar {
         z-index: 3000;
@@ -7690,42 +7674,35 @@ nav > a,
     }
 
     .menu-toggle {
-        display: block;
-        padding: 10px;
-        min-width: 44px;
-        min-height: 44px;
+        position: relative;
+        z-index: 3002;
+
+        width: 44px;
+        height: 44px;
+        padding: 0;
+
+        display: grid;
+        place-items: center;
+
         border-radius: 10px;
         color: var(--text);
+
+        line-height: 1;
     }
 
     nav {
-        position: absolute !important;
-        top: 65px !important;
-        left: 0;
-        right: 0;
+        z-index: 3001;
 
-        width: 100% !important;
-        max-height: calc(100vh - 65px);
+        width: 100%;
+        max-height: calc(100dvh - 65px);
 
         overflow-y: auto;
         overflow-x: hidden;
+
         -webkit-overflow-scrolling: touch;
+        overscroll-behavior: contain;
 
-        display: none !important;
-        flex-direction: column;
-        align-items: stretch;
-
-        gap: 0 !important;
-        padding: 10px 20px 18px;
-
-        background: rgba(245,247,251,0.98);
-        border-top: 1px solid var(--border);
-        border-bottom: 1px solid var(--border);
-        box-shadow: 0 18px 35px rgba(16,21,34,0.10);
-
-        white-space: normal !important;
-
-        z-index: 3001;
+        padding-bottom: 24px;
     }
 
     nav.active {
@@ -7734,98 +7711,22 @@ nav > a,
 
     nav > a,
     .nav-dropdown-toggle {
-        width: 100%;
         min-height: 44px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-
-        padding: 12px 4px;
-
-        color: var(--text);
-        text-align: left;
-    }
-
-    .nav-dropdown {
-        width: 100%;
-        display: block;
-    }
-
-    .nav-dropdown-menu {
-        position: static !important;
-        top: auto;
-        left: auto;
-        transform: none !important;
-
-        width: 100%;
-        min-width: 0;
-
-        margin: 0;
-        padding: 2px 0 8px 10px;
-
-        border: 0 !important;
-        border-radius: 0;
-        background: transparent !important;
-        box-shadow: none !important;
-
-        display: none !important;
-        opacity: 1;
-        visibility: visible;
-        pointer-events: none;
-    }
-
-    .nav-dropdown-menu.is-open {
-        display: block !important;
-        pointer-events: auto;
     }
 
     .nav-dropdown-menu a {
-        width: 100%;
         min-height: 40px;
-        padding: 9px 10px;
-        border-radius: 8px;
-        text-align: left;
-    }
-
-    .nav-resume,
-    .nav-linkedin {
-        width: 100%;
-        justify-content: center;
-        margin-top: 5px;
-    }
-
-    .theme-toggle {
-        align-self: flex-start;
-        margin-top: 6px;
-        min-width: 44px;
-        min-height: 44px;
-    }
-
-    /* Prevent the desktop dropdown's hover transform from interfering on touch */
-    .nav-dropdown-menu a:hover,
-    nav a:hover {
-        transform: none;
     }
 
     html.dark-mode nav {
         background: rgba(11,16,27,0.98);
-        border-top-color: rgba(255,255,255,0.08);
-        border-bottom-color: rgba(255,255,255,0.08);
-        box-shadow: 0 18px 35px rgba(0,0,0,0.30);
-    }
-
-    html.dark-mode nav > a,
-    html.dark-mode .nav-dropdown-toggle {
-        color: #f3f6fb;
     }
 }
 
-@media (hover: none) {
-    nav a:hover,
-    .nav-dropdown-menu a:hover,
-    .nav-dropdown-toggle:hover {
-        color: inherit;
-        background: transparent;
+@media (max-width: 760px) {
+    .nav-dropdown-menu {
+        width: 100%;
+        max-width: none;
     }
 }
 
