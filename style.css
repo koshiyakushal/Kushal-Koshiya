@@ -7847,3 +7847,276 @@ html.dark-mode #navMenu .nav-resume {
     border-color: rgba(255,255,255,0.12) !important;
 }
 
+
+/* =========================================================
+   IPHONE / IPAD — NATIVE MOBILE NAVIGATION
+   No JavaScript required for opening the menu.
+   ========================================================= */
+
+.mobile-nav-native-input,
+.mobile-nav-native-button,
+.mobile-nav-native-panel,
+.mobile-nav-native-backdrop {
+    display: none;
+}
+
+@media screen and (max-width: 760px) {
+
+    /* Hide the legacy mobile menu implementation on phones. */
+    #menuToggle,
+    #navMenu {
+        display: none !important;
+    }
+
+    .mobile-nav-native-input {
+        position: absolute !important;
+        width: 1px !important;
+        height: 1px !important;
+        opacity: 0 !important;
+        pointer-events: none !important;
+    }
+
+    .mobile-nav-native-button {
+        position: relative;
+        z-index: 100005;
+
+        display: grid !important;
+        place-items: center;
+
+        width: 44px;
+        height: 44px;
+        min-width: 44px;
+
+        margin-left: auto;
+
+        border: 0;
+        border-radius: 10px;
+
+        background: transparent;
+        color: var(--text);
+
+        font-size: 27px;
+        line-height: 1;
+
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .mobile-nav-native-open {
+        display: inline-block;
+    }
+
+    .mobile-nav-native-close {
+        display: none;
+    }
+
+    .mobile-nav-native-input:checked + .mobile-nav-native-button
+        .mobile-nav-native-open {
+        display: none;
+    }
+
+    .mobile-nav-native-input:checked + .mobile-nav-native-button
+        .mobile-nav-native-close {
+        display: inline-block;
+    }
+
+    .mobile-nav-native-backdrop {
+        position: fixed;
+        inset: 0;
+
+        z-index: 100000;
+
+        background: rgba(0,0,0,0.32);
+
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+
+        transition: opacity 0.2s ease, visibility 0.2s ease;
+    }
+
+    .mobile-nav-native-panel {
+        position: fixed;
+        top: 65px;
+        left: 0;
+        right: 0;
+
+        z-index: 100004;
+
+        display: block !important;
+
+        width: 100%;
+        max-height: calc(100dvh - 65px);
+
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+
+        padding: 14px 20px 30px;
+
+        background: #ffffff;
+
+        border-top: 1px solid var(--border);
+
+        box-shadow: 0 20px 45px rgba(16,21,34,0.16);
+
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+
+        transform: translateY(-8px);
+
+        transition:
+            opacity 0.2s ease,
+            transform 0.2s ease,
+            visibility 0.2s ease;
+    }
+
+    .mobile-nav-native-input:checked ~ .mobile-nav-native-backdrop {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+    }
+
+    .mobile-nav-native-input:checked ~ .mobile-nav-native-panel {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transform: translateY(0);
+    }
+
+    .mobile-nav-native-panel > a,
+    .mobile-nav-native-panel summary {
+        width: 100%;
+        min-height: 48px;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        padding: 13px 4px;
+
+        color: var(--text);
+
+        font-size: 15px;
+        font-weight: 700;
+
+        text-decoration: none;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .mobile-nav-native-panel details {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    .mobile-nav-native-panel summary {
+        list-style: none;
+        cursor: pointer;
+    }
+
+    .mobile-nav-native-panel summary::-webkit-details-marker {
+        display: none;
+    }
+
+    .mobile-nav-native-panel details[open] summary {
+        color: var(--purple);
+    }
+
+    .mobile-nav-native-panel details > a {
+        display: flex;
+        align-items: center;
+
+        width: 100%;
+        min-height: 42px;
+
+        padding: 10px 8px 10px 14px;
+
+        color: var(--text);
+
+        font-size: 13px;
+        font-weight: 650;
+
+        border-radius: 8px;
+        text-decoration: none;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .mobile-nav-native-panel details > a span {
+        min-width: 34px;
+        margin-right: 4px;
+        color: var(--purple);
+        font-size: 10px;
+        font-weight: 800;
+    }
+
+    .mobile-nav-native-button-link {
+        margin-top: 5px;
+
+        justify-content: center !important;
+
+        border: 1px solid var(--border);
+        border-radius: 9px;
+
+        background: var(--white);
+    }
+
+    .mobile-nav-native-linkedin {
+        margin-top: 7px;
+
+        justify-content: center !important;
+
+        min-height: 44px;
+
+        border: 1px solid var(--linkedin);
+        border-radius: 9px;
+
+        background: var(--linkedin);
+        color: #ffffff !important;
+    }
+
+    html.dark-mode .mobile-nav-native-button {
+        color: #f3f6fb;
+    }
+
+    html.dark-mode .mobile-nav-native-panel {
+        background: #0b101b;
+        border-color: rgba(255,255,255,0.08);
+        box-shadow: 0 20px 45px rgba(0,0,0,0.34);
+    }
+
+    html.dark-mode .mobile-nav-native-panel > a,
+    html.dark-mode .mobile-nav-native-panel summary,
+    html.dark-mode .mobile-nav-native-panel details > a {
+        color: #f3f6fb;
+    }
+
+    html.dark-mode .mobile-nav-native-panel details > a span {
+        color: #b6afff;
+    }
+
+    html.dark-mode .mobile-nav-native-button-link {
+        background: #111827;
+        border-color: rgba(255,255,255,0.12);
+        color: #f3f6fb;
+    }
+
+    html.dark-mode .mobile-nav-native-linkedin {
+        background: var(--linkedin);
+        border-color: var(--linkedin);
+        color: #ffffff !important;
+    }
+
+    /* Keep the rest of the page fixed while the drawer is open. */
+    body:has(#mobileNavNative:checked) {
+        overflow: hidden;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .mobile-nav-native-panel,
+        .mobile-nav-native-backdrop {
+            transition: none;
+        }
+    }
+}
+
