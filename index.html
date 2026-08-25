@@ -2667,79 +2667,103 @@ html.dark-mode .currently-learning-pills span {
 </script>
 
 
-
 <script>
 (function () {
     const menuToggle = document.getElementById("menuToggle");
     const navMenu = document.getElementById("navMenu");
+    const dropdowns = document.querySelectorAll(".nav-dropdown");
 
-    if (!menuToggle || !navMenu) return;
+    if (!navMenu) return;
 
-    menuToggle.setAttribute("type", "button");
-    menuToggle.setAttribute("aria-controls", "navMenu");
-    menuToggle.setAttribute("aria-expanded", "false");
+    const mobileBreakpoint = 760;
 
-    function closeMobileMenu() {
-        navMenu.classList.remove("active");
-        menuToggle.setAttribute("aria-expanded", "false");
-        menuToggle.textContent = "☰";
+    function isMobile() {
+        return window.innerWidth <= mobileBreakpoint;
+    }
 
-        document.querySelectorAll(".nav-dropdown").forEach(function (dropdown) {
+    function closeDropdowns(except) {
+        dropdowns.forEach(function (dropdown) {
+            if (dropdown === except) return;
+
             const button = dropdown.querySelector(".nav-dropdown-toggle");
             const menu = dropdown.querySelector(".nav-dropdown-menu");
 
-            if (button) button.setAttribute("aria-expanded", "false");
-            if (menu) menu.classList.remove("is-open");
+            if (button) {
+                button.setAttribute("aria-expanded", "false");
+            }
+
+            if (menu) {
+                menu.classList.remove("is-open");
+                if (isMobile()) {
+                    menu.style.display = "";
+                }
+            }
         });
     }
 
-    menuToggle.addEventListener("click", function (event) {
-        event.preventDefault();
-        event.stopPropagation();
+    function closeMobileMenu() {
+        if (!isMobile()) return;
 
-        const open = !navMenu.classList.contains("active");
+        navMenu.classList.remove("active");
+        navMenu.style.display = "none";
 
-        navMenu.classList.toggle("active", open);
-        menuToggle.setAttribute("aria-expanded", String(open));
-        menuToggle.textContent = open ? "×" : "☰";
-    });
-
-    // Any normal navigation link closes the mobile drawer.
-    navMenu.querySelectorAll("a").forEach(function (link) {
-        link.addEventListener("click", function () {
-            closeMobileMenu();
-        });
-    });
-
-    // Dropdown links also close the drawer after navigation.
-    navMenu.querySelectorAll(".nav-dropdown-menu a").forEach(function (link) {
-        link.addEventListener("click", function () {
-            closeMobileMenu();
-        });
-    });
-
-    document.addEventListener("keydown", function (event) {
-        if (event.key === "Escape") {
-            closeMobileMenu();
+        if (menuToggle) {
+            menuToggle.setAttribute("aria-expanded", "false");
+            menuToggle.textContent = "☰";
         }
-    });
-})();
-</script>
 
-<script>
-(function () {
-    const dropdowns = document.querySelectorAll(".nav-dropdown");
+        closeDropdowns(null);
+    }
 
-    if (!dropdowns.length) return;
+    function openMobileMenu() {
+        if (!isMobile()) return;
 
-    function closeAll(except) {
-        dropdowns.forEach(function (dropdown) {
-            if (dropdown !== except) {
-                const button = dropdown.querySelector(".nav-dropdown-toggle");
-                const menu = dropdown.querySelector(".nav-dropdown-menu");
+        /*
+         * Force the mobile menu open with inline values as a fallback.
+         * This avoids iOS Safari issues where a CSS-only display toggle
+         * can be affected by cached/competing nav rules.
+         */
+        navMenu.classList.add("active");
+        navMenu.style.display = "flex";
+        navMenu.style.position = "fixed";
+        navMenu.style.top = "65px";
+        navMenu.style.left = "0";
+        navMenu.style.right = "0";
+        navMenu.style.width = "100%";
+        navMenu.style.zIndex = "3001";
+        navMenu.style.maxHeight = "calc(100dvh - 65px)";
+        navMenu.style.overflowY = "auto";
+        navMenu.style.webkitOverflowScrolling = "touch";
+        navMenu.style.background = getComputedStyle(document.documentElement).getPropertyValue("--background") || "#f5f7fb";
+        navMenu.style.padding = "15px 20px 24px";
+        navMenu.style.flexDirection = "column";
+        navMenu.style.alignItems = "stretch";
+        navMenu.style.gap = "0";
+        navMenu.style.boxSizing = "border-box";
 
-                if (button) button.setAttribute("aria-expanded", "false");
-                if (menu) menu.classList.remove("is-open");
+        if (menuToggle) {
+            menuToggle.setAttribute("aria-expanded", "true");
+            menuToggle.textContent = "×";
+        }
+    }
+
+    if (menuToggle) {
+        menuToggle.type = "button";
+        menuToggle.setAttribute("aria-controls", "navMenu");
+        menuToggle.setAttribute("aria-expanded", "false");
+
+        menuToggle.addEventListener("click", function (event) {
+            event.preventDefault();
+            event.stopPropagation();
+
+            if (!isMobile()) return;
+
+            const isOpen = navMenu.classList.contains("active");
+
+            if (isOpen) {
+                closeMobileMenu();
+            } else {
+                openMobileMenu();
             }
         });
     }
@@ -2750,34 +2774,80 @@ html.dark-mode .currently-learning-pills span {
 
         if (!button || !menu) return;
 
+        button.type = "button";
+
         button.addEventListener("click", function (event) {
+            event.preventDefault();
             event.stopPropagation();
 
             const isOpen = button.getAttribute("aria-expanded") === "true";
 
-            closeAll(dropdown);
+            closeDropdowns(dropdown);
 
             button.setAttribute("aria-expanded", String(!isOpen));
             menu.classList.toggle("is-open", !isOpen);
-        });
 
-        menu.querySelectorAll("a").forEach(function (link) {
-            link.addEventListener("click", function () {
-                button.setAttribute("aria-expanded", "false");
-                menu.classList.remove("is-open");
-            });
+            if (isMobile()) {
+                menu.style.display = !isOpen ? "block" : "none";
+                menu.style.position = "static";
+                menu.style.width = "100%";
+                menu.style.maxWidth = "none";
+                menu.style.opacity = "1";
+                menu.style.visibility = "visible";
+                menu.style.pointerEvents = !isOpen ? "auto" : "none";
+                menu.style.transform = "none";
+            }
+        });
+    });
+
+    navMenu.querySelectorAll("a").forEach(function (link) {
+        link.addEventListener("click", function () {
+            if (isMobile()) {
+                closeMobileMenu();
+            }
         });
     });
 
     document.addEventListener("click", function (event) {
-        if (!event.target.closest(".nav-dropdown")) {
-            closeAll(null);
+        if (!event.target.closest(".navbar") && isMobile()) {
+            closeMobileMenu();
+        } else if (!event.target.closest(".nav-dropdown")) {
+            closeDropdowns(null);
         }
     });
 
     document.addEventListener("keydown", function (event) {
         if (event.key === "Escape") {
-            closeAll(null);
+            closeMobileMenu();
+            closeDropdowns(null);
+        }
+    });
+
+    window.addEventListener("resize", function () {
+        if (!isMobile()) {
+            navMenu.classList.remove("active");
+            navMenu.style.display = "";
+            navMenu.style.position = "";
+            navMenu.style.top = "";
+            navMenu.style.left = "";
+            navMenu.style.right = "";
+            navMenu.style.width = "";
+            navMenu.style.zIndex = "";
+            navMenu.style.maxHeight = "";
+            navMenu.style.overflowY = "";
+            navMenu.style.background = "";
+            navMenu.style.padding = "";
+            navMenu.style.flexDirection = "";
+            navMenu.style.alignItems = "";
+            navMenu.style.gap = "";
+            navMenu.style.boxSizing = "";
+
+            if (menuToggle) {
+                menuToggle.setAttribute("aria-expanded", "false");
+                menuToggle.textContent = "☰";
+            }
+
+            closeDropdowns(null);
         }
     });
 })();
